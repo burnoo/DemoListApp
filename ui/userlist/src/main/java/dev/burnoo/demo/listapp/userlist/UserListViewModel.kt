@@ -2,7 +2,7 @@ package dev.burnoo.demo.listapp.userlist
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import dev.burnoo.demo.listapp.data.users.repository.UsersRepository
+import dev.burnoo.demo.listapp.data.users.core.UsersRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch

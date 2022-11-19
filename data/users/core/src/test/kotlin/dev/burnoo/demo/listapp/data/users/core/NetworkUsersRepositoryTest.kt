@@ -1,9 +1,9 @@
-package dev.burnoo.demo.listapp.data.users.repository
+package dev.burnoo.demo.listapp.data.users.core
 
+import dev.burnoo.demo.listapp.data.users.core.utils.FakeUsersNetworkDataSource
+import dev.burnoo.demo.listapp.data.users.core.utils.testNetworkUser
+import dev.burnoo.demo.listapp.data.users.core.utils.testNetworkUsers
 import dev.burnoo.demo.listapp.data.users.model.UserId
-import dev.burnoo.demo.listapp.data.users.repository.utils.FakeUsersNetworkDataSource
-import dev.burnoo.demo.listapp.data.users.repository.utils.testNetworkUser
-import dev.burnoo.demo.listapp.data.users.repository.utils.testNetworkUsers
 import io.kotest.matchers.shouldBe
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking

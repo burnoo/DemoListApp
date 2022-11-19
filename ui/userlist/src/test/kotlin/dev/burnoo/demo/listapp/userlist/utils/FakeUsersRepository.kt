@@ -1,9 +1,9 @@
 package dev.burnoo.demo.listapp.userlist.utils
 
+import dev.burnoo.demo.listapp.data.users.core.UsersRepository
 import dev.burnoo.demo.listapp.data.users.model.User
 import dev.burnoo.demo.listapp.data.users.model.UserId
 import dev.burnoo.demo.listapp.data.users.model.UserItem
-import dev.burnoo.demo.listapp.data.users.repository.UsersRepository
 
 val testUsers = List(5) {
     UserItem(

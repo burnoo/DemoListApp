@@ -1,4 +1,4 @@
-package dev.burnoo.demo.listapp.data.users.repository.mappers
+package dev.burnoo.demo.listapp.data.users.core.mappers
 
 import dev.burnoo.demo.listapp.data.users.model.UserId
 import dev.burnoo.demo.listapp.data.users.model.UserItem

@@ -1,4 +1,4 @@
-package dev.burnoo.demo.listapp.data.users.repository.utils
+package dev.burnoo.demo.listapp.data.users.core.utils
 
 import dev.burnoo.demo.listapp.data.users.network.UsersNetworkDataSource
 import dev.burnoo.demo.listapp.data.users.network.model.NetworkUser

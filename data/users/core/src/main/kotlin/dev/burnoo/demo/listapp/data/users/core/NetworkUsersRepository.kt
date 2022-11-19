@@ -1,10 +1,10 @@
-package dev.burnoo.demo.listapp.data.users.repository
+package dev.burnoo.demo.listapp.data.users.core
 
+import dev.burnoo.demo.listapp.data.users.core.mappers.asExternalModel
 import dev.burnoo.demo.listapp.data.users.model.User
 import dev.burnoo.demo.listapp.data.users.model.UserId
 import dev.burnoo.demo.listapp.data.users.model.UserItem
 import dev.burnoo.demo.listapp.data.users.network.UsersNetworkDataSource
-import dev.burnoo.demo.listapp.data.users.repository.mappers.asExternalModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

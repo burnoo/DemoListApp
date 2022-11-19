@@ -4,7 +4,7 @@ plugins {
 
 dependencies {
     implementation(project(":core:designsystem"))
-    implementation(project(":data:users:repository"))
+    implementation(project(":data:users:core"))
     implementation(libs.jetpackCompose.material3)
     implementation(libs.jetpackCompose.navigation)
     implementation(libs.jetpackCompose.uiTooling.preview)

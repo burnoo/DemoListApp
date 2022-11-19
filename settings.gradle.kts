@@ -21,8 +21,8 @@ include(":app")
 
 include(":ui:userlist")
 
+include(":data:users:core")
 include(":data:users:model")
 include(":data:users:network")
-include(":data:users:repository")
 
 include(":core:designsystem")

@@ -1,4 +1,4 @@
-package dev.burnoo.demo.listapp.data.users.repository
+package dev.burnoo.demo.listapp.data.users.core
 
 import dev.burnoo.demo.listapp.data.users.model.User
 import dev.burnoo.demo.listapp.data.users.model.UserId
