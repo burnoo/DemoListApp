@@ -11,6 +11,8 @@ jetpackComposeCompiler = "1.4.0-alpha02"
 jetpackComposeMaterial3 = "1.0.1"
 jetpackComposeNavigation = "2.5.3"
 activityCompose = "1.6.1"
+androidxLifecycle = "2.6.0-alpha03"
+coil = "2.2.2"
 ktor = "2.1.3"
 junit = "4.13.2"
 assertJ = "3.23.1"
@@ -34,6 +36,8 @@ jetpackCompose-uiTooling-preview = { module = "androidx.compose.ui:ui-tooling", 
 jetpackCompose-uiTest-manifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "jetpackCompose" }
 jetpackCompose-uiTest-junit = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "jetpackCompose" }
 activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activityCompose" }
+androidx-lifecycle-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "androidxLifecycle" }
+coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
 ktor-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
 ktor-engine = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
 ktor-contentNegotiations-core = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }

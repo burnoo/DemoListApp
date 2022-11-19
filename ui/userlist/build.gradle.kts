@@ -8,6 +8,8 @@ dependencies {
     implementation(libs.jetpackCompose.material3)
     implementation(libs.jetpackCompose.navigation)
     implementation(libs.jetpackCompose.uiTooling.preview)
+    implementation(libs.androidx.lifecycle.compose)
+    implementation(libs.coil.compose)
     implementation(libs.cokoin.viewmodel)
     debugImplementation(libs.jetpackCompose.uiTooling)
 
