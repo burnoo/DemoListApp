@@ -78,9 +78,6 @@ dependencies {
 
     compileOnly(libs.kotlinx.serialization.json)
 
-    testImplementation(libs.test.junit)
-    testImplementation(libs.test.assertJ)
-
     debugImplementation(libs.jetpackCompose.uiTest.manifest)
     androidTestImplementation(libs.jetpackCompose.uiTest.junit)
     androidTestImplementation(libs.test.androidCore)
