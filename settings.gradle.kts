@@ -21,4 +21,6 @@ include(":app")
 
 include(":ui:home")
 
+include(":data:users:network")
+
 include(":core:designsystem")
