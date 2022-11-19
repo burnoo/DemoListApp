@@ -1,10 +1,10 @@
-package dev.burnoo.template
+package dev.burnoo.demo.listapp
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import dev.burnoo.template.composable.AppRouter
-import dev.burnoo.template.core.designsystem.AppTheme
+import dev.burnoo.demo.listapp.composable.AppRouter
+import dev.burnoo.demo.listapp.core.designsystem.AppTheme
 
 class MainActivity : ComponentActivity() {
 

@@ -1,4 +1,4 @@
-package dev.burnoo.template.feature.home
+package dev.burnoo.demo.listapp.home
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -12,6 +12,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import dev.burnoo.demo.listapp.feature.home.R
 
 @Composable
 internal fun MainScreen() {

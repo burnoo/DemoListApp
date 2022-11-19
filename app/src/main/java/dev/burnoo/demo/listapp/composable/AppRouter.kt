@@ -1,9 +1,9 @@
-package dev.burnoo.template.composable
+package dev.burnoo.demo.listapp.composable
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
-import dev.burnoo.template.feature.home.homeRouter
+import dev.burnoo.demo.listapp.home.homeRouter
 
 @Composable
 fun AppRouter() {

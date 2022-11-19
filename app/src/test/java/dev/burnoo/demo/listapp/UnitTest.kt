@@ -1,4 +1,4 @@
-package dev.burnoo.template
+package dev.burnoo.demo.listapp
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
