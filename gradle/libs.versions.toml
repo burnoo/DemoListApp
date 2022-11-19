@@ -15,7 +15,7 @@ ktor = "2.1.2"
 junit = "4.13.2"
 assertJ = "3.23.1"
 testAndroidCore = "1.5.0"
-kotest = "5.5.1"
+kotest = "5.5.4"
 gradleVersionsPlugin = "0.44.0"
 
 [libraries]
