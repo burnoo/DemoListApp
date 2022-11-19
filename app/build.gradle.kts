@@ -62,7 +62,7 @@ configurations.all {
 dependencies {
 
     implementation(project(":core:designsystem"))
-    implementation(project(":feature:home"))
+    implementation(project(":ui:home"))
     implementation(libs.jetpackCompose.material3)
     implementation(libs.jetpackCompose.uiTooling.preview)
     implementation(libs.jetpackCompose.navigation)
