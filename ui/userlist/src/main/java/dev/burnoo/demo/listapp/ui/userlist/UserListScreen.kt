@@ -1,4 +1,4 @@
-package dev.burnoo.demo.listapp.userlist
+package dev.burnoo.demo.listapp.ui.userlist
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -10,8 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import dev.burnoo.demo.listapp.data.users.model.UserId
-import dev.burnoo.demo.listapp.feature.userlist.R
-import dev.burnoo.demo.listapp.userlist.composables.UserListContent
+import dev.burnoo.demo.listapp.ui.userlist.composables.UserListContent
 
 @Composable
 internal fun UserListScreen(onUserClick: (UserId) -> Unit) {

@@ -1,4 +1,4 @@
-package dev.burnoo.demo.listapp.userlist
+package dev.burnoo.demo.listapp.ui.userlist
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

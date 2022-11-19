@@ -1,4 +1,4 @@
-package dev.burnoo.demo.listapp.userlist.composables
+package dev.burnoo.demo.listapp.ui.userlist.composables
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
@@ -20,7 +20,7 @@ import coil.compose.AsyncImage
 import dev.burnoo.demo.listapp.core.designsystem.AppTheme
 import dev.burnoo.demo.listapp.data.users.model.UserId
 import dev.burnoo.demo.listapp.data.users.model.UserItem
-import dev.burnoo.demo.listapp.feature.userlist.R
+import dev.burnoo.demo.listapp.ui.userlist.R
 
 @Composable
 internal fun UserRow(user: UserItem, onClick: (UserId) -> Unit) {

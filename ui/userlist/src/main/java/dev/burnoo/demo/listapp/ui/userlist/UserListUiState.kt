@@ -1,4 +1,4 @@
-package dev.burnoo.demo.listapp.userlist
+package dev.burnoo.demo.listapp.ui.userlist
 
 import dev.burnoo.demo.listapp.data.users.model.UserItem
 

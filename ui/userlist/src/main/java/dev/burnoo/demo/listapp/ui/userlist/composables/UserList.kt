@@ -1,4 +1,4 @@
-package dev.burnoo.demo.listapp.userlist.composables
+package dev.burnoo.demo.listapp.ui.userlist.composables
 
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
