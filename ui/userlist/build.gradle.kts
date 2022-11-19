@@ -8,6 +8,7 @@ dependencies {
     implementation(libs.jetpackCompose.material3)
     implementation(libs.jetpackCompose.navigation)
     implementation(libs.jetpackCompose.uiTooling.preview)
+    implementation(libs.cokoin.viewmodel)
     debugImplementation(libs.jetpackCompose.uiTooling)
 
     testImplementation(kotlin("test"))
