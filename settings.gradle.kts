@@ -19,11 +19,12 @@ dependencyResolutionManagement {
 
 include(":app")
 
+include(":core:designsystem")
+
+include(":ui:userdetails")
 include(":ui:userlist")
 
 include(":data:users:core")
 include(":data:users:core-test")
 include(":data:users:model")
 include(":data:users:network")
-
-include(":core:designsystem")
