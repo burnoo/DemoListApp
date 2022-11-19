@@ -22,6 +22,8 @@ android {
         }
     }
 
+    namespace = defaultConfig.applicationId
+
     buildTypes {
         release {
             isMinifyEnabled = true

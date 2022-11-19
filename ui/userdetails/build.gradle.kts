@@ -2,6 +2,10 @@ plugins {
     id("common-jetpack-library")
 }
 
+android {
+    namespace = "dev.burnoo.demo.listapp.ui.userdetails"
+}
+
 dependencies {
     implementation(project(":core:designsystem"))
     implementation(project(":data:users:core"))
