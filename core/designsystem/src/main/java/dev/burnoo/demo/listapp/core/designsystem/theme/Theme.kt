@@ -1,4 +1,4 @@
-package dev.burnoo.demo.listapp.core.designsystem
+package dev.burnoo.demo.listapp.core.designsystem.theme
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme

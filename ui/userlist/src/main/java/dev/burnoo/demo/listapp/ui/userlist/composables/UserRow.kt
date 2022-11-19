@@ -17,7 +17,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import dev.burnoo.demo.listapp.core.designsystem.AppTheme
+import dev.burnoo.demo.listapp.core.designsystem.theme.AppTheme
 import dev.burnoo.demo.listapp.data.users.model.UserId
 import dev.burnoo.demo.listapp.data.users.model.UserItem
 import dev.burnoo.demo.listapp.ui.userlist.R
