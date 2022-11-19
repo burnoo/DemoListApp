@@ -1,5 +1,6 @@
 package dev.burnoo.demo.listapp.userlist.composables
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -22,10 +23,11 @@ import dev.burnoo.demo.listapp.data.users.model.UserItem
 import dev.burnoo.demo.listapp.feature.userlist.R
 
 @Composable
-internal fun UserRow(user: UserItem) {
+internal fun UserRow(user: UserItem, onClick: (UserId) -> Unit) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
+            .clickable { onClick(user.id) }
             .padding(12.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
@@ -64,6 +66,7 @@ private fun UserRowPreview() {
                 lastName = "Doe",
                 photoUrl = "https://example.org/image.jpg",
             ),
+            onClick = { },
         )
     }
 }

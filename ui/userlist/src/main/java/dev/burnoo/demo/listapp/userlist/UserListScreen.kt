@@ -9,11 +9,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import dev.burnoo.demo.listapp.data.users.model.UserId
 import dev.burnoo.demo.listapp.feature.userlist.R
 import dev.burnoo.demo.listapp.userlist.composables.UserListContent
 
 @Composable
-internal fun UserListScreen() {
+internal fun UserListScreen(onUserClick: (UserId) -> Unit) {
     Scaffold(
         topBar = { TopBar() },
     ) { padding ->
@@ -22,7 +23,7 @@ internal fun UserListScreen() {
                 .fillMaxSize()
                 .padding(padding),
         ) {
-            UserListContent()
+            UserListContent(onUserClick = onUserClick)
         }
     }
 }

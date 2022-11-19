@@ -10,6 +10,8 @@ import dev.burnoo.demo.listapp.userlist.userListRouter
 fun AppRouter() {
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = UserListRoutes.root) {
-        userListRouter()
+        userListRouter(
+            onUserClick = { /* TODO navigate to user details screen */ },
+        )
     }
 }
