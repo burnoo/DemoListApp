@@ -23,5 +23,6 @@ include(":ui:home")
 
 include(":data:users:model")
 include(":data:users:network")
+include(":data:users:repository")
 
 include(":core:designsystem")
