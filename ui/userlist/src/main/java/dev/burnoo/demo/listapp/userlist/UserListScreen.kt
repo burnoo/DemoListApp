@@ -1,4 +1,4 @@
-package dev.burnoo.demo.listapp.home
+package dev.burnoo.demo.listapp.userlist
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -12,10 +12,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import dev.burnoo.demo.listapp.feature.home.R
+import dev.burnoo.demo.listapp.feature.userlist.R
 
 @Composable
-internal fun MainScreen() {
+internal fun UserListScreen() {
     Scaffold(
         topBar = { TopBar() },
     ) { padding ->
