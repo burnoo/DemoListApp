@@ -2,6 +2,8 @@
 kotlin = "1.7.21"
 gradleAndroid = "7.3.1"
 coroutines = "1.6.4"
+koin = "3.2.2"
+cokoin = "1.0.0"
 material = "1.7.0"
 kotlinxSerializationJson = "1.4.1"
 jetpackCompose = "1.3.1"
@@ -19,9 +21,11 @@ gradleVersionsPlugin = "0.44.0"
 [libraries]
 gradle-kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 gradle-android = { module = "com.android.tools.build:gradle", version.ref = "gradleAndroid" }
-coroutines-core = { module= "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines"}
-coroutines-test = { module= "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines"}
+coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
+coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
+koin = { module = "io.insert-koin:koin-core", version.ref = "koin" }
+cokoin-viewmodel = { module = "dev.burnoo:cokoin-android-viewmodel", version.ref = "cokoin"}
 material = { module = "com.google.android.material:material", version.ref = "material" }
 jetpackCompose-material3 = { module = "androidx.compose.material3:material3", version.ref = "jetpackComposeMaterial3" }
 jetpackCompose-navigation = { module = "androidx.navigation:navigation-compose", version.ref = "jetpackComposeNavigation" }

@@ -69,8 +69,10 @@ dependencies {
     implementation(libs.jetpackCompose.uiTooling.preview)
     implementation(libs.jetpackCompose.navigation)
     implementation(libs.activity.compose)
-    compileOnly(libs.kotlinx.serialization.json)
+    implementation(libs.cokoin.viewmodel)
     debugImplementation(libs.jetpackCompose.uiTooling)
+
+    compileOnly(libs.kotlinx.serialization.json)
 
     testImplementation(libs.test.junit)
     testImplementation(libs.test.assertJ)
