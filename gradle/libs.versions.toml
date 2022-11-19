@@ -2,19 +2,23 @@
 kotlin = "1.7.21"
 gradleAndroid = "7.3.1"
 material = "1.7.0"
+kotlinxSerializationJson = "1.4.1"
 jetpackCompose = "1.3.1"
 jetpackComposeCompiler = "1.4.0-alpha02"
 jetpackComposeMaterial3 = "1.0.1"
 jetpackComposeNavigation = "2.5.3"
 activityCompose = "1.6.1"
+ktor = "2.1.2"
 junit = "4.13.2"
 assertJ = "3.23.1"
 testAndroidCore = "1.5.0"
+kotest = "5.5.1"
 gradleVersionsPlugin = "0.44.0"
 
 [libraries]
 gradle-kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 gradle-android = { module = "com.android.tools.build:gradle", version.ref = "gradleAndroid" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
 material = { module = "com.google.android.material:material", version.ref = "material" }
 jetpackCompose-material3 = { module = "androidx.compose.material3:material3", version.ref = "jetpackComposeMaterial3" }
 jetpackCompose-navigation = { module = "androidx.navigation:navigation-compose", version.ref = "jetpackComposeNavigation" }
@@ -23,9 +27,16 @@ jetpackCompose-uiTooling-preview = { module = "androidx.compose.ui:ui-tooling", 
 jetpackCompose-uiTest-manifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "jetpackCompose" }
 jetpackCompose-uiTest-junit = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "jetpackCompose" }
 activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activityCompose" }
+ktor-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
+ktor-engine = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
+ktor-contentNegotiations-core = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
+ktor-contentNegotiations-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
+ktor-test = { module = "io.ktor:ktor-client-mock", version.ref = "ktor" }
 test-junit = { module = "junit:junit", version.ref = "junit" }
 test-assertJ = { module = "org.assertj:assertj-core", version.ref = "assertJ" }
 test-androidCore = { module = "androidx.test:core", version.ref = "testAndroidCore" }
+kotest-assertions = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest" }
 
 [plugins]
 gradleVersionsPlugin = { id = "com.github.ben-manes.versions", version.ref = "gradleVersionsPlugin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
