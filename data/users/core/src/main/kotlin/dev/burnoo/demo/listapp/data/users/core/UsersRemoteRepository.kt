@@ -9,7 +9,7 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-internal class NetworkUsersRepository(
+internal class UsersRemoteRepository(
     private val dataSource: UsersNetworkDataSource,
     private val coroutineDispatcher: CoroutineDispatcher = Dispatchers.IO,
 ) : UsersRepository {

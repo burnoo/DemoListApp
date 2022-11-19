@@ -9,10 +9,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import org.junit.Test
 
-class NetworkUsersRepositoryTest {
+class UsersRemoteRepositoryTest {
 
     private val fakeDataSource = FakeUsersNetworkDataSource()
-    private val repository = NetworkUsersRepository(
+    private val repository = UsersRemoteRepository(
         dataSource = fakeDataSource,
         coroutineDispatcher = Dispatchers.Unconfined,
     )
