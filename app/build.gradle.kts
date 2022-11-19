@@ -67,6 +67,7 @@ dependencies {
     implementation(libs.jetpackCompose.uiTooling.preview)
     implementation(libs.jetpackCompose.navigation)
     implementation(libs.activity.compose)
+    compileOnly(libs.kotlinx.serialization.json)
     debugImplementation(libs.jetpackCompose.uiTooling)
 
     testImplementation(libs.test.junit)
