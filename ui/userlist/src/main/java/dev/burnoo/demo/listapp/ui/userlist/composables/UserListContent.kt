@@ -5,6 +5,7 @@ import androidx.compose.runtime.getValue
 import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import dev.burnoo.cokoin.viewmodel.getViewModel
+import dev.burnoo.demo.listapp.core.designsystem.composables.Loader
 import dev.burnoo.demo.listapp.data.users.model.UserId
 import dev.burnoo.demo.listapp.ui.userlist.UserListUiState
 import dev.burnoo.demo.listapp.ui.userlist.UserListViewModel

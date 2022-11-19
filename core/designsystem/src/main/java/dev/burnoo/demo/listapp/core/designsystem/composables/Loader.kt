@@ -1,4 +1,4 @@
-package dev.burnoo.demo.listapp.ui.userdetails.composables
+package dev.burnoo.demo.listapp.core.designsystem.composables
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -8,7 +8,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 
 @Composable
-internal fun Loader() {
+fun Loader() {
     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
         CircularProgressIndicator()
     }

@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import dev.burnoo.demo.listapp.core.designsystem.composables.Loader
 import dev.burnoo.demo.listapp.ui.userdetails.UserDetailsUiState
 import dev.burnoo.demo.listapp.ui.userdetails.UserDetailsViewModel
 
