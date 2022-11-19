@@ -13,6 +13,7 @@ dependencies {
     implementation(libs.cokoin.viewmodel)
     debugImplementation(libs.jetpackCompose.uiTooling)
 
+    testImplementation(project(":data:users:core-test"))
     testImplementation(kotlin("test"))
     testImplementation(libs.kotest.assertions)
     testImplementation(libs.coroutines.test)

@@ -22,6 +22,7 @@ include(":app")
 include(":ui:userlist")
 
 include(":data:users:core")
+include(":data:users:core-test")
 include(":data:users:model")
 include(":data:users:network")
 

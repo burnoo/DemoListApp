@@ -1,6 +1,5 @@
-package dev.burnoo.demo.listapp.userlist.utils
+package dev.burnoo.demo.listapp.data.users.core
 
-import dev.burnoo.demo.listapp.data.users.core.UsersRepository
 import dev.burnoo.demo.listapp.data.users.model.User
 import dev.burnoo.demo.listapp.data.users.model.UserId
 import dev.burnoo.demo.listapp.data.users.model.UserItem
@@ -14,7 +13,6 @@ val testUsers = List(5) {
         photoUrl = "https://example.org/image$it.jpg",
     )
 }
-
 val testUser = User(
     title = "mrs",
     firstName = "John 0",
@@ -24,10 +22,3 @@ val testUser = User(
     email = "test@example.org",
     phone = "123456789",
 )
-
-class FakeUsersRepository : UsersRepository {
-
-    override suspend fun getUsers() = testUsers
-
-    override suspend fun getUser(userId: UserId) = testUser
-}

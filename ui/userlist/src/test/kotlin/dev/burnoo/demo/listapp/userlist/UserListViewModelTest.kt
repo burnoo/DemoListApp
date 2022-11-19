@@ -1,7 +1,7 @@
 package dev.burnoo.demo.listapp.userlist
 
-import dev.burnoo.demo.listapp.userlist.utils.FakeUsersRepository
-import dev.burnoo.demo.listapp.userlist.utils.testUsers
+import dev.burnoo.demo.listapp.data.users.core.FakeUsersRepository
+import dev.burnoo.demo.listapp.data.users.core.testUsers
 import io.kotest.matchers.shouldBe
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
