@@ -19,7 +19,7 @@ dependencyResolutionManagement {
 
 include(":app")
 
-include(":ui:home")
+include(":ui:userlist")
 
 include(":data:users:model")
 include(":data:users:network")
