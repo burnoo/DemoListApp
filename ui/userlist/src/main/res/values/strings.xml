@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="title">User list</string>
-    <string name="user_row_name">%1$s. %2$s %3$s</string>
+    <string name="user_row_name">%1$s %2$s %3$s</string>
     <string name="user_row_photo_content_description">Photo of %1$s %2$s</string>
 </resources>

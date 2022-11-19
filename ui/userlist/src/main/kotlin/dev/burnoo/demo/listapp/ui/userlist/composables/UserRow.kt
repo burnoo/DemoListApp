@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -18,12 +19,15 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import dev.burnoo.demo.listapp.core.designsystem.theme.AppTheme
+import dev.burnoo.demo.listapp.core.utils.TitleParser
 import dev.burnoo.demo.listapp.data.users.model.UserId
 import dev.burnoo.demo.listapp.data.users.model.UserItem
 import dev.burnoo.demo.listapp.ui.userlist.R
 
 @Composable
 internal fun UserRow(user: UserItem, onClick: (UserId) -> Unit) {
+    val titleParser = remember { TitleParser() }
+
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -46,7 +50,7 @@ internal fun UserRow(user: UserItem, onClick: (UserId) -> Unit) {
         Text(
             text = stringResource(
                 id = R.string.user_row_name,
-                user.title,
+                titleParser.parse(user.title),
                 user.firstName,
                 user.lastName,
             ),

@@ -20,6 +20,7 @@ dependencyResolutionManagement {
 include(":app")
 
 include(":core:designsystem")
+include(":core:utils")
 
 include(":ui:userdetails")
 include(":ui:userlist")

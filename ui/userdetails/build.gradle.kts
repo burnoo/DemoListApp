@@ -8,6 +8,7 @@ android {
 
 dependencies {
     implementation(project(":core:designsystem"))
+    implementation(project(":core:utils"))
     implementation(project(":data:users:core"))
     implementation(libs.jetpackCompose.material3)
     implementation(libs.jetpackCompose.navigation)
