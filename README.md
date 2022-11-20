@@ -1,4 +1,7 @@
 # DemoListApp
+![Test workflow](https://github.com/burnoo/DemoListApp/actions/workflows/tests.yml/badge.svg)
+
+
 Hi jobandtalent! 👋🏽  
 This is my take on your technical challenge. I tried to make small changes in each commit, so I would suggest going through it commit by commit.
 
