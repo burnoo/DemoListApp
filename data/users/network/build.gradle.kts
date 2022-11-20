@@ -12,6 +12,7 @@ dependencies {
     implementation(libs.ktor.contentNegotiations.json)
     implementation(libs.koin)
 
+    testImplementation(project(":data:users:network-test"))
     testImplementation(kotlin("test"))
     testImplementation(libs.kotest.assertions)
     testImplementation(libs.ktor.test)

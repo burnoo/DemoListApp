@@ -1,4 +1,4 @@
-package dev.burnoo.demo.listapp.data.users.network.utils
+package dev.burnoo.demo.listapp.data.users.network.test
 
 fun getUsersResponse(firstUserId: String) = """
 {

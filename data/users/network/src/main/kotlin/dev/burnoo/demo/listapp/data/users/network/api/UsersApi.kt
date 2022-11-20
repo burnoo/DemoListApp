@@ -14,7 +14,7 @@ import io.ktor.client.request.header
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 
-internal const val BASE_URL = "https://dummyapi.io/data/v1"
+const val BASE_URL = "https://dummyapi.io/data/v1"
 private const val APP_ID = "637797e82364777fa9814112"
 
 internal class UsersApi(engine: HttpClientEngine) : UsersNetworkDataSource {
