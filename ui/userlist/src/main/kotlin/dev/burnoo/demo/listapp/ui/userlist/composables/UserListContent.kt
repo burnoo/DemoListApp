@@ -22,7 +22,7 @@ internal fun UserListContent(
 }
 
 @Composable
-private fun UserListContent(uiState: UserListUiState, onUserClick: (UserId) -> Unit) {
+internal fun UserListContent(uiState: UserListUiState, onUserClick: (UserId) -> Unit) {
     when (uiState) {
         UserListUiState.Loading -> Loader()
         is UserListUiState.Loaded -> UserList(uiState.users, onUserClick)

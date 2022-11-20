@@ -17,7 +17,10 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import coil.ImageLoader
 import coil.compose.AsyncImage
+import dev.burnoo.cokoin.get
+import dev.burnoo.demo.listapp.core.compose.utils.FakeImageLoader
 import dev.burnoo.demo.listapp.core.designsystem.theme.AppTheme
 import dev.burnoo.demo.listapp.core.utils.TitleParser
 import dev.burnoo.demo.listapp.data.users.model.UserId
@@ -25,7 +28,11 @@ import dev.burnoo.demo.listapp.data.users.model.UserItem
 import dev.burnoo.demo.listapp.ui.userlist.R
 
 @Composable
-internal fun UserRow(user: UserItem, onClick: (UserId) -> Unit) {
+internal fun UserRow(
+    user: UserItem,
+    onClick: (UserId) -> Unit,
+    imageLoader: ImageLoader = get(),
+) {
     val titleParser = remember { TitleParser() }
 
     Row(
@@ -45,6 +52,7 @@ internal fun UserRow(user: UserItem, onClick: (UserId) -> Unit) {
             modifier = Modifier
                 .clip(CircleShape)
                 .size(60.dp),
+            imageLoader = imageLoader,
         )
         Spacer(modifier = Modifier.width(16.dp))
         Text(
@@ -71,6 +79,7 @@ private fun UserRowPreview() {
                 photoUrl = "https://example.org/image.jpg",
             ),
             onClick = { },
+            imageLoader = FakeImageLoader(),
         )
     }
 }

@@ -8,6 +8,7 @@ android {
 
 dependencies {
     implementation(project(":core:designsystem"))
+    implementation(project(":core:compose-utils"))
     implementation(project(":core:utils"))
     implementation(project(":data:users:core"))
     implementation(libs.jetpackCompose.material3)
@@ -22,4 +23,10 @@ dependencies {
     testImplementation(kotlin("test"))
     testImplementation(libs.kotest.assertions)
     testImplementation(libs.coroutines.test)
+
+    debugImplementation(libs.jetpackCompose.uiTest.manifest)
+    androidTestImplementation(project(":data:users:core-test"))
+    androidTestImplementation(project(":core:compose-utils"))
+    androidTestImplementation(libs.jetpackCompose.uiTest.junit)
+    androidTestImplementation(libs.test.androidCore)
 }
