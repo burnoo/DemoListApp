@@ -17,7 +17,7 @@ internal fun UserDetailsContent(viewModel: UserDetailsViewModel) {
 }
 
 @Composable
-private fun UserDetailsContent(uiState: UserDetailsUiState) {
+internal fun UserDetailsContent(uiState: UserDetailsUiState) {
     when (uiState) {
         UserDetailsUiState.Loading -> Loader()
         is UserDetailsUiState.Loaded -> UserDetails(uiState.user)
