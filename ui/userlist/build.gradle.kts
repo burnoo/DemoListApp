@@ -10,7 +10,7 @@ dependencies {
     implementation(project(":core:designsystem"))
     implementation(project(":core:compose-utils"))
     implementation(project(":core:utils"))
-    implementation(project(":data:users:core"))
+    implementation(project(":domain:users"))
     implementation(libs.jetpackCompose.material3)
     implementation(libs.jetpackCompose.navigation)
     implementation(libs.jetpackCompose.uiTooling.preview)

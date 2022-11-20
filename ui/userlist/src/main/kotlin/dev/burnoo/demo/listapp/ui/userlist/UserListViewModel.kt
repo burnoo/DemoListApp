@@ -2,13 +2,13 @@ package dev.burnoo.demo.listapp.ui.userlist
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import dev.burnoo.demo.listapp.data.users.core.UsersRepository
+import dev.burnoo.demo.listapp.domain.users.GetUsersUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 internal class UserListViewModel(
-    private val repository: UsersRepository,
+    private val getUsersUseCase: GetUsersUseCase,
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow<UserListUiState>(UserListUiState.Loading)
@@ -16,7 +16,7 @@ internal class UserListViewModel(
 
     init {
         viewModelScope.launch {
-            val users = repository.getUsers()
+            val users = getUsersUseCase()
             _uiState.value = UserListUiState.Loaded(users)
         }
     }

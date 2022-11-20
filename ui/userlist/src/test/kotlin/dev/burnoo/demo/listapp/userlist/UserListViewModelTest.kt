@@ -2,6 +2,7 @@ package dev.burnoo.demo.listapp.userlist
 
 import dev.burnoo.demo.listapp.data.users.core.FakeUsersRepository
 import dev.burnoo.demo.listapp.data.users.core.testUsers
+import dev.burnoo.demo.listapp.domain.users.GetUsersUseCase
 import dev.burnoo.demo.listapp.ui.userlist.UserListUiState
 import dev.burnoo.demo.listapp.ui.userlist.UserListViewModel
 import io.kotest.matchers.shouldBe
@@ -19,6 +20,7 @@ class UserListViewModelTest {
 
     private val testDispatcher = StandardTestDispatcher()
     private val repository = FakeUsersRepository()
+    private val getUsersUseCase = GetUsersUseCase(repository)
 
     @Before
     fun setUp() {
@@ -32,14 +34,14 @@ class UserListViewModelTest {
 
     @Test
     fun `should ui state be loading initially`() {
-        val viewModel = UserListViewModel(repository)
+        val viewModel = UserListViewModel(getUsersUseCase)
 
         viewModel.uiState.value shouldBe UserListUiState.Loading
     }
 
     @Test
     fun `should ui state contains loaded users`() {
-        val viewModel = UserListViewModel(repository)
+        val viewModel = UserListViewModel(getUsersUseCase)
 
         testDispatcher.scheduler.advanceUntilIdle()
 

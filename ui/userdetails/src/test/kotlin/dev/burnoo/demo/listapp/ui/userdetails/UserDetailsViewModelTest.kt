@@ -3,6 +3,7 @@ package dev.burnoo.demo.listapp.ui.userdetails
 import dev.burnoo.demo.listapp.data.users.core.FakeUsersRepository
 import dev.burnoo.demo.listapp.data.users.core.testUser
 import dev.burnoo.demo.listapp.data.users.core.testUsers
+import dev.burnoo.demo.listapp.domain.users.GetUserUseCase
 import io.kotest.matchers.shouldBe
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -18,6 +19,7 @@ class UserDetailsViewModelTest {
 
     private val testDispatcher = StandardTestDispatcher()
     private val repository = FakeUsersRepository()
+    private val getUserDetailsUseCase = GetUserUseCase(repository)
 
     @Before
     fun setUp() {
@@ -31,14 +33,14 @@ class UserDetailsViewModelTest {
 
     @Test
     fun `should ui state be loading initially`() {
-        val viewModel = UserDetailsViewModel(repository, userId = testUsers.first().id)
+        val viewModel = UserDetailsViewModel(getUserDetailsUseCase, userId = testUsers.first().id)
 
         viewModel.uiState.value shouldBe UserDetailsUiState.Loading
     }
 
     @Test
     fun `should ui state contain loaded user`() {
-        val viewModel = UserDetailsViewModel(repository, userId = testUsers.first().id)
+        val viewModel = UserDetailsViewModel(getUserDetailsUseCase, userId = testUsers.first().id)
 
         testDispatcher.scheduler.advanceUntilIdle()
 

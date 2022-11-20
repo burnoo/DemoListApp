@@ -26,6 +26,8 @@ include(":core:utils")
 include(":ui:userdetails")
 include(":ui:userlist")
 
+include(":domain:users")
+
 include(":data:users:core")
 include(":data:users:core-test")
 include(":data:users:model")
