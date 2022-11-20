@@ -1,14 +1,13 @@
 package dev.burnoo.demo.listapp.data.users.network.test
-
-fun getUsersResponse(firstUserId: String) = """
+fun getUsersResponse() = """
 {
     "data": [
         {
-            "id": "$firstUserId",
-            "title": "ms",
-            "firstName": "Adina",
-            "lastName": "Barbosa",
-            "picture": "https://randomuser.me/api/portraits/med/women/28.jpg"
+            "id": "${TestApiUser.id}",
+            "title": "${TestApiUser.title}",
+            "firstName": "${TestApiUser.firstName}",
+            "lastName": "${TestApiUser.lastName}",
+            "picture": "${TestApiUser.photoUrl}"
         },
         {
             "id": "60d0fe4f5311236168a109cd",

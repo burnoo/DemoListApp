@@ -10,17 +10,10 @@ import io.ktor.http.HttpHeaders
 import io.ktor.http.headersOf
 import io.ktor.utils.io.ByteReadChannel
 
-const val TEST_USER_ID = "TEST_USER_ID"
-const val TEST_FIRST_NAME = "Jon"
-const val TEST_LAST_NAME = "Doe"
-
 fun createMockEngine(): HttpClientEngine = MockEngine { request ->
     when (request.url.toString()) {
-        "$BASE_URL/user/$TEST_USER_ID" -> respondJson(
-            getUserResponse(TEST_FIRST_NAME, TEST_LAST_NAME),
-        )
-
-        "$BASE_URL/user" -> respondJson(getUsersResponse(firstUserId = TEST_USER_ID))
+        "$BASE_URL/user/${TestApiUser.id}" -> respondJson(getUserResponse())
+        "$BASE_URL/user" -> respondJson(getUsersResponse())
         else -> throw RuntimeException("Unsupported url")
     }
 }

@@ -1,16 +1,16 @@
 package dev.burnoo.demo.listapp.data.users.network.test
 
-fun getUserResponse(firstName: String, lastName: String) = """
+fun getUserResponse() = """
 {
-    "id": "60d0fe4f5311236168a109cc",
-    "title": "ms",
-    "firstName": "$firstName",
-    "lastName": "$lastName",
-    "picture": "https://randomuser.me/api/portraits/med/women/28.jpg",
-    "gender": "female",
-    "email": "edina.barbosa@example.com",
+    "id": "${TestApiUser.id}",
+    "title": "${TestApiUser.title}",
+    "firstName": "${TestApiUser.firstName}",
+    "lastName": "${TestApiUser.lastName}",
+    "picture": "${TestApiUser.photoUrl}",
+    "gender": "${TestApiUser.gender}",
+    "email": "${TestApiUser.email}",
     "dateOfBirth": "1952-09-03T13:27:29.424Z",
-    "phone": "(64) 5796-9260",
+    "phone": "${TestApiUser.phone}",
     "location": {
         "street": "8750, Rua Carlos Gomes",
         "city": "Recife",

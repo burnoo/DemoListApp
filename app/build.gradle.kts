@@ -80,6 +80,9 @@ dependencies {
     compileOnly(libs.kotlinx.serialization.json)
 
     debugImplementation(libs.jetpackCompose.uiTest.manifest)
+    androidTestImplementation(project(":core:compose-utils"))
+    androidTestImplementation(project(":data:users:network-test"))
     androidTestImplementation(libs.jetpackCompose.uiTest.junit)
     androidTestImplementation(libs.test.androidCore)
+    androidTestImplementation(libs.kotest.assertions)
 }

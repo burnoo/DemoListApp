@@ -1,8 +1,6 @@
 package dev.burnoo.demo.listapp.data.users.network.api
 
-import dev.burnoo.demo.listapp.data.users.network.test.TEST_FIRST_NAME
-import dev.burnoo.demo.listapp.data.users.network.test.TEST_LAST_NAME
-import dev.burnoo.demo.listapp.data.users.network.test.TEST_USER_ID
+import dev.burnoo.demo.listapp.data.users.network.test.TestApiUser
 import dev.burnoo.demo.listapp.data.users.network.test.createMockEngine
 import io.kotest.matchers.shouldBe
 import kotlinx.coroutines.runBlocking
@@ -16,14 +14,22 @@ class UsersApiTest {
     fun `should parse users successfully`() = runBlocking {
         val users = api.getUsers()
 
-        users.first().id shouldBe TEST_USER_ID
+        users.first().id shouldBe TestApiUser.id
+        users.first().title shouldBe TestApiUser.title
+        users.first().firstName shouldBe TestApiUser.firstName
+        users.first().lastName shouldBe TestApiUser.lastName
+        users.first().picture shouldBe TestApiUser.photoUrl
     }
 
     @Test
     fun `should parse user successfully`() = runBlocking {
-        val user = api.getUser(TEST_USER_ID)
+        val user = api.getUser(TestApiUser.id)
 
-        user.firstName shouldBe TEST_FIRST_NAME
-        user.lastName shouldBe TEST_LAST_NAME
+        user.title shouldBe TestApiUser.title
+        user.firstName shouldBe TestApiUser.firstName
+        user.lastName shouldBe TestApiUser.lastName
+        user.gender shouldBe TestApiUser.gender
+        user.email shouldBe TestApiUser.email
+        user.phone shouldBe TestApiUser.phone
     }
 }
