@@ -22,6 +22,7 @@ I used [Koin](https://insert-koin.io/) + [cokoin](https://github.com/burnoo/coko
 - Dependency management in project: [Gradle Version Catalog](https://docs.gradle.org/current/userguide/platforms.html#sub:version-catalog)
 - Dependency management bot: [Renovate Bot](https://www.whitesourcesoftware.com/free-developer-tools/renovate/)
 - CI: [Github Actions](https://github.com/features/actions)
+- Static code analyser/formater - [ktlint](https://pinterest.github.io/ktlint/) (used locally with git hooks)
 
 ## Architecture and modules
 In app there are two layers - Data and UI (+ optional Domain layer on [`domain` branch](https://github.com/burnoo/DemoListApp/tree/domain)). Modules are split by layer and by feature. This approach is inspired by [talk from recent Android Dev Summit](https://www.youtube.com/watch?v=16SwTvzDO0A).
@@ -76,6 +77,7 @@ I didn't implement all features I wanted in the application as I didn't have eno
 3. Support for Landscape layout
 4. Screenshot tests
 5. Better, custom UI
+6. Configure ktlint on CI
 
 ## Video
 https://user-images.githubusercontent.com/17478192/202911577-2448570c-87d9-4b3e-bae9-1843d173eba4.mp4
