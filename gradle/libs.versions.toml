@@ -3,6 +3,7 @@ kotlin = "1.7.21"
 gradleAndroid = "7.3.1"
 coroutines = "1.6.4"
 koin = "3.2.2"
+kotlinResult = "1.1.16"
 cokoin = "1.0.0"
 material = "1.7.0"
 kotlinxSerializationJson = "1.4.1"
@@ -27,7 +28,8 @@ coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", ve
 coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
 koin = { module = "io.insert-koin:koin-core", version.ref = "koin" }
-cokoin-viewmodel = { module = "dev.burnoo:cokoin-android-viewmodel", version.ref = "cokoin"}
+kotlinResult = { module = "com.michael-bull.kotlin-result:kotlin-result", version.ref = "kotlinResult" }
+cokoin-viewmodel = { module = "dev.burnoo:cokoin-android-viewmodel", version.ref = "cokoin" }
 material = { module = "com.google.android.material:material", version.ref = "material" }
 jetpackCompose-material3 = { module = "androidx.compose.material3:material3", version.ref = "jetpackComposeMaterial3" }
 jetpackCompose-navigation = { module = "androidx.navigation:navigation-compose", version.ref = "jetpackComposeNavigation" }
@@ -39,7 +41,7 @@ activity-compose = { module = "androidx.activity:activity-compose", version.ref 
 androidx-lifecycle-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "androidxLifecycle" }
 coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
 ktor-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
-ktor-engine = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
+ktor-engine = { module = "io.ktor:ktor-client-cio", version.ref = "ktor" }
 ktor-contentNegotiations-core = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
 ktor-contentNegotiations-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
 ktor-test = { module = "io.ktor:ktor-client-mock", version.ref = "ktor" }

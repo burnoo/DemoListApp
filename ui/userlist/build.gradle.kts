@@ -11,6 +11,7 @@ dependencies {
     implementation(project(":core:compose-utils"))
     implementation(project(":core:utils"))
     implementation(project(":data:users:core"))
+    implementation(libs.kotlinResult)
     implementation(libs.jetpackCompose.material3)
     implementation(libs.jetpackCompose.navigation)
     implementation(libs.jetpackCompose.uiTooling.preview)

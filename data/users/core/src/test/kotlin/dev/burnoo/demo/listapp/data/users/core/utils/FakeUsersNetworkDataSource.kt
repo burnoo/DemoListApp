@@ -1,6 +1,9 @@
 package dev.burnoo.demo.listapp.data.users.core.utils
 
+import com.github.michaelbull.result.Ok
+import com.github.michaelbull.result.Result
 import dev.burnoo.demo.listapp.data.users.network.UsersNetworkDataSource
+import dev.burnoo.demo.listapp.data.users.network.model.NetworkError
 import dev.burnoo.demo.listapp.data.users.network.model.NetworkUser
 import dev.burnoo.demo.listapp.data.users.network.model.NetworkUserItem
 
@@ -26,7 +29,9 @@ val testNetworkUser = NetworkUser(
 
 class FakeUsersNetworkDataSource : UsersNetworkDataSource {
 
-    override suspend fun getUsers(): List<NetworkUserItem> = testNetworkUsers
+    var usersResult: Result<List<NetworkUserItem>, NetworkError> = Ok(testNetworkUsers)
+
+    override suspend fun getUsers(): Result<List<NetworkUserItem>, NetworkError> = usersResult
 
     override suspend fun getUser(userId: String) = testNetworkUser
 }

@@ -6,6 +6,7 @@ import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import dev.burnoo.cokoin.viewmodel.getViewModel
 import dev.burnoo.demo.listapp.core.designsystem.composables.Loader
+import dev.burnoo.demo.listapp.core.designsystem.composables.TryAgain
 import dev.burnoo.demo.listapp.data.users.model.UserId
 import dev.burnoo.demo.listapp.ui.userlist.UserListUiState
 import dev.burnoo.demo.listapp.ui.userlist.UserListViewModel
@@ -18,13 +19,18 @@ internal fun UserListContent(
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
-    UserListContent(uiState, onUserClick)
+    UserListContent(uiState, onUserClick, viewModel::onTryAgain)
 }
 
 @Composable
-internal fun UserListContent(uiState: UserListUiState, onUserClick: (UserId) -> Unit) {
+internal fun UserListContent(
+    uiState: UserListUiState,
+    onUserClick: (UserId) -> Unit,
+    onTryAgain: () -> Unit,
+) {
     when (uiState) {
         UserListUiState.Loading -> Loader()
         is UserListUiState.Loaded -> UserList(uiState.users, onUserClick)
+        UserListUiState.Error -> TryAgain(onTryAgain)
     }
 }

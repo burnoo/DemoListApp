@@ -5,6 +5,7 @@ plugins {
 }
 
 dependencies {
+    api(libs.kotlinResult)
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.ktor.core)
     implementation(libs.ktor.engine)

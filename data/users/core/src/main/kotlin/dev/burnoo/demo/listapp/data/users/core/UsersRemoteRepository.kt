@@ -1,6 +1,9 @@
 package dev.burnoo.demo.listapp.data.users.core
 
+import com.github.michaelbull.result.Result
+import com.github.michaelbull.result.mapEither
 import dev.burnoo.demo.listapp.data.users.core.mappers.asExternalModel
+import dev.burnoo.demo.listapp.data.users.model.DataError
 import dev.burnoo.demo.listapp.data.users.model.User
 import dev.burnoo.demo.listapp.data.users.model.UserId
 import dev.burnoo.demo.listapp.data.users.model.UserItem
@@ -14,9 +17,12 @@ internal class UsersRemoteRepository(
     private val coroutineDispatcher: CoroutineDispatcher = Dispatchers.IO,
 ) : UsersRepository {
 
-    override suspend fun getUsers(): List<UserItem> {
+    override suspend fun getUsers(): Result<List<UserItem>, DataError> {
         return withContext(coroutineDispatcher) {
-            dataSource.getUsers().map { it.asExternalModel() }
+            dataSource.getUsers().mapEither(
+                success = { users -> users.map { it.asExternalModel() } },
+                failure = { DataError },
+            )
         }
     }
 

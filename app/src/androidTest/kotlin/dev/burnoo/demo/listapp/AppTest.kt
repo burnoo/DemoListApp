@@ -1,6 +1,7 @@
 package dev.burnoo.demo.listapp
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.ui.test.hasScrollToIndexAction
 import androidx.compose.ui.test.hasTestTag
 import androidx.compose.ui.test.hasText
@@ -8,13 +9,16 @@ import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollToIndex
 import dev.burnoo.cokoin.Koin
+import dev.burnoo.cokoin.getKoin
 import dev.burnoo.demo.listapp.composable.AppRouter
 import dev.burnoo.demo.listapp.core.compose.utils.di.coreComposeUtilsModule
 import dev.burnoo.demo.listapp.core.designsystem.theme.AppTheme
 import dev.burnoo.demo.listapp.data.users.network.test.TestApiUser
+import dev.burnoo.demo.listapp.data.users.network.test.createErrorMockEngine
 import dev.burnoo.demo.listapp.data.users.network.test.createMockEngine
 import dev.burnoo.demo.listapp.ui.userdetails.di.uiUserDetailsModule
 import dev.burnoo.demo.listapp.ui.userlist.di.uiUserListModule
+import io.ktor.client.engine.HttpClientEngine
 import org.junit.Rule
 import org.junit.Test
 import org.koin.dsl.module
@@ -82,18 +86,47 @@ class AppTest {
         composeRule.onNode(hasText(TestApiUser.phone, substring = true)).assertExists()
     }
 
+    @Test
+    fun shouldDisplayTryAgainButtonOnNetworkError() {
+        composeRule.setContent {
+            WithTestDependencyInjection(
+                createEngine = ::createErrorMockEngine,
+            ) {
+                AppTheme {
+                    AppRouter()
+                }
+            }
+        }
+        composeRule.waitUntil {
+            composeRule
+                .onAllNodes(hasTestTag("Loader"))
+                .fetchSemanticsNodes().isEmpty()
+        }
+        composeRule.onNode(hasTestTag("Try again button")).assertExists()
+    }
+
     @Composable
-    private fun WithTestDependencyInjection(content: @Composable () -> Unit) {
+    private fun WithTestDependencyInjection(
+        createEngine: () -> HttpClientEngine = ::createMockEngine,
+        content: @Composable () -> Unit,
+    ) {
         Koin(
             appDeclaration = {
                 modules(
                     coreComposeUtilsModule,
                     uiUserListModule,
                     uiUserDetailsModule,
-                    module { single { createMockEngine() } },
+                    module { single { createEngine() } },
                 )
             },
-            content = content,
-        )
+        ) {
+            content()
+
+            // This should be included in cokoin library, I will fix it
+            val koin = getKoin()
+            DisposableEffect(key1 = Unit) {
+                onDispose { koin.close() }
+            }
+        }
     }
 }

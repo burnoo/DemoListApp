@@ -18,6 +18,8 @@ fun createMockEngine(): HttpClientEngine = MockEngine { request ->
     }
 }
 
+fun createErrorMockEngine(): HttpClientEngine = MockEngine { throw RuntimeException() }
+
 private fun MockRequestHandleScope.respondJson(json: String): HttpResponseData {
     return respond(
         content = ByteReadChannel(json),

@@ -4,6 +4,7 @@ plugins {
 
 dependencies {
     api(project(":data:users:model"))
+    api(libs.kotlinResult)
     implementation(project(":data:users:network"))
     implementation(libs.coroutines.core)
     implementation(libs.koin)

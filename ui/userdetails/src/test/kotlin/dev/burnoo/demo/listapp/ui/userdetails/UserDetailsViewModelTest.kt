@@ -37,7 +37,7 @@ class UserDetailsViewModelTest {
     }
 
     @Test
-    fun `should ui state contain loaded user`() {
+    fun `should ui state contain loaded user on successful data load`() {
         val viewModel = UserDetailsViewModel(repository, userId = testUsers.first().id)
 
         testDispatcher.scheduler.advanceUntilIdle()
