@@ -1,6 +1,7 @@
 package dev.burnoo.demo.listapp.ui.userdetails.composables
 
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.test.assertHasClickAction
 import androidx.compose.ui.test.hasTestTag
 import androidx.compose.ui.test.hasText
 import androidx.compose.ui.test.junit4.createComposeRule
@@ -20,17 +21,27 @@ class UserDetailsContentTest {
     @Test
     fun shouldDisplayLoaderWhenLoading() {
         composeRule.setContent {
-            UserDetailsContent(uiState = UserDetailsUiState.Loading)
+            UserDetailsContent(uiState = UserDetailsUiState.Loading, onTryAgain = {})
         }
 
         composeRule.onNode(hasTestTag("Loader")).assertExists()
     }
 
     @Test
+    fun shouldDisplayTryAgainButtonOnError() {
+        composeRule.setContent {
+            UserDetailsContent(UserDetailsUiState.Error, onTryAgain = {})
+        }
+
+        composeRule.onNode(hasTestTag("Try again button")).assertExists()
+        composeRule.onNode(hasTestTag("Try again button")).assertHasClickAction()
+    }
+
+    @Test
     fun shouldDisplayUserDetailsWhenLoaded() {
         composeRule.setContent {
             WithTestDependencyInjection {
-                UserDetailsContent(uiState = UserDetailsUiState.Loaded(testUser))
+                UserDetailsContent(uiState = UserDetailsUiState.Loaded(testUser), onTryAgain = {})
             }
         }
 

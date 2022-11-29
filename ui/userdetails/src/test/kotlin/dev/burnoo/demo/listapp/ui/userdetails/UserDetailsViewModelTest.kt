@@ -1,8 +1,11 @@
 package dev.burnoo.demo.listapp.ui.userdetails
 
+import com.github.michaelbull.result.Err
+import com.github.michaelbull.result.Ok
 import dev.burnoo.demo.listapp.data.users.core.FakeUsersRepository
 import dev.burnoo.demo.listapp.data.users.core.testUser
 import dev.burnoo.demo.listapp.data.users.core.testUsers
+import dev.burnoo.demo.listapp.data.users.model.DataError
 import io.kotest.matchers.shouldBe
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -40,6 +43,27 @@ class UserDetailsViewModelTest {
     fun `should ui state contain loaded user on successful data load`() {
         val viewModel = UserDetailsViewModel(repository, userId = testUsers.first().id)
 
+        testDispatcher.scheduler.advanceUntilIdle()
+
+        viewModel.uiState.value shouldBe UserDetailsUiState.Loaded(testUser)
+    }
+
+    @Test
+    fun `should ui state be error on data error`() {
+        repository.setUserResults(Err(DataError))
+        val viewModel = UserDetailsViewModel(repository, testUsers.first().id)
+
+        testDispatcher.scheduler.advanceUntilIdle()
+
+        viewModel.uiState.value shouldBe UserDetailsUiState.Error
+    }
+
+    @Test
+    fun `should ui state contain loaded user after trying again`() {
+        repository.setUsersResults(Err(DataError), Ok(testUsers))
+        val viewModel = UserDetailsViewModel(repository, testUsers.first().id)
+
+        viewModel.onTryAgain()
         testDispatcher.scheduler.advanceUntilIdle()
 
         viewModel.uiState.value shouldBe UserDetailsUiState.Loaded(testUser)
