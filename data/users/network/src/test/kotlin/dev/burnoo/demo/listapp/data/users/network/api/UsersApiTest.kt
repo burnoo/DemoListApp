@@ -17,7 +17,7 @@ class UsersApiTest {
     @Test
     fun `should parse users successfully`() = runBlocking {
         val api = UsersApi(createMockEngine())
-        val users = api.getUsers()
+        val users = api.getUsers(page = 0)
 
         val firstUser = users.get()!!.first()
 
@@ -35,7 +35,7 @@ class UsersApiTest {
                 respondError(HttpStatusCode.NotFound)
             },
         )
-        val usersResult = api.getUsers()
+        val usersResult = api.getUsers(page = 0)
 
         usersResult shouldBe Err(NetworkError.Client)
     }
@@ -47,7 +47,7 @@ class UsersApiTest {
                 respondError(HttpStatusCode.InternalServerError)
             },
         )
-        val usersResult = api.getUsers()
+        val usersResult = api.getUsers(page = 0)
 
         usersResult shouldBe Err(NetworkError.Server)
     }
@@ -59,7 +59,7 @@ class UsersApiTest {
                 throw RuntimeException()
             },
         )
-        val usersResult = api.getUsers()
+        val usersResult = api.getUsers(page = 0)
 
         usersResult shouldBe Err(NetworkError.Device)
     }

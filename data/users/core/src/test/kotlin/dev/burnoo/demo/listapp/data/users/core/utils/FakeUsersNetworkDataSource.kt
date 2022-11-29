@@ -32,7 +32,7 @@ class FakeUsersNetworkDataSource : UsersNetworkDataSource {
     var usersResult: Result<List<NetworkUserItem>, NetworkError> = Ok(testNetworkUsers)
     var userResult: Result<NetworkUser, NetworkError> = Ok(testNetworkUser)
 
-    override suspend fun getUsers() = usersResult
+    override suspend fun getUsers(page: Int) = usersResult
 
     override suspend fun getUser(userId: String) = userResult
 }

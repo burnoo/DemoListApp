@@ -20,7 +20,8 @@ import io.ktor.client.request.header
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 
-const val BASE_URL = "https://dummyapi.io/data/v1"
+const val BASE_PATH = "/data/v1"
+private const val BASE_URL = "https://dummyapi.io$BASE_PATH"
 private const val APP_ID = "637797e82364777fa9814112"
 
 internal class UsersApi(engine: HttpClientEngine) : UsersNetworkDataSource {
@@ -35,9 +36,9 @@ internal class UsersApi(engine: HttpClientEngine) : UsersNetworkDataSource {
         }
     }
 
-    override suspend fun getUsers(): Result<List<NetworkUserItem>, NetworkError> {
+    override suspend fun getUsers(page: Int): Result<List<NetworkUserItem>, NetworkError> {
         return runCatching {
-            client.get("$BASE_URL/user")
+            client.get("$BASE_URL/user?page=$page")
                 .body<NetworkUsersResponse>()
                 .data
         }.mapNetworkError()

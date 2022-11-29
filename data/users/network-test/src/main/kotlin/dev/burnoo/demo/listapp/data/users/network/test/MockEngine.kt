@@ -1,6 +1,6 @@
 package dev.burnoo.demo.listapp.data.users.network.test
 
-import dev.burnoo.demo.listapp.data.users.network.api.BASE_URL
+import dev.burnoo.demo.listapp.data.users.network.api.BASE_PATH
 import io.ktor.client.engine.HttpClientEngine
 import io.ktor.client.engine.mock.MockEngine
 import io.ktor.client.engine.mock.MockRequestHandleScope
@@ -18,9 +18,9 @@ fun createMockEngine(
         respondJson(getUserResponse())
     },
 ): HttpClientEngine = MockEngine { request ->
-    when (request.url.toString()) {
-        "$BASE_URL/user" -> getUsers()
-        "$BASE_URL/user/${TestApiUser.id}" -> getUser()
+    when (request.url.encodedPath) {
+        "$BASE_PATH/user" -> getUsers()
+        "$BASE_PATH/user/${TestApiUser.id}" -> getUser()
         else -> throw RuntimeException("Unsupported url")
     }
 }
