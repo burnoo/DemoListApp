@@ -33,5 +33,5 @@ class FakeUsersNetworkDataSource : UsersNetworkDataSource {
 
     override suspend fun getUsers(): Result<List<NetworkUserItem>, NetworkError> = usersResult
 
-    override suspend fun getUser(userId: String) = testNetworkUser
+    override suspend fun getUser(userId: String) = Ok(testNetworkUser)
 }

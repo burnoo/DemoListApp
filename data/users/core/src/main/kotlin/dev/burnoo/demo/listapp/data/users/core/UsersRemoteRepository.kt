@@ -1,6 +1,7 @@
 package dev.burnoo.demo.listapp.data.users.core
 
 import com.github.michaelbull.result.Result
+import com.github.michaelbull.result.get
 import com.github.michaelbull.result.mapEither
 import dev.burnoo.demo.listapp.data.users.core.mappers.asExternalModel
 import dev.burnoo.demo.listapp.data.users.model.DataError
@@ -28,7 +29,7 @@ internal class UsersRemoteRepository(
 
     override suspend fun getUser(userId: UserId): User {
         return withContext(coroutineDispatcher) {
-            dataSource.getUser(userId.value).asExternalModel()
+            dataSource.getUser(userId.value).get()!!.asExternalModel()
         }
     }
 }

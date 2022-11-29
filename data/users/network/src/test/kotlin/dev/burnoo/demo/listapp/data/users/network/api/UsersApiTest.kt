@@ -29,7 +29,7 @@ class UsersApiTest {
     }
 
     @Test
-    fun `should handle users client error`() = runBlocking {
+    fun `should handle get users client error`() = runBlocking {
         val api = UsersApi(
             engine = MockEngine {
                 respondError(HttpStatusCode.NotFound)
@@ -41,7 +41,7 @@ class UsersApiTest {
     }
 
     @Test
-    fun `should handle users server error`() = runBlocking {
+    fun `should handle get users server error`() = runBlocking {
         val api = UsersApi(
             engine = MockEngine {
                 respondError(HttpStatusCode.InternalServerError)
@@ -53,7 +53,7 @@ class UsersApiTest {
     }
 
     @Test
-    fun `should handle users device error`() = runBlocking {
+    fun `should handle get users device error`() = runBlocking {
         val api = UsersApi(
             engine = MockEngine {
                 throw RuntimeException()
@@ -67,7 +67,7 @@ class UsersApiTest {
     @Test
     fun `should parse user successfully`() = runBlocking {
         val api = UsersApi(createMockEngine())
-        val user = api.getUser(TestApiUser.id)
+        val user = api.getUser(TestApiUser.id).get()!!
 
         user.title shouldBe TestApiUser.title
         user.firstName shouldBe TestApiUser.firstName
@@ -75,5 +75,41 @@ class UsersApiTest {
         user.gender shouldBe TestApiUser.gender
         user.email shouldBe TestApiUser.email
         user.phone shouldBe TestApiUser.phone
+    }
+
+    @Test
+    fun `should handle get user client error`() = runBlocking {
+        val api = UsersApi(
+            engine = MockEngine {
+                respondError(HttpStatusCode.NotFound)
+            },
+        )
+        val userResult = api.getUser(TestApiUser.id)
+
+        userResult shouldBe Err(NetworkError.Client)
+    }
+
+    @Test
+    fun `should handle get user server error`() = runBlocking {
+        val api = UsersApi(
+            engine = MockEngine {
+                respondError(HttpStatusCode.InternalServerError)
+            },
+        )
+        val userResult = api.getUser(TestApiUser.id)
+
+        userResult shouldBe Err(NetworkError.Server)
+    }
+
+    @Test
+    fun `should handle get user device error`() = runBlocking {
+        val api = UsersApi(
+            engine = MockEngine {
+                throw RuntimeException()
+            },
+        )
+        val userResult = api.getUser(TestApiUser.id)
+
+        userResult shouldBe Err(NetworkError.Device)
     }
 }

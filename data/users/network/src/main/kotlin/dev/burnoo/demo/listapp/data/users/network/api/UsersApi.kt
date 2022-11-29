@@ -43,8 +43,10 @@ internal class UsersApi(engine: HttpClientEngine) : UsersNetworkDataSource {
         }.mapNetworkError()
     }
 
-    override suspend fun getUser(userId: String): NetworkUser {
-        return client.get("$BASE_URL/user/$userId").body()
+    override suspend fun getUser(userId: String): Result<NetworkUser, NetworkError> {
+        return runCatching<UsersApi, NetworkUser> {
+            client.get("$BASE_URL/user/$userId").body()
+        }.mapNetworkError()
     }
 
     private fun <V, E : Throwable> Result<V, E>.mapNetworkError(): Result<V, NetworkError> {

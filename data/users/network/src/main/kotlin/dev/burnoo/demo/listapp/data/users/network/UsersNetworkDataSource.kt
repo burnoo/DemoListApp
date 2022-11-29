@@ -9,5 +9,5 @@ interface UsersNetworkDataSource {
 
     suspend fun getUsers(): Result<List<NetworkUserItem>, NetworkError>
 
-    suspend fun getUser(userId: String): NetworkUser
+    suspend fun getUser(userId: String): Result<NetworkUser, NetworkError>
 }
