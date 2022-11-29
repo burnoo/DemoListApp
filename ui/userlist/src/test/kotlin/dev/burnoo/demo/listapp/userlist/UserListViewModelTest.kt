@@ -64,7 +64,7 @@ class UserListViewModelTest {
         repository.setUsersResults(Err(DataError), Ok(testUsers))
         val viewModel = UserListViewModel(repository)
 
-        viewModel.onTryAgain()
+        viewModel.tryAgain()
         testDispatcher.scheduler.advanceUntilIdle()
 
         viewModel.uiState.value shouldBe UserListUiState.Loaded(testUsers)

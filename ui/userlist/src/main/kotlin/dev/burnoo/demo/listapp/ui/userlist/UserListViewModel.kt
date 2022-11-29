@@ -19,7 +19,7 @@ internal class UserListViewModel(
         viewModelScope.launch { fetchData() }
     }
 
-    fun onTryAgain() {
+    fun tryAgain() {
         viewModelScope.launch { fetchData() }
     }
 

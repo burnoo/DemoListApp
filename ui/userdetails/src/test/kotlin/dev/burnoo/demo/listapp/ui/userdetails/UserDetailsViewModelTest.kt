@@ -63,7 +63,7 @@ class UserDetailsViewModelTest {
         repository.setUsersResults(Err(DataError), Ok(testUsers))
         val viewModel = UserDetailsViewModel(repository, testUsers.first().id)
 
-        viewModel.onTryAgain()
+        viewModel.tryAgain()
         testDispatcher.scheduler.advanceUntilIdle()
 
         viewModel.uiState.value shouldBe UserDetailsUiState.Loaded(testUser)

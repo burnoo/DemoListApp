@@ -19,7 +19,7 @@ internal fun UserListContent(
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
-    UserListContent(uiState, onUserClick, viewModel::onTryAgain)
+    UserListContent(uiState, onUserClick, onTryAgain = viewModel::tryAgain)
 }
 
 @Composable

@@ -14,7 +14,7 @@ import dev.burnoo.demo.listapp.ui.userdetails.UserDetailsViewModel
 internal fun UserDetailsContent(viewModel: UserDetailsViewModel) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
-    UserDetailsContent(uiState, onTryAgain = viewModel::onTryAgain)
+    UserDetailsContent(uiState, onTryAgain = viewModel::tryAgain)
 }
 
 @Composable

@@ -21,7 +21,7 @@ internal class UserDetailsViewModel(
         viewModelScope.launch { fetchData() }
     }
 
-    fun onTryAgain() {
+    fun tryAgain() {
         viewModelScope.launch { fetchData() }
     }
 
