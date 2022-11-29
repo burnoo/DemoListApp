@@ -30,8 +30,9 @@ val testNetworkUser = NetworkUser(
 class FakeUsersNetworkDataSource : UsersNetworkDataSource {
 
     var usersResult: Result<List<NetworkUserItem>, NetworkError> = Ok(testNetworkUsers)
+    var userResult: Result<NetworkUser, NetworkError> = Ok(testNetworkUser)
 
-    override suspend fun getUsers(): Result<List<NetworkUserItem>, NetworkError> = usersResult
+    override suspend fun getUsers() = usersResult
 
-    override suspend fun getUser(userId: String) = Ok(testNetworkUser)
+    override suspend fun getUser(userId: String) = userResult
 }

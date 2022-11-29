@@ -48,7 +48,7 @@ class UsersRemoteRepositoryTest {
     @Test
     fun `should get user successfully`() = runBlocking {
         val userId = UserId(value = "TEST_USER_ID")
-        val user = repository.getUser(userId)
+        val user = repository.getUser(userId).get()!!
 
         user.title shouldBe testNetworkUser.title
         user.firstName shouldBe testNetworkUser.firstName
@@ -57,5 +57,17 @@ class UsersRemoteRepositoryTest {
         user.gender shouldBe testNetworkUser.gender
         user.email shouldBe testNetworkUser.email
         user.phone shouldBe testNetworkUser.phone
+    }
+
+    @Test
+    fun `should handle get user errors`() = runBlocking {
+        val userId = UserId(value = "TEST_USER_ID")
+        val networkErrors = listOf(NetworkError.Client, NetworkError.Server, NetworkError.Device)
+        networkErrors.forEach { networkError ->
+            fakeDataSource.userResult = Err(networkError)
+            val usersResult = repository.getUser(userId)
+
+            usersResult shouldBe Err(DataError)
+        }
     }
 }

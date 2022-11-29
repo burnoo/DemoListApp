@@ -10,5 +10,5 @@ interface UsersRepository {
 
     suspend fun getUsers(): Result<List<UserItem>, DataError>
 
-    suspend fun getUser(userId: UserId): User
+    suspend fun getUser(userId: UserId): Result<User, DataError>
 }

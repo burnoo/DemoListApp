@@ -2,6 +2,7 @@ package dev.burnoo.demo.listapp.ui.userdetails
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.github.michaelbull.result.get
 import dev.burnoo.demo.listapp.data.users.core.UsersRepository
 import dev.burnoo.demo.listapp.data.users.model.UserId
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -18,7 +19,7 @@ internal class UserDetailsViewModel(
 
     init {
         viewModelScope.launch {
-            val user = repository.getUser(userId)
+            val user = repository.getUser(userId).get()!!
             _uiState.value = UserDetailsUiState.Loaded(user)
         }
     }

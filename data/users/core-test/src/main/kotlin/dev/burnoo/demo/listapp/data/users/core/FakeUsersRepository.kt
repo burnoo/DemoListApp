@@ -13,7 +13,7 @@ class FakeUsersRepository : UsersRepository {
 
     override suspend fun getUsers() = usersResults[usersResultCount++ % usersResults.size]
 
-    override suspend fun getUser(userId: UserId) = testUser
+    override suspend fun getUser(userId: UserId) = Ok(testUser)
 
     fun setUsersResults(vararg results: Result<List<UserItem>, DataError>) {
         usersResults = results.toList()
