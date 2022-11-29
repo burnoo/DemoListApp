@@ -10,9 +10,7 @@ import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollToIndex
 import dev.burnoo.cokoin.Koin
 import dev.burnoo.cokoin.getKoin
-import dev.burnoo.demo.listapp.composable.AppRouter
 import dev.burnoo.demo.listapp.core.compose.utils.di.coreComposeUtilsModule
-import dev.burnoo.demo.listapp.core.designsystem.theme.AppTheme
 import dev.burnoo.demo.listapp.data.users.network.test.TestApiUser
 import dev.burnoo.demo.listapp.data.users.network.test.createMockEngine
 import dev.burnoo.demo.listapp.ui.userdetails.di.uiUserDetailsModule
@@ -30,11 +28,7 @@ class AppTest {
     @Test
     fun shouldDisplayLoaderOnStart() {
         composeRule.setContent {
-            WithTestDependencyInjection {
-                AppTheme {
-                    AppRouter()
-                }
-            }
+            WithTestDependencyInjection { App() }
         }
         composeRule.onNode(hasTestTag("Loader")).assertExists()
     }
@@ -42,11 +36,7 @@ class AppTest {
     @Test
     fun shouldLoadAndDisplayUserListOnStart() {
         composeRule.setContent {
-            WithTestDependencyInjection {
-                AppTheme {
-                    AppRouter()
-                }
-            }
+            WithTestDependencyInjection { App() }
         }
         composeRule.waitUntil {
             composeRule
@@ -63,11 +53,7 @@ class AppTest {
     @Test
     fun shouldLoadAndDisplayUserDetailsAfterClickingOnUser() {
         composeRule.setContent {
-            WithTestDependencyInjection {
-                AppTheme {
-                    AppRouter()
-                }
-            }
+            WithTestDependencyInjection { App() }
         }
         composeRule.waitUntil {
             composeRule
@@ -91,11 +77,7 @@ class AppTest {
             getUsers = { throw RuntimeException() },
         )
         composeRule.setContent {
-            WithTestDependencyInjection(mockEngine) {
-                AppTheme {
-                    AppRouter()
-                }
-            }
+            WithTestDependencyInjection(mockEngine) { App() }
         }
         composeRule.waitUntil {
             composeRule
@@ -111,11 +93,7 @@ class AppTest {
             getUser = { throw RuntimeException() },
         )
         composeRule.setContent {
-            WithTestDependencyInjection(httpClientEngine = mockEngine) {
-                AppTheme {
-                    AppRouter()
-                }
-            }
+            WithTestDependencyInjection(httpClientEngine = mockEngine) { App() }
         }
         composeRule.waitUntil {
             composeRule
