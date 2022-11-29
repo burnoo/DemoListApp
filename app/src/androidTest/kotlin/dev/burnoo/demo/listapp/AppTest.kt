@@ -14,7 +14,6 @@ import dev.burnoo.demo.listapp.composable.AppRouter
 import dev.burnoo.demo.listapp.core.compose.utils.di.coreComposeUtilsModule
 import dev.burnoo.demo.listapp.core.designsystem.theme.AppTheme
 import dev.burnoo.demo.listapp.data.users.network.test.TestApiUser
-import dev.burnoo.demo.listapp.data.users.network.test.createErrorMockEngine
 import dev.burnoo.demo.listapp.data.users.network.test.createMockEngine
 import dev.burnoo.demo.listapp.ui.userdetails.di.uiUserDetailsModule
 import dev.burnoo.demo.listapp.ui.userlist.di.uiUserListModule
@@ -87,11 +86,12 @@ class AppTest {
     }
 
     @Test
-    fun shouldDisplayTryAgainButtonOnNetworkError() {
+    fun shouldDisplayTryAgainButtonOnNetworkErrorWhenGettingUserList() {
+        val mockEngine = createMockEngine(
+            getUsers = { throw RuntimeException() },
+        )
         composeRule.setContent {
-            WithTestDependencyInjection(
-                createEngine = ::createErrorMockEngine,
-            ) {
+            WithTestDependencyInjection(mockEngine) {
                 AppTheme {
                     AppRouter()
                 }
@@ -105,9 +105,35 @@ class AppTest {
         composeRule.onNode(hasTestTag("Try again button")).assertExists()
     }
 
+    @Test
+    fun shouldDisplayTryAgainButtonOnNetworkErrorWhenGettingUserDetails() {
+        val mockEngine = createMockEngine(
+            getUser = { throw RuntimeException() },
+        )
+        composeRule.setContent {
+            WithTestDependencyInjection(httpClientEngine = mockEngine) {
+                AppTheme {
+                    AppRouter()
+                }
+            }
+        }
+        composeRule.waitUntil {
+            composeRule
+                .onAllNodes(hasTestTag("Loader"))
+                .fetchSemanticsNodes().isEmpty()
+        }
+        composeRule.onNode(hasText(TestApiUser.firstName, substring = true)).performClick()
+        composeRule.waitUntil {
+            composeRule
+                .onAllNodes(hasTestTag("Loader"))
+                .fetchSemanticsNodes().isEmpty()
+        }
+        composeRule.onNode(hasTestTag("Try again button")).assertExists()
+    }
+
     @Composable
     private fun WithTestDependencyInjection(
-        createEngine: () -> HttpClientEngine = ::createMockEngine,
+        httpClientEngine: HttpClientEngine = createMockEngine(),
         content: @Composable () -> Unit,
     ) {
         Koin(
@@ -116,7 +142,7 @@ class AppTest {
                     coreComposeUtilsModule,
                     uiUserListModule,
                     uiUserDetailsModule,
-                    module { single { createEngine() } },
+                    module { factory { httpClientEngine } },
                 )
             },
         ) {
