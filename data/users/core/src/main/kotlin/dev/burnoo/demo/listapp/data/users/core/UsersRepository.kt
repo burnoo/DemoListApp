@@ -8,7 +8,7 @@ import dev.burnoo.demo.listapp.data.users.model.UserItem
 
 interface UsersRepository {
 
-    suspend fun getUsers(): Result<List<UserItem>, DataError>
+    suspend fun getUsers(page: Int): Result<List<UserItem>, DataError>
 
     suspend fun getUser(userId: UserId): Result<User, DataError>
 }

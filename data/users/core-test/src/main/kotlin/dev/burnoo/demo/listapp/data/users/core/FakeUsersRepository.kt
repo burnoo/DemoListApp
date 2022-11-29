@@ -15,7 +15,7 @@ class FakeUsersRepository : UsersRepository {
     private var userResultCount = 0
     private var userResults: List<Result<User, DataError>> = listOf(Ok(testUser))
 
-    override suspend fun getUsers() = usersResults[usersResultCount++ % usersResults.size]
+    override suspend fun getUsers(page: Int) = usersResults[usersResultCount++ % usersResults.size]
 
     override suspend fun getUser(userId: UserId) = userResults[userResultCount++ % userResults.size]
 

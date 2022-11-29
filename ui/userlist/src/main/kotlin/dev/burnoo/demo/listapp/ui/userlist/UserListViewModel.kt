@@ -25,7 +25,7 @@ internal class UserListViewModel(
 
     private suspend fun fetchData() {
         _uiState.value = UserListUiState.Loading
-        val usersResult = repository.getUsers()
+        val usersResult = repository.getUsers(page = 0)
         _uiState.value = usersResult.fold(
             success = { UserListUiState.Loaded(it) },
             failure = { UserListUiState.Error },

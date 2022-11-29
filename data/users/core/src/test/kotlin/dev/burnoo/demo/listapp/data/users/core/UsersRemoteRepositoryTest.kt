@@ -23,7 +23,7 @@ class UsersRemoteRepositoryTest {
 
     @Test
     fun `should get users successfully`() = runBlocking {
-        val users = repository.getUsers().get()!!
+        val users = repository.getUsers(page = 0).get()!!
 
         users.forEachIndexed { index, userItem ->
             userItem.id.value shouldBe testNetworkUsers[index].id
@@ -39,7 +39,7 @@ class UsersRemoteRepositoryTest {
         val networkErrors = listOf(NetworkError.Client, NetworkError.Server, NetworkError.Device)
         networkErrors.forEach { networkError ->
             fakeDataSource.usersResult = Err(networkError)
-            val usersResult = repository.getUsers()
+            val usersResult = repository.getUsers(page = 0)
 
             usersResult shouldBe Err(DataError)
         }

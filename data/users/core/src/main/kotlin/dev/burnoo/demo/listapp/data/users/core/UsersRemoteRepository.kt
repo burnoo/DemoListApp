@@ -17,9 +17,9 @@ internal class UsersRemoteRepository(
     private val coroutineDispatcher: CoroutineDispatcher = Dispatchers.IO,
 ) : UsersRepository {
 
-    override suspend fun getUsers(): Result<List<UserItem>, DataError> {
+    override suspend fun getUsers(page: Int): Result<List<UserItem>, DataError> {
         return withContext(coroutineDispatcher) {
-            dataSource.getUsers(page = 0).mapEither(
+            dataSource.getUsers(page).mapEither(
                 success = { users -> users.map { it.asExternalModel() } },
                 failure = { DataError },
             )
