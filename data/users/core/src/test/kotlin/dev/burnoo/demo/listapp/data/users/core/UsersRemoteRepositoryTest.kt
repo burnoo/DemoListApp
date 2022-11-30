@@ -1,8 +1,10 @@
 package dev.burnoo.demo.listapp.data.users.core
 
 import com.github.michaelbull.result.Err
+import com.github.michaelbull.result.Ok
 import com.github.michaelbull.result.get
 import dev.burnoo.demo.listapp.data.users.core.utils.FakeUsersNetworkDataSource
+import dev.burnoo.demo.listapp.data.users.core.utils.testNetworkResponse
 import dev.burnoo.demo.listapp.data.users.core.utils.testNetworkUser
 import dev.burnoo.demo.listapp.data.users.core.utils.testNetworkUsers
 import dev.burnoo.demo.listapp.data.users.model.DataError
@@ -69,5 +71,35 @@ class UsersRemoteRepositoryTest {
 
             usersResult shouldBe Err(DataError)
         }
+    }
+
+    @Test
+    fun `should calculate if is on the last page`() = runBlocking {
+        fakeDataSource.usersResult = Ok(
+            testNetworkResponse(
+                total = 122,
+                page = 6,
+                limit = 20,
+            ),
+        )
+
+        val isLastPage = repository.getUsers(page = 0).get()!!.isLastPage
+
+        isLastPage shouldBe true
+    }
+
+    @Test
+    fun `should calculate if is not on the last page`() = runBlocking {
+        fakeDataSource.usersResult = Ok(
+            testNetworkResponse(
+                total = 122,
+                page = 5,
+                limit = 20,
+            ),
+        )
+
+        val isLastPage = repository.getUsers(page = 0).get()!!.isLastPage
+
+        isLastPage shouldBe false
     }
 }

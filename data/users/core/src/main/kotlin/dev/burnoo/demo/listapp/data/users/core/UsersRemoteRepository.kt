@@ -22,7 +22,6 @@ internal class UsersRemoteRepository(
             dataSource.getUsers(page).mapEither(
                 success = { users ->
                     val userList = users.data.map { it.asExternalModel() }
-                    // TODO: add tests for this logic - refactor testUsers first to function
                     val isLastPage = (users.page + 1) * users.limit >= users.total
                     Users(list = userList, isLastPage = isLastPage)
                 },
