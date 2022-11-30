@@ -4,7 +4,7 @@ import dev.burnoo.demo.listapp.data.users.model.User
 import dev.burnoo.demo.listapp.data.users.model.UserId
 import dev.burnoo.demo.listapp.data.users.model.UserItem
 
-val testUsers = List(5) {
+val testUserList = List(5) {
     UserItem(
         id = UserId(it.toString()),
         title = "mrs",
@@ -13,6 +13,7 @@ val testUsers = List(5) {
         photoUrl = "https://example.org/image$it.jpg",
     )
 }
+
 val testUser = User(
     title = "mrs",
     firstName = "John 0",

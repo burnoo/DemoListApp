@@ -9,7 +9,7 @@ import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.performScrollToNode
 import dev.burnoo.cokoin.Koin
 import dev.burnoo.demo.listapp.core.compose.utils.di.coreComposeUtilsModule
-import dev.burnoo.demo.listapp.data.users.core.testUsers
+import dev.burnoo.demo.listapp.data.users.core.testUserList
 import dev.burnoo.demo.listapp.ui.userlist.UserListUiState
 import dev.burnoo.demo.listapp.ui.userlist.composables.UserListContent
 import dev.burnoo.demo.listapp.ui.userlist.di.uiUserListModule
@@ -41,7 +41,7 @@ class UserListContentTest {
         composeRule.setContent {
             WithTestDependencyInjection {
                 UserListContent(
-                    UserListUiState.Loaded(testUsers, isLastPage = false),
+                    UserListUiState.Loaded(testUserList, isLastPage = false),
                     onUserClick = {},
                     onTryAgain = {},
                     onLoadMore = {},
@@ -49,7 +49,7 @@ class UserListContentTest {
             }
         }
 
-        testUsers.forEach { user ->
+        testUserList.forEach { user ->
             composeRule.onNode(hasText(user.firstName, substring = true)).assertExists()
             composeRule.onNode(hasText(user.lastName, substring = true)).assertExists()
         }
@@ -60,7 +60,7 @@ class UserListContentTest {
         composeRule.setContent {
             WithTestDependencyInjection {
                 UserListContent(
-                    UserListUiState.Loaded(testUsers, isLastPage = false),
+                    UserListUiState.Loaded(testUserList, isLastPage = false),
                     onUserClick = {},
                     onTryAgain = {},
                     onLoadMore = {},
@@ -77,7 +77,7 @@ class UserListContentTest {
         composeRule.setContent {
             WithTestDependencyInjection {
                 UserListContent(
-                    UserListUiState.Loaded(testUsers, isLastPage = true),
+                    UserListUiState.Loaded(testUserList, isLastPage = true),
                     onUserClick = {},
                     onTryAgain = {},
                     onLoadMore = {},

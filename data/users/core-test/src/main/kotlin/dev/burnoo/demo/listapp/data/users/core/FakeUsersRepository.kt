@@ -13,7 +13,7 @@ class FakeUsersRepository : UsersRepository {
 
     private var usersResultCount = 0
     private var usersResults: List<Result<Users, DataError>> = listOf(
-        Ok(Users(list = testUsers, isLastPage = false)),
+        Ok(Users(list = testUserList, isLastPage = false)),
     )
 
     private var userResultCount = 0
