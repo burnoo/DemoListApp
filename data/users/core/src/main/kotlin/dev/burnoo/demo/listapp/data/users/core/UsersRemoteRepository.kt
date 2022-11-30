@@ -6,7 +6,7 @@ import dev.burnoo.demo.listapp.data.users.core.mappers.asExternalModel
 import dev.burnoo.demo.listapp.data.users.model.DataError
 import dev.burnoo.demo.listapp.data.users.model.User
 import dev.burnoo.demo.listapp.data.users.model.UserId
-import dev.burnoo.demo.listapp.data.users.model.UserItem
+import dev.burnoo.demo.listapp.data.users.model.Users
 import dev.burnoo.demo.listapp.data.users.network.UsersNetworkDataSource
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -17,10 +17,15 @@ internal class UsersRemoteRepository(
     private val coroutineDispatcher: CoroutineDispatcher = Dispatchers.IO,
 ) : UsersRepository {
 
-    override suspend fun getUsers(page: Int): Result<List<UserItem>, DataError> {
+    override suspend fun getUsers(page: Int): Result<Users, DataError> {
         return withContext(coroutineDispatcher) {
             dataSource.getUsers(page).mapEither(
-                success = { users -> users.data.map { it.asExternalModel() } },
+                success = { users ->
+                    val userList = users.data.map { it.asExternalModel() }
+                    // TODO: add tests for this logic - refactor testUsers first to function
+                    val isLastPage = (users.page + 1) * users.limit < users.total
+                    Users(list = userList, isLastPage = isLastPage)
+                },
                 failure = { DataError },
             )
         }

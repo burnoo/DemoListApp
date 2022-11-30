@@ -3,6 +3,7 @@ package dev.burnoo.demo.listapp.ui.userlist
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.github.michaelbull.result.fold
+import com.github.michaelbull.result.map
 import dev.burnoo.demo.listapp.data.users.core.UsersRepository
 import dev.burnoo.demo.listapp.data.users.model.UserItem
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -35,7 +36,7 @@ internal class UserListViewModel(
         if (uiState.value !is UserListUiState.Loaded) {
             _uiState.value = UserListUiState.Loading
         }
-        val usersResult = repository.getUsers(page)
+        val usersResult = repository.getUsers(page).map { it.list }
         _uiState.value = usersResult.fold(
             success = {
                 loadedUsers = loadedUsers + it

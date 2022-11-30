@@ -25,7 +25,7 @@ class UsersRemoteRepositoryTest {
     fun `should get users successfully`() = runBlocking {
         val users = repository.getUsers(page = 0).get()!!
 
-        users.forEachIndexed { index, userItem ->
+        users.list.forEachIndexed { index, userItem ->
             userItem.id.value shouldBe testNetworkUsers[index].id
             userItem.firstName shouldBe testNetworkUsers[index].firstName
             userItem.lastName shouldBe testNetworkUsers[index].lastName
