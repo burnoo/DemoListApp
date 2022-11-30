@@ -41,7 +41,7 @@ class UserListViewModelTest {
     }
 
     @Test
-    fun `should ui state contain loaded users on successful load`() {
+    fun `should ui state contain loaded users on successful first page load`() {
         val viewModel = UserListViewModel(repository)
 
         testDispatcher.scheduler.advanceUntilIdle()
@@ -50,7 +50,7 @@ class UserListViewModelTest {
     }
 
     @Test
-    fun `should ui state be error on data error`() {
+    fun `should ui state be error on data error on first page`() {
         repository.setUsersResults(Err(DataError))
         val viewModel = UserListViewModel(repository)
 
@@ -68,5 +68,16 @@ class UserListViewModelTest {
         testDispatcher.scheduler.advanceUntilIdle()
 
         viewModel.uiState.value shouldBe UserListUiState.Loaded(testUsers)
+    }
+
+    @Test
+    fun `should ui state contain users from two first pages`() {
+        repository.setUsersResults(Ok(testUsers), Ok(testUsers.reversed()))
+        val viewModel = UserListViewModel(repository)
+
+        viewModel.fetchNextPage()
+        testDispatcher.scheduler.advanceUntilIdle()
+
+        viewModel.uiState.value shouldBe UserListUiState.Loaded(testUsers + testUsers.reversed())
     }
 }

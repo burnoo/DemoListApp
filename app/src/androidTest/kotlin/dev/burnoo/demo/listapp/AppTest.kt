@@ -46,8 +46,8 @@ class AppTest {
 
         composeRule.onNode(hasText(TestApiUser.firstName, substring = true)).assertExists()
         composeRule.onNode(hasText(TestApiUser.lastName, substring = true)).assertExists()
-        // This is workaround for checking if there is 20 elements in the LazyList
-        composeRule.onNode(hasScrollToIndexAction()).performScrollToIndex(19)
+        // This is workaround for checking if there is 21 elements in the LazyList
+        composeRule.onNode(hasScrollToIndexAction()).performScrollToIndex(20)
     }
 
     @Test

@@ -19,18 +19,24 @@ internal fun UserListContent(
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
-    UserListContent(uiState, onUserClick, onTryAgain = viewModel::tryAgain)
+    UserListContent(
+        uiState,
+        onUserClick,
+        onLoadMore = viewModel::fetchNextPage,
+        onTryAgain = viewModel::tryAgain,
+    )
 }
 
 @Composable
 internal fun UserListContent(
     uiState: UserListUiState,
     onUserClick: (UserId) -> Unit,
+    onLoadMore: () -> Unit,
     onTryAgain: () -> Unit,
 ) {
     when (uiState) {
         UserListUiState.Loading -> Loader()
-        is UserListUiState.Loaded -> UserList(uiState.users, onUserClick)
+        is UserListUiState.Loaded -> UserList(uiState.users, onUserClick, onLoadMore)
         UserListUiState.Error -> TryAgain(onTryAgain)
     }
 }
