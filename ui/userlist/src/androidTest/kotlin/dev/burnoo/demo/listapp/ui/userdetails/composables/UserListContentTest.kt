@@ -22,7 +22,12 @@ class UserListContentTest {
     @Test
     fun shouldDisplayLoaderWhenLoading() {
         composeRule.setContent {
-            UserListContent(UserListUiState.Loading, onUserClick = {}, onTryAgain = {})
+            UserListContent(
+                UserListUiState.Loading,
+                onUserClick = {},
+                onTryAgain = {},
+                onLoadMore = {},
+            )
         }
 
         composeRule.onNode(hasTestTag("Loader")).assertExists()
@@ -36,6 +41,7 @@ class UserListContentTest {
                     UserListUiState.Loaded(testUsers),
                     onUserClick = {},
                     onTryAgain = {},
+                    onLoadMore = {},
                 )
             }
         }
@@ -49,7 +55,12 @@ class UserListContentTest {
     @Test
     fun shouldDisplayTryAgainButtonOnError() {
         composeRule.setContent {
-            UserListContent(UserListUiState.Error, onUserClick = {}, onTryAgain = {})
+            UserListContent(
+                UserListUiState.Error,
+                onUserClick = {},
+                onTryAgain = {},
+                onLoadMore = {},
+            )
         }
 
         composeRule.onNode(hasTestTag("Try again button")).assertExists()
