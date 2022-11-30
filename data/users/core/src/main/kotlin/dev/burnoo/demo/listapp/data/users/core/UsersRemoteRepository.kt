@@ -20,7 +20,7 @@ internal class UsersRemoteRepository(
     override suspend fun getUsers(page: Int): Result<List<UserItem>, DataError> {
         return withContext(coroutineDispatcher) {
             dataSource.getUsers(page).mapEither(
-                success = { users -> users.map { it.asExternalModel() } },
+                success = { users -> users.data.map { it.asExternalModel() } },
                 failure = { DataError },
             )
         }

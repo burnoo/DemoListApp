@@ -6,6 +6,7 @@ import dev.burnoo.demo.listapp.data.users.network.UsersNetworkDataSource
 import dev.burnoo.demo.listapp.data.users.network.model.NetworkError
 import dev.burnoo.demo.listapp.data.users.network.model.NetworkUser
 import dev.burnoo.demo.listapp.data.users.network.model.NetworkUserItem
+import dev.burnoo.demo.listapp.data.users.network.model.NetworkUsersResponse
 
 val testNetworkUsers = List(5) {
     NetworkUserItem(
@@ -16,6 +17,13 @@ val testNetworkUsers = List(5) {
         picture = "https://example.org/image$it.jpg",
     )
 }
+
+val testNetworkResponse = NetworkUsersResponse(
+    data = testNetworkUsers,
+    total = 122,
+    page = 0,
+    limit = 20,
+)
 
 val testNetworkUser = NetworkUser(
     title = "mrs",
@@ -29,7 +37,7 @@ val testNetworkUser = NetworkUser(
 
 class FakeUsersNetworkDataSource : UsersNetworkDataSource {
 
-    var usersResult: Result<List<NetworkUserItem>, NetworkError> = Ok(testNetworkUsers)
+    var usersResult: Result<NetworkUsersResponse, NetworkError> = Ok(testNetworkResponse)
     var userResult: Result<NetworkUser, NetworkError> = Ok(testNetworkUser)
 
     override suspend fun getUsers(page: Int) = usersResult

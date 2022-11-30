@@ -6,7 +6,6 @@ import com.github.michaelbull.result.runCatching
 import dev.burnoo.demo.listapp.data.users.network.UsersNetworkDataSource
 import dev.burnoo.demo.listapp.data.users.network.model.NetworkError
 import dev.burnoo.demo.listapp.data.users.network.model.NetworkUser
-import dev.burnoo.demo.listapp.data.users.network.model.NetworkUserItem
 import dev.burnoo.demo.listapp.data.users.network.model.NetworkUsersResponse
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
@@ -36,17 +35,15 @@ internal class UsersApi(engine: HttpClientEngine) : UsersNetworkDataSource {
         }
     }
 
-    override suspend fun getUsers(page: Int): Result<List<NetworkUserItem>, NetworkError> {
+    override suspend fun getUsers(page: Int): Result<NetworkUsersResponse, NetworkError> {
         return runCatching {
-            client.get("$BASE_URL/user?page=$page")
-                .body<NetworkUsersResponse>()
-                .data
+            client.get("$BASE_URL/user?page=$page").body<NetworkUsersResponse>()
         }.mapNetworkError()
     }
 
     override suspend fun getUser(userId: String): Result<NetworkUser, NetworkError> {
-        return runCatching<UsersApi, NetworkUser> {
-            client.get("$BASE_URL/user/$userId").body()
+        return runCatching {
+            client.get("$BASE_URL/user/$userId").body<NetworkUser>()
         }.mapNetworkError()
     }
 

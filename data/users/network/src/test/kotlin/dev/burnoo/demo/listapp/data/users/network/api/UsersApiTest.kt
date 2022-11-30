@@ -17,10 +17,14 @@ class UsersApiTest {
     @Test
     fun `should parse users successfully`() = runBlocking {
         val api = UsersApi(createMockEngine())
-        val users = api.getUsers(page = 0)
+        val usersResult = api.getUsers(page = 0)
 
-        val firstUser = users.get()!!.first()
+        val usersResponse = usersResult.get()!!
+        val firstUser = usersResponse.data.first()
 
+        usersResponse.limit shouldBe 20
+        usersResponse.page shouldBe 0
+        usersResponse.total shouldBe 122
         firstUser.id shouldBe TestApiUser.id
         firstUser.title shouldBe TestApiUser.title
         firstUser.firstName shouldBe TestApiUser.firstName

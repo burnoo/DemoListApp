@@ -5,4 +5,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class NetworkUsersResponse(
     val data: List<NetworkUserItem>,
+    val total: Int,
+    val page: Int,
+    val limit: Int,
 )
