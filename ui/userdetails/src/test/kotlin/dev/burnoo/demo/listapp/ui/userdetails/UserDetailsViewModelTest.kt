@@ -5,6 +5,7 @@ import com.github.michaelbull.result.Ok
 import dev.burnoo.demo.listapp.data.users.core.FakeUsersRepository
 import dev.burnoo.demo.listapp.data.users.core.testUser
 import dev.burnoo.demo.listapp.data.users.core.testUserList
+import dev.burnoo.demo.listapp.data.users.core.testUsers
 import dev.burnoo.demo.listapp.data.users.model.DataError
 import io.kotest.matchers.shouldBe
 import kotlinx.coroutines.Dispatchers
@@ -60,7 +61,7 @@ class UserDetailsViewModelTest {
 
     @Test
     fun `should ui state contain loaded user after trying again`() {
-        repository.setUsersResults(Err(DataError), Ok(testUserList))
+        repository.setUsersResults(Err(DataError), Ok(testUsers()))
         val viewModel = UserDetailsViewModel(repository, testUserList.first().id)
 
         viewModel.tryAgain()

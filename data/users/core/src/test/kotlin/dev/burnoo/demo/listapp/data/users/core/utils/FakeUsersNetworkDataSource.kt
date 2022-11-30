@@ -18,12 +18,12 @@ val testNetworkUsers = List(5) {
     )
 }
 
-val testNetworkResponse = NetworkUsersResponse(
-    data = testNetworkUsers,
-    total = 122,
-    page = 0,
-    limit = 20,
-)
+fun testNetworkResponse(
+    data: List<NetworkUserItem> = testNetworkUsers,
+    total: Int = 122,
+    page: Int = 0,
+    limit: Int = 20,
+) = NetworkUsersResponse(data, total, page, limit)
 
 val testNetworkUser = NetworkUser(
     title = "mrs",
@@ -37,7 +37,7 @@ val testNetworkUser = NetworkUser(
 
 class FakeUsersNetworkDataSource : UsersNetworkDataSource {
 
-    var usersResult: Result<NetworkUsersResponse, NetworkError> = Ok(testNetworkResponse)
+    var usersResult: Result<NetworkUsersResponse, NetworkError> = Ok(testNetworkResponse())
     var userResult: Result<NetworkUser, NetworkError> = Ok(testNetworkUser)
 
     override suspend fun getUsers(page: Int) = usersResult
