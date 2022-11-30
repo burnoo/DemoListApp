@@ -46,7 +46,7 @@ class UserListViewModelTest {
 
         testDispatcher.scheduler.advanceUntilIdle()
 
-        viewModel.uiState.value shouldBe UserListUiState.Loaded(testUsers)
+        viewModel.uiState.value shouldBe UserListUiState.Loaded(testUsers, isLastPage = false)
     }
 
     @Test
@@ -67,7 +67,7 @@ class UserListViewModelTest {
         viewModel.tryAgain()
         testDispatcher.scheduler.advanceUntilIdle()
 
-        viewModel.uiState.value shouldBe UserListUiState.Loaded(testUsers)
+        viewModel.uiState.value shouldBe UserListUiState.Loaded(testUsers, isLastPage = false)
     }
 
     @Test
@@ -78,6 +78,9 @@ class UserListViewModelTest {
         viewModel.fetchNextPage()
         testDispatcher.scheduler.advanceUntilIdle()
 
-        viewModel.uiState.value shouldBe UserListUiState.Loaded(testUsers + testUsers.reversed())
+        viewModel.uiState.value shouldBe UserListUiState.Loaded(
+            users = testUsers + testUsers.reversed(),
+            isLastPage = false,
+        )
     }
 }

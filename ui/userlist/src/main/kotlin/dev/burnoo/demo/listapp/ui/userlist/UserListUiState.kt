@@ -6,5 +6,5 @@ internal sealed interface UserListUiState {
 
     object Loading : UserListUiState
     object Error : UserListUiState
-    data class Loaded(val users: List<UserItem>) : UserListUiState
+    data class Loaded(val users: List<UserItem>, val isLastPage: Boolean) : UserListUiState
 }

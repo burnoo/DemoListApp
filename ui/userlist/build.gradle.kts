@@ -30,4 +30,5 @@ dependencies {
     androidTestImplementation(project(":core:compose-utils"))
     androidTestImplementation(libs.jetpackCompose.uiTest.junit)
     androidTestImplementation(libs.test.androidCore)
+    androidTestImplementation(libs.kotest.assertions)
 }

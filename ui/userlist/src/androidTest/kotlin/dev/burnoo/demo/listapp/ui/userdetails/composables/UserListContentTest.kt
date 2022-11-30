@@ -2,15 +2,18 @@ package dev.burnoo.demo.listapp.ui.userdetails.composables
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.test.assertHasClickAction
+import androidx.compose.ui.test.hasScrollAction
 import androidx.compose.ui.test.hasTestTag
 import androidx.compose.ui.test.hasText
 import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.test.performScrollToNode
 import dev.burnoo.cokoin.Koin
 import dev.burnoo.demo.listapp.core.compose.utils.di.coreComposeUtilsModule
 import dev.burnoo.demo.listapp.data.users.core.testUsers
 import dev.burnoo.demo.listapp.ui.userlist.UserListUiState
 import dev.burnoo.demo.listapp.ui.userlist.composables.UserListContent
 import dev.burnoo.demo.listapp.ui.userlist.di.uiUserListModule
+import io.kotest.assertions.throwables.shouldThrow
 import org.junit.Rule
 import org.junit.Test
 
@@ -34,11 +37,11 @@ class UserListContentTest {
     }
 
     @Test
-    fun shouldDisplayUserDetailsWhenLoaded() {
+    fun shouldDisplayUsersWhenLoaded() {
         composeRule.setContent {
             WithTestDependencyInjection {
                 UserListContent(
-                    UserListUiState.Loaded(testUsers),
+                    UserListUiState.Loaded(testUsers, isLastPage = false),
                     onUserClick = {},
                     onTryAgain = {},
                     onLoadMore = {},
@@ -49,6 +52,41 @@ class UserListContentTest {
         testUsers.forEach { user ->
             composeRule.onNode(hasText(user.firstName, substring = true)).assertExists()
             composeRule.onNode(hasText(user.lastName, substring = true)).assertExists()
+        }
+    }
+
+    @Test
+    fun shouldDisplayMoreLoaderIfNotLastPage() {
+        composeRule.setContent {
+            WithTestDependencyInjection {
+                UserListContent(
+                    UserListUiState.Loaded(testUsers, isLastPage = false),
+                    onUserClick = {},
+                    onTryAgain = {},
+                    onLoadMore = {},
+                )
+            }
+        }
+
+        composeRule.onNode(hasScrollAction()).performScrollToNode(hasTestTag("More loader"))
+        composeRule.onNode(hasTestTag("More loader")).assertExists()
+    }
+
+    @Test
+    fun shouldNotDisplayMoreLoaderIfLastPage() {
+        composeRule.setContent {
+            WithTestDependencyInjection {
+                UserListContent(
+                    UserListUiState.Loaded(testUsers, isLastPage = true),
+                    onUserClick = {},
+                    onTryAgain = {},
+                    onLoadMore = {},
+                )
+            }
+        }
+
+        shouldThrow<AssertionError> {
+            composeRule.onNode(hasScrollAction()).performScrollToNode(hasTestTag("More loader"))
         }
     }
 

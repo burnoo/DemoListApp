@@ -36,7 +36,7 @@ internal fun UserListContent(
 ) {
     when (uiState) {
         UserListUiState.Loading -> Loader()
-        is UserListUiState.Loaded -> UserList(uiState.users, onUserClick, onLoadMore)
+        is UserListUiState.Loaded -> UserList(uiState, onUserClick, onLoadMore)
         UserListUiState.Error -> TryAgain(onTryAgain)
     }
 }

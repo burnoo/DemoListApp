@@ -10,24 +10,28 @@ import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.snapshotFlow
 import dev.burnoo.demo.listapp.data.users.model.UserId
-import dev.burnoo.demo.listapp.data.users.model.UserItem
+import dev.burnoo.demo.listapp.ui.userlist.UserListUiState
 
 @Composable
 internal fun UserList(
-    users: List<UserItem>,
+    uiState: UserListUiState.Loaded,
     onUserClick: (UserId) -> Unit,
     onLoadMore: () -> Unit,
 ) {
     val listState = rememberLazyListState()
     LazyColumn(state = listState) {
-        items(users, key = { it.id.value }) { user ->
+        items(uiState.users, key = { it.id.value }) { user ->
             UserRow(user, onUserClick)
         }
 
-        item { MoreLoader() }
+        if (!uiState.isLastPage) {
+            item { MoreLoader() }
+        }
     }
 
-    LoadMoreEffect(listState = listState, onLoadMore = onLoadMore)
+    if (!uiState.isLastPage) {
+        LoadMoreEffect(listState = listState, onLoadMore = onLoadMore)
+    }
 }
 
 @Composable
