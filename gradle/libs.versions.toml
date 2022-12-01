@@ -19,6 +19,7 @@ junit = "4.13.2"
 assertJ = "3.23.1"
 testAndroidCore = "1.5.0"
 kotest = "5.5.4"
+turbine = "0.12.1"
 gradleVersionsPlugin = "0.44.0"
 
 [libraries]
@@ -49,6 +50,7 @@ test-junit = { module = "junit:junit", version.ref = "junit" }
 test-assertJ = { module = "org.assertj:assertj-core", version.ref = "assertJ" }
 test-androidCore = { module = "androidx.test:core", version.ref = "testAndroidCore" }
 kotest-assertions = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest" }
+turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
 
 [plugins]
 gradleVersionsPlugin = { id = "com.github.ben-manes.versions", version.ref = "gradleVersionsPlugin" }

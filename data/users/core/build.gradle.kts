@@ -11,4 +11,5 @@ dependencies {
 
     testImplementation(kotlin("test"))
     testImplementation(libs.kotest.assertions)
+    testImplementation(libs.turbine)
 }

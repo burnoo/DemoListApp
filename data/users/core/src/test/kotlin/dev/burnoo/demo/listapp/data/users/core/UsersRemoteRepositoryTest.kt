@@ -1,5 +1,6 @@
 package dev.burnoo.demo.listapp.data.users.core
 
+import app.cash.turbine.test
 import com.github.michaelbull.result.Err
 import com.github.michaelbull.result.Ok
 import com.github.michaelbull.result.get
@@ -24,26 +25,34 @@ class UsersRemoteRepositoryTest {
     )
 
     @Test
-    fun `should get users successfully`() = runBlocking {
-        val users = repository.getUsers(page = 0).get()!!
+    fun `should get user list successfully`() = runBlocking {
+        val pager = repository.getUserListPager()
+        pager.status.test {
+            pager.loadPage()
+            val users = awaitItem().currentList
 
-        users.list.forEachIndexed { index, userItem ->
-            userItem.id.value shouldBe testNetworkUsers[index].id
-            userItem.firstName shouldBe testNetworkUsers[index].firstName
-            userItem.lastName shouldBe testNetworkUsers[index].lastName
-            userItem.title shouldBe testNetworkUsers[index].title
-            userItem.photoUrl shouldBe testNetworkUsers[index].picture
+            users.forEachIndexed { index, userItem ->
+                userItem.id.value shouldBe testNetworkUsers[index].id
+                userItem.firstName shouldBe testNetworkUsers[index].firstName
+                userItem.lastName shouldBe testNetworkUsers[index].lastName
+                userItem.title shouldBe testNetworkUsers[index].title
+                userItem.photoUrl shouldBe testNetworkUsers[index].picture
+            }
         }
     }
 
     @Test
-    fun `should handle get users errors`() = runBlocking {
+    fun `should handle get user list errors`() = runBlocking {
         val networkErrors = listOf(NetworkError.Client, NetworkError.Server, NetworkError.Device)
         networkErrors.forEach { networkError ->
             fakeDataSource.usersResult = Err(networkError)
-            val usersResult = repository.getUsers(page = 0)
+            val pager = repository.getUserListPager()
+            pager.status.test {
+                pager.loadPage()
+                val usersResult = awaitItem().lastResult
 
-            usersResult shouldBe Err(DataError)
+                usersResult shouldBe Err(DataError)
+            }
         }
     }
 
@@ -83,9 +92,13 @@ class UsersRemoteRepositoryTest {
             ),
         )
 
-        val isLastPage = repository.getUsers(page = 0).get()!!.isLastPage
+        val pager = repository.getUserListPager()
+        pager.status.test {
+            pager.loadPage()
+            val isLastPage = awaitItem().isLastPage
 
-        isLastPage shouldBe true
+            isLastPage shouldBe true
+        }
     }
 
     @Test
@@ -98,8 +111,12 @@ class UsersRemoteRepositoryTest {
             ),
         )
 
-        val isLastPage = repository.getUsers(page = 0).get()!!.isLastPage
+        val pager = repository.getUserListPager()
+        pager.status.test {
+            pager.loadPage()
+            val isLastPage = awaitItem().isLastPage
 
-        isLastPage shouldBe false
+            isLastPage shouldBe false
+        }
     }
 }

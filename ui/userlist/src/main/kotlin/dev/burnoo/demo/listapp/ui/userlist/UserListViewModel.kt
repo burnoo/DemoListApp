@@ -4,45 +4,37 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.github.michaelbull.result.fold
 import dev.burnoo.demo.listapp.data.users.core.UsersRepository
-import dev.burnoo.demo.listapp.data.users.model.UserItem
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
 internal class UserListViewModel(
-    private val repository: UsersRepository,
+    repository: UsersRepository,
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow<UserListUiState>(UserListUiState.Loading)
-    val uiState = _uiState.asStateFlow()
+    private val pager = repository.getUserListPager()
 
-    private var nextPage = 0
-    private var loadedUsers = listOf<UserItem>()
+    val uiState = pager.status.map { status ->
+        status.lastResult.fold(
+            success = { UserListUiState.Loaded(status.currentList, status.isLastPage) },
+            failure = { UserListUiState.Error },
+        )
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.Eagerly,
+        initialValue = UserListUiState.Loading,
+    )
 
     init {
-        viewModelScope.launch { fetchData(page = 0) }
+        viewModelScope.launch { pager.loadPage() }
     }
 
     fun tryAgain() {
-        viewModelScope.launch { fetchData(page = nextPage) }
+        viewModelScope.launch { pager.loadPage() }
     }
 
     fun fetchNextPage() {
-        viewModelScope.launch { fetchData(page = nextPage) }
-    }
-
-    private suspend fun fetchData(page: Int) {
-        if (uiState.value !is UserListUiState.Loaded) {
-            _uiState.value = UserListUiState.Loading
-        }
-        val usersResult = repository.getUsers(page)
-        _uiState.value = usersResult.fold(
-            success = { users ->
-                loadedUsers = loadedUsers + users.list
-                nextPage++
-                UserListUiState.Loaded(loadedUsers, isLastPage = users.isLastPage)
-            },
-            failure = { UserListUiState.Error },
-        )
+        viewModelScope.launch { pager.loadPage() }
     }
 }

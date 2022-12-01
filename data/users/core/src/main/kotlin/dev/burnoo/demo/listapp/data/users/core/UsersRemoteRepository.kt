@@ -6,7 +6,7 @@ import dev.burnoo.demo.listapp.data.users.core.mappers.asExternalModel
 import dev.burnoo.demo.listapp.data.users.model.DataError
 import dev.burnoo.demo.listapp.data.users.model.User
 import dev.burnoo.demo.listapp.data.users.model.UserId
-import dev.burnoo.demo.listapp.data.users.model.Users
+import dev.burnoo.demo.listapp.data.users.model.UserItem
 import dev.burnoo.demo.listapp.data.users.network.UsersNetworkDataSource
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -17,17 +17,8 @@ internal class UsersRemoteRepository(
     private val coroutineDispatcher: CoroutineDispatcher = Dispatchers.IO,
 ) : UsersRepository {
 
-    override suspend fun getUsers(page: Int): Result<Users, DataError> {
-        return withContext(coroutineDispatcher) {
-            dataSource.getUsers(page).mapEither(
-                success = { users ->
-                    val userList = users.data.map { it.asExternalModel() }
-                    val isLastPage = (users.page + 1) * users.limit >= users.total
-                    Users(list = userList, isLastPage = isLastPage)
-                },
-                failure = { DataError },
-            )
-        }
+    override fun getUserListPager(): Pager<UserItem, DataError> {
+        return Pager(fetchPagedList = { page -> getUsersPagedList(page) })
     }
 
     override suspend fun getUser(userId: UserId): Result<User, DataError> {
@@ -37,5 +28,22 @@ internal class UsersRemoteRepository(
                 failure = { DataError },
             )
         }
+    }
+
+    private suspend fun getUsersPagedList(page: Int): Result<Pager.PagedList<UserItem>, DataError> {
+        return withContext(coroutineDispatcher) {
+            dataSource.getUsers(page)
+        }.mapEither(
+            success = { response ->
+                val isLastPage = calculateIsLastPage(response.page, response.limit, response.total)
+                val userList = response.data.map { it.asExternalModel() }
+                Pager.PagedList(userList, isLastPage)
+            },
+            failure = { DataError },
+        )
+    }
+
+    private fun calculateIsLastPage(page: Int, limit: Int, total: Int): Boolean {
+        return (page + 1) * limit >= total
     }
 }

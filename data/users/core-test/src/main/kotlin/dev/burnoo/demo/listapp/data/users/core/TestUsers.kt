@@ -3,7 +3,6 @@ package dev.burnoo.demo.listapp.data.users.core
 import dev.burnoo.demo.listapp.data.users.model.User
 import dev.burnoo.demo.listapp.data.users.model.UserId
 import dev.burnoo.demo.listapp.data.users.model.UserItem
-import dev.burnoo.demo.listapp.data.users.model.Users
 
 val testUserList = List(5) {
     UserItem(
@@ -15,10 +14,10 @@ val testUserList = List(5) {
     )
 }
 
-fun testUsers(
+fun testPagedUserList(
     list: List<UserItem> = testUserList,
     isLastPage: Boolean = false,
-) = Users(list, isLastPage)
+) = Pager.PagedList(list, isLastPage)
 
 val testUser = User(
     title = "mrs",
