@@ -20,6 +20,7 @@ dependencyResolutionManagement {
 include(":app")
 
 include(":core:compose-utils")
+include(":core:data")
 include(":core:designsystem")
 include(":core:utils")
 

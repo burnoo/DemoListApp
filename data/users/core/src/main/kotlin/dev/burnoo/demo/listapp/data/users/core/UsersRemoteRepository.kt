@@ -2,6 +2,7 @@ package dev.burnoo.demo.listapp.data.users.core
 
 import com.github.michaelbull.result.Result
 import com.github.michaelbull.result.mapEither
+import dev.burnoo.demo.listapp.core.data.Pager
 import dev.burnoo.demo.listapp.data.users.core.mappers.asExternalModel
 import dev.burnoo.demo.listapp.data.users.model.DataError
 import dev.burnoo.demo.listapp.data.users.model.User
