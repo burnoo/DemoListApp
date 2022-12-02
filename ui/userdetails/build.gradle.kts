@@ -11,6 +11,7 @@ android {
 dependencies {
     implementation(project(":core:designsystem"))
     implementation(project(":core:compose-utils"))
+    implementation(project(":core:ui"))
     implementation(project(":core:utils"))
     implementation(project(":data:users:core"))
     @OptIn(ExperimentalComposeLibrary::class)
@@ -18,7 +19,7 @@ dependencies {
     implementation(compose.preview)
     implementation(libs.androidx.lifecycle.compose)
     implementation(libs.kamel)
-    implementation(libs.cokoin.viewmodel)
+    implementation(libs.cokoin.core)
     debugImplementation(libs.jetpackCompose.uiTooling)
 
     testImplementation(project(":data:users:core-test"))

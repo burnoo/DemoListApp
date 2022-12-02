@@ -1,8 +1,7 @@
 package dev.burnoo.demo.listapp.ui.userlist
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.github.michaelbull.result.fold
+import dev.burnoo.demo.listapp.core.ui.ViewModel
 import dev.burnoo.demo.listapp.data.users.core.UsersRepository
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.map

@@ -3,7 +3,6 @@
 import org.gradle.accessors.dm.LibrariesForLibs
 
 plugins {
-    id("kotlin-android")
     id("com.android.library")
 }
 
@@ -24,12 +23,4 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-
-    kotlinOptions {
-        jvmTarget = "11"
-    }
-}
-
-kotlin.sourceSets.all {
-    languageSettings.optIn("kotlin.RequiresOptIn")
 }

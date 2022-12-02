@@ -35,6 +35,7 @@ coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", ve
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
 koin = { module = "io.insert-koin:koin-core", version.ref = "koin" }
 kotlinResult = { module = "com.michael-bull.kotlin-result:kotlin-result", version.ref = "kotlinResult" }
+cokoin-core = { module = "dev.burnoo:cokoin", version.ref = "cokoin" }
 cokoin-viewmodel = { module = "dev.burnoo:cokoin-android-viewmodel", version.ref = "cokoin" }
 material = { module = "com.google.android.material:material", version.ref = "material" }
 jetpackCompose-material3 = { module = "androidx.compose.material3:material3", version.ref = "jetpackComposeMaterial3" }
