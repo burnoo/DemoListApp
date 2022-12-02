@@ -16,7 +16,7 @@ dependencies {
     implementation(libs.jetpackCompose.navigation)
     implementation(libs.jetpackCompose.uiTooling.preview)
     implementation(libs.androidx.lifecycle.compose)
-    implementation(libs.coil.compose)
+    implementation(libs.kamel)
     implementation(libs.cokoin.viewmodel)
     debugImplementation(libs.jetpackCompose.uiTooling)
 

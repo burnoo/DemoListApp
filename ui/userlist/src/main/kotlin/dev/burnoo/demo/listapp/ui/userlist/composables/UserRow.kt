@@ -1,6 +1,7 @@
 package dev.burnoo.demo.listapp.ui.userlist.composables
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -18,21 +19,21 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import coil.ImageLoader
-import coil.compose.AsyncImage
 import dev.burnoo.cokoin.get
-import dev.burnoo.demo.listapp.core.compose.utils.FakeImageLoader
+import dev.burnoo.demo.listapp.core.compose.utils.FakeImageResource
+import dev.burnoo.demo.listapp.core.designsystem.images.ImageResource
 import dev.burnoo.demo.listapp.core.designsystem.theme.AppTheme
 import dev.burnoo.demo.listapp.core.utils.TitleParser
 import dev.burnoo.demo.listapp.data.users.model.UserId
 import dev.burnoo.demo.listapp.data.users.model.UserItem
 import dev.burnoo.demo.listapp.ui.userlist.R
+import io.kamel.image.KamelImage
 
 @Composable
 internal fun UserRow(
     user: UserItem,
     onClick: (UserId) -> Unit,
-    imageLoader: ImageLoader = get(),
+    imageResource: ImageResource = get(),
 ) {
     val titleParser = remember { TitleParser() }
 
@@ -44,18 +45,19 @@ internal fun UserRow(
             .testTag("UserRow"),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        AsyncImage(
-            model = user.photoUrl,
-            contentDescription = stringResource(
-                R.string.user_row_photo_content_description,
-                user.firstName,
-                user.lastName,
-            ),
-            modifier = Modifier
-                .clip(CircleShape)
-                .size(60.dp),
-            imageLoader = imageLoader,
-        )
+        Box(modifier = Modifier.size(60.dp)) {
+            KamelImage(
+                resource = imageResource(url = user.photoUrl),
+                contentDescription = stringResource(
+                    R.string.user_row_photo_content_description,
+                    user.firstName,
+                    user.lastName,
+                ),
+                modifier = Modifier
+                    .clip(CircleShape)
+                    .size(60.dp),
+            )
+        }
         Spacer(modifier = Modifier.width(16.dp))
         Text(
             text = stringResource(
@@ -81,7 +83,7 @@ private fun UserRowPreview() {
                 photoUrl = "https://example.org/image.jpg",
             ),
             onClick = { },
-            imageLoader = FakeImageLoader(),
+            imageResource = FakeImageResource(),
         )
     }
 }

@@ -74,7 +74,7 @@ dependencies {
     implementation(libs.jetpackCompose.navigation)
     implementation(libs.activity.compose)
     implementation(libs.cokoin.viewmodel)
-    implementation(libs.coil.compose)
+    implementation(libs.kamel)
     debugImplementation(libs.jetpackCompose.uiTooling)
 
     compileOnly(libs.kotlinx.serialization.json)

@@ -9,4 +9,5 @@ android {
 dependencies {
     implementation(libs.material)
     implementation(libs.jetpackCompose.material3)
+    implementation(libs.kamel)
 }

@@ -7,6 +7,7 @@ android {
 }
 
 dependencies {
-    implementation(libs.coil.compose)
+    api(project(":core:designsystem"))
+    implementation(libs.kamel)
     implementation(libs.koin)
 }
