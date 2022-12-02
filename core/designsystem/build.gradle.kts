@@ -1,3 +1,5 @@
+import org.jetbrains.compose.ExperimentalComposeLibrary
+
 plugins {
     id("common-compose-library")
 }
@@ -7,7 +9,7 @@ android {
 }
 
 dependencies {
-    implementation(libs.material)
-    implementation(libs.jetpackCompose.material3)
+    @OptIn(ExperimentalComposeLibrary::class)
+    implementation(compose.material3)
     implementation(libs.kamel)
 }
