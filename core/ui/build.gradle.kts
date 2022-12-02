@@ -23,6 +23,7 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 implementation(libs.cokoin.viewmodel)
+                implementation(libs.androidx.lifecycle.compose)
             }
         }
     }

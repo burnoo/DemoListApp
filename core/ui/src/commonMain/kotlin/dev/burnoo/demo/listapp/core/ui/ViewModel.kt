@@ -1,7 +1,6 @@
 package dev.burnoo.demo.listapp.core.ui
 
 import androidx.compose.runtime.Composable
-import dev.burnoo.demo.listapp.core.ui.viewmodel.ViewModel
 import kotlinx.coroutines.CoroutineScope
 import org.koin.core.definition.Definition
 import org.koin.core.instance.InstanceFactory
