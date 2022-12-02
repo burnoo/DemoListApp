@@ -1,5 +1,5 @@
 plugins {
-    id("common-jetpack-library")
+    id("common-compose-library")
 }
 
 android {
