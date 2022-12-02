@@ -4,19 +4,10 @@ import org.gradle.accessors.dm.LibrariesForLibs
 
 plugins {
     id("common-android-library")
+    id("org.jetbrains.compose")
 }
 
 val libs = the<LibrariesForLibs>()
-
-android {
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.jetpackComposeCompiler.get()
-    }
-
-    buildFeatures {
-        compose = true
-    }
-}
 
 kotlin.sourceSets.all {
     languageSettings.optIn("kotlin.RequiresOptIn")

@@ -2,7 +2,7 @@
 compileSdk = "33"
 targetSdk = "33"
 minSdk = "24"
-kotlin = "1.7.21"
+kotlin = "1.7.20"
 gradleAndroid = "7.3.1"
 coroutines = "1.6.4"
 koin = "3.2.2"
@@ -10,8 +10,9 @@ kotlinResult = "1.1.16"
 cokoin = "1.0.0"
 material = "1.7.0"
 kotlinxSerializationJson = "1.4.1"
+composeMultiplatform = "1.2.1"
 jetpackCompose = "1.3.1"
-jetpackComposeCompiler = "1.4.0-alpha02"
+jetpackComposeCompiler = "1.4.0-alpha01"
 jetpackComposeMaterial3 = "1.0.1"
 jetpackComposeNavigation = "2.5.3"
 activityCompose = "1.6.1"
@@ -28,6 +29,7 @@ gradleVersionsPlugin = "0.44.0"
 [libraries]
 gradle-kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 gradle-android = { module = "com.android.tools.build:gradle", version.ref = "gradleAndroid" }
+gradle-composeMultiplatform = { module = "org.jetbrains.compose:compose-gradle-plugin", version.ref = "composeMultiplatform" }
 coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }

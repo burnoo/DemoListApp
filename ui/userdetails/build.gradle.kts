@@ -1,3 +1,5 @@
+import org.jetbrains.compose.ExperimentalComposeLibrary
+
 plugins {
     id("common-compose-library")
 }
@@ -11,9 +13,10 @@ dependencies {
     implementation(project(":core:compose-utils"))
     implementation(project(":core:utils"))
     implementation(project(":data:users:core"))
-    implementation(libs.jetpackCompose.material3)
+    @OptIn(ExperimentalComposeLibrary::class)
+    implementation(compose.material3)
+    implementation(compose.preview)
     implementation(libs.jetpackCompose.navigation)
-    implementation(libs.jetpackCompose.uiTooling.preview)
     implementation(libs.androidx.lifecycle.compose)
     implementation(libs.kamel)
     implementation(libs.cokoin.viewmodel)
