@@ -1,12 +1,20 @@
 plugins {
-    id("kotlin")
+    id("common-kotlin-multiplatform")
 }
 
-dependencies {
-    api(libs.coroutines.core)
-    api(libs.kotlinResult)
+kotlin.sourceSets {
+    val commonMain by getting {
+        dependencies {
+            api(libs.coroutines.core)
+            api(libs.kotlinResult)
+        }
+    }
 
-    testImplementation(kotlin("test"))
-    testImplementation(libs.kotest.assertions)
-    testImplementation(libs.turbine)
+    val commonTest by getting {
+        dependencies {
+            implementation(kotlin("test"))
+            implementation(libs.kotest.assertions)
+            implementation(libs.turbine)
+        }
+    }
 }
