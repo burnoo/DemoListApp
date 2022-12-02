@@ -16,7 +16,6 @@ dependencies {
     @OptIn(ExperimentalComposeLibrary::class)
     implementation(compose.material3)
     implementation(compose.preview)
-    implementation(libs.jetpackCompose.navigation)
     implementation(libs.androidx.lifecycle.compose)
     implementation(libs.kamel)
     implementation(libs.cokoin.viewmodel)

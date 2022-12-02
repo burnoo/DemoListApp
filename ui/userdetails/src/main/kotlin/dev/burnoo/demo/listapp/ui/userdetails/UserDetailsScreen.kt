@@ -9,10 +9,16 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import dev.burnoo.cokoin.viewmodel.getViewModel
+import dev.burnoo.demo.listapp.data.users.model.UserId
 import dev.burnoo.demo.listapp.ui.userdetails.composables.UserDetailsContent
+import org.koin.core.parameter.parametersOf
 
 @Composable
-internal fun UserDetailsScreen(viewModel: UserDetailsViewModel) {
+fun UserDetailsScreen(userId: String) {
+    val viewModel = getViewModel<UserDetailsViewModel>(parameters = {
+        parametersOf(UserId(value = userId))
+    },)
     Scaffold(
         topBar = { TopBar() },
     ) { padding ->

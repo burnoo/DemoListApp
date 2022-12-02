@@ -1,12 +1,8 @@
-package dev.burnoo.demo.listapp.composable
+package dev.burnoo.demo.listapp.composable.routing
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
-import dev.burnoo.demo.listapp.ui.userdetails.UserDetailsRoutes
-import dev.burnoo.demo.listapp.ui.userdetails.userDetailsRouter
-import dev.burnoo.demo.listapp.ui.userlist.UserListRoutes
-import dev.burnoo.demo.listapp.ui.userlist.userListRouter
 
 @Composable
 fun AppRouter() {

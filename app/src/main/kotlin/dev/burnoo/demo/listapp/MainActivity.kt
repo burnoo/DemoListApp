@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
-import dev.burnoo.demo.listapp.composable.AppRouter
+import dev.burnoo.demo.listapp.composable.routing.AppRouter
 import dev.burnoo.demo.listapp.core.designsystem.theme.AppTheme
 import dev.burnoo.demo.listapp.di.WithDependencyInjection
 

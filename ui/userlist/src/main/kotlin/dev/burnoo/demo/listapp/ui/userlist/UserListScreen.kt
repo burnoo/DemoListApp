@@ -13,7 +13,7 @@ import dev.burnoo.demo.listapp.data.users.model.UserId
 import dev.burnoo.demo.listapp.ui.userlist.composables.UserListContent
 
 @Composable
-internal fun UserListScreen(onUserClick: (UserId) -> Unit) {
+fun UserListScreen(onUserClick: (UserId) -> Unit) {
     Scaffold(
         topBar = { TopBar() },
     ) { padding ->
