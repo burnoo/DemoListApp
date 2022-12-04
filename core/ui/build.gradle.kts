@@ -11,19 +11,27 @@ android {
 
 kotlin {
     android()
+    jvm()
 
     sourceSets {
         val commonMain by getting {
             dependencies {
                 api(libs.koin)
+                api(compose.runtime)
                 implementation(libs.coroutines.core)
             }
         }
 
         val androidMain by getting {
             dependencies {
-                implementation(libs.cokoin.viewmodel)
+                api(libs.cokoin.viewmodel)
                 implementation(libs.androidx.lifecycle.compose)
+            }
+        }
+
+        val jvmMain by getting {
+            dependencies {
+                implementation(libs.cokoin.core)
             }
         }
     }

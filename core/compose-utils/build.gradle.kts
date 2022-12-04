@@ -6,8 +6,17 @@ android {
     namespace = "dev.burnoo.demo.listapp.core.compose.utils"
 }
 
-dependencies {
-    api(project(":core:designsystem"))
-    implementation(libs.kamel)
-    implementation(libs.koin)
+kotlin {
+    android()
+    jvm()
+
+    sourceSets {
+        val commonMain by getting {
+            dependencies {
+                api(project(":core:designsystem"))
+                implementation(libs.kamel)
+                implementation(libs.koin)
+            }
+        }
+    }
 }

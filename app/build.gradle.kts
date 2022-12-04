@@ -75,6 +75,7 @@ dependencies {
     implementation(libs.activity.compose)
     implementation(libs.cokoin.viewmodel)
     implementation(libs.kamel)
+    implementation(libs.material)
     debugImplementation(libs.jetpackCompose.uiTooling)
 
     compileOnly(libs.kotlinx.serialization.json)

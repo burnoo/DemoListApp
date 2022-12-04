@@ -8,8 +8,17 @@ android {
     namespace = "dev.burnoo.demo.listapp.ui.theme"
 }
 
-dependencies {
-    @OptIn(ExperimentalComposeLibrary::class)
-    implementation(compose.material3)
-    implementation(libs.kamel)
+kotlin {
+    android()
+    jvm()
+
+    sourceSets {
+        val commonMain by getting {
+            dependencies {
+                @OptIn(ExperimentalComposeLibrary::class)
+                implementation(compose.material3)
+                implementation(libs.kamel)
+            }
+        }
+    }
 }

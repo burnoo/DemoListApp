@@ -8,7 +8,7 @@ import org.koin.core.module.Module
 import org.koin.core.parameter.ParametersDefinition
 import org.koin.core.qualifier.Qualifier
 
-expect abstract class ViewModel {
+expect abstract class ViewModel() {
 
     val viewModelScope: CoroutineScope
 

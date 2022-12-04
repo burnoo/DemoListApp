@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="try_again_error_message">Request failed</string>
-    <string name="try_again_button">Try again</string>
-</resources>

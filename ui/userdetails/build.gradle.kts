@@ -8,27 +8,37 @@ android {
     namespace = "dev.burnoo.demo.listapp.ui.userdetails"
 }
 
-dependencies {
-    implementation(project(":core:designsystem"))
-    implementation(project(":core:compose-utils"))
-    implementation(project(":core:ui"))
-    implementation(project(":core:utils"))
-    implementation(project(":data:users:core"))
-    @OptIn(ExperimentalComposeLibrary::class)
-    implementation(compose.material3)
-    implementation(compose.preview)
-    implementation(libs.kamel)
-    implementation(libs.cokoin.core)
-    debugImplementation(libs.jetpackCompose.uiTooling)
+kotlin {
+    android()
+    jvm()
 
-    testImplementation(project(":data:users:core-test"))
-    testImplementation(kotlin("test"))
-    testImplementation(libs.kotest.assertions)
-    testImplementation(libs.coroutines.test)
+    sourceSets {
+        val commonMain by getting {
+            dependencies {
+                implementation(project(":core:designsystem"))
+                implementation(project(":core:compose-utils"))
+                implementation(project(":core:ui"))
+                implementation(project(":core:utils"))
+                implementation(project(":data:users:core"))
+                @OptIn(ExperimentalComposeLibrary::class)
+                implementation(compose.material3)
+                implementation(compose.preview)
+                implementation(libs.kamel)
+                implementation(libs.cokoin.core)
+            }
+        }
 
-    debugImplementation(libs.jetpackCompose.uiTest.manifest)
-    androidTestImplementation(project(":data:users:core-test"))
-    androidTestImplementation(project(":core:compose-utils"))
-    androidTestImplementation(libs.jetpackCompose.uiTest.junit)
-    androidTestImplementation(libs.test.androidCore)
+        val jvmTest by getting {
+            dependencies {
+                implementation(project(":data:users:core-test"))
+                implementation(kotlin("test"))
+                implementation(libs.kotest.assertions)
+                implementation(libs.coroutines.test)
+
+                @OptIn(ExperimentalComposeLibrary::class)
+                implementation(compose.uiTestJUnit4)
+                implementation(compose.desktop.currentOs)
+            }
+        }
+    }
 }
