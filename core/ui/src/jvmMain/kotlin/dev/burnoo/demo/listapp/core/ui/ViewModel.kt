@@ -25,7 +25,7 @@ actual abstract class ViewModel {
 @Composable
 actual inline fun <reified VM : ViewModel> getViewModel(
     noinline parameters: ParametersDefinition?,
-): VM = get()
+): VM = get(parameters = parameters)
 
 actual inline fun <reified VM : ViewModel> Module.viewModel(
     qualifier: Qualifier?,
