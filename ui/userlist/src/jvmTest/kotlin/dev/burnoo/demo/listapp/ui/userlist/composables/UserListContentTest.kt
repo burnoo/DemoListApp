@@ -22,7 +22,7 @@ class UserListContentTest {
     val composeRule = createComposeRule()
 
     @Test
-    fun shouldDisplayLoaderWhenLoading() {
+    fun `should display loader when loading`() {
         composeRule.setContent {
             UserListContent(
                 UserListUiState.Loading,
@@ -36,7 +36,7 @@ class UserListContentTest {
     }
 
     @Test
-    fun shouldDisplayUsersWhenLoaded() {
+    fun `should display users when loaded`() {
         composeRule.setContent {
             WithTestDependencyInjection {
                 UserListContent(
@@ -55,7 +55,7 @@ class UserListContentTest {
     }
 
     @Test
-    fun shouldDisplayMoreLoaderIfNotLastPage() {
+    fun `should display more loader if not on the last page`() {
         composeRule.setContent {
             WithTestDependencyInjection {
                 UserListContent(
@@ -72,7 +72,7 @@ class UserListContentTest {
     }
 
     @Test
-    fun shouldNotDisplayMoreLoaderIfLastPage() {
+    fun `should not display more loader if on the last page`() {
         composeRule.setContent {
             WithTestDependencyInjection {
                 UserListContent(
@@ -90,7 +90,7 @@ class UserListContentTest {
     }
 
     @Test
-    fun shouldDisplayTryAgainButtonOnError() {
+    fun `should display try again button on error`() {
         composeRule.setContent {
             UserListContent(
                 UserListUiState.Error,
