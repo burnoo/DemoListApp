@@ -17,10 +17,10 @@ jobs:
           distribution: 'adopt'
 
       - name: Build debug APK
-        run: ./gradlew assembleDebug
+        run: ./gradlew :app:android:assembleDebug
 
       - name: Upload APK as artifact
         uses: actions/upload-artifact@v3
         with:
           name: app
-          path: app/build/outputs/apk/debug/app-debug.apk
+          path: app/android/build/outputs/apk/debug/android-debug.apk
