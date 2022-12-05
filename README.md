@@ -53,14 +53,14 @@ Diagram of modules used in the app (core and test modules are omitted):
 
 ## Tests
 - Unit Tests
-  - for ViewModels ([UserDetailsViewModelTest](https://github.com/burnoo/DemoListApp/blob/main/ui/userdetails/src/jvmTest/kotlin/dev/burnoo/demo/listapp/ui/userdetails/UserDetailsViewModelTest.kt) and [UserListViewModelTest](https://github.com/burnoo/DemoListApp/blob/main/ui/userlist/src/jvmTest/kotlin/dev/burnoo/demo/listapp/userlist/UserListViewModelTest.kt))
+  - for ViewModels ([UserDetailsViewModelTest](https://github.com/burnoo/DemoListApp/blob/main/ui/userdetails/src/jvmTest/kotlin/dev/burnoo/demo/listapp/ui/userdetails/UserDetailsViewModelTest.kt) and [UserListViewModelTest](https://github.com/burnoo/DemoListApp/blob/main/ui/userlist/src/jvmTest/kotlin/dev/burnoo/demo/listapp/ui/userlist/UserListViewModelTest.kt))
   - for utils functions ([TitleParserTest](https://github.com/burnoo/DemoListApp/blob/main/core/utils/src/commonTest/kotlin/dev/burnoo/demo/listapp/core/utils/TitleParserTest.kt))
   - for Api and JSON parsing ([UsersApiTest](https://github.com/burnoo/DemoListApp/blob/main/data/users/network/src/commonTest/kotlin/dev/burnoo/demo/listapp/data/users/network/api/UsersApiTest.kt))
   - for Repository ([UsersRemoteRepositoryTest](https://github.com/burnoo/DemoListApp/blob/main/data/users/core/src/commonTest/kotlin/dev/burnoo/demo/listapp/data/users/core/UsersRemoteRepositoryTest.kt))
-  - for core data logic ([PagerTest](https://github.com/burnoo/DemoListApp/blob/main/core/data/src/commonTest/kotlin/dev/burnoo/demo/listapp/data/users/core/PagerTest.kt))
+  - for core data logic ([PagerTest](https://github.com/burnoo/DemoListApp/blob/main/core/data/src/commonTest/kotlin/dev/burnoo/demo/listapp/core/data/PagerTest.kt))
 - UI Tests:
   - [JVM Compose] Screen tests ([UserListContentTest](https://github.com/burnoo/DemoListApp/blob/main/ui/userlist/src/jvmTest/kotlin/dev/burnoo/demo/listapp/ui/userlist/composables/UserListContentTest.kt) and [UserDetailsContentTest](https://github.com/burnoo/DemoListApp/blob/main/ui/userdetails/src/jvmTest/kotlin/dev/burnoo/demo/listapp/ui/userdetails/composables/UserDetailsContentTest.kt)
-  - [JVM Compose] E2E test - running whole app with mocked JSON responses ([DesktopAppTest](https://github.com/burnoo/DemoListApp/blob/main/app/desktop/src/jvmTest/kotlin/dev/burnoo/demo/listapp/AppTest.kt))
+  - [JVM Compose] E2E test - running whole app with mocked JSON responses ([DesktopAppTest](https://github.com/burnoo/DemoListApp/blob/main/app/desktop/src/jvmTest/kotlin/dev/burnoo/demo/listapp/DesktopAppTest.kt))
   - [Android Compose] E2E test - running whole app with mocked JSON responses ([AndroidAppTest](https://github.com/burnoo/DemoListApp/blob/main/app/android/src/androidTest/kotlin/dev/burnoo/demo/listapp/AndroidAppTest.kt))
 
 ## Next steps
