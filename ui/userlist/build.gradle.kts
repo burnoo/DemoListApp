@@ -19,6 +19,7 @@ kotlin {
                 implementation(project(":core:ui"))
                 implementation(project(":core:utils"))
                 implementation(project(":data:users:core"))
+                api(project(":data:users:model"))
                 implementation(libs.kotlinResult)
                 @OptIn(ExperimentalComposeLibrary::class)
                 implementation(compose.material3)

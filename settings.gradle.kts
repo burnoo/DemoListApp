@@ -20,6 +20,7 @@ dependencyResolutionManagement {
 }
 
 include(":app:android")
+include(":app:desktop")
 
 include(":core:compose-utils")
 include(":core:data")
