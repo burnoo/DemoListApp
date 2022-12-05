@@ -20,7 +20,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.koin.dsl.module
 
-class AppTest {
+class AndroidAppTest {
 
     @get:Rule
     val composeRule = createComposeRule()

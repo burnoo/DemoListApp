@@ -1,3 +1,4 @@
+import org.jetbrains.compose.ExperimentalComposeLibrary
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat.Deb
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat.Dmg
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat.Msi
@@ -19,6 +20,17 @@ kotlin {
                 implementation(compose.desktop.currentOs)
                 implementation(libs.coroutines.swing)
                 implementation(libs.cokoin.core)
+            }
+        }
+
+        val jvmTest by getting {
+            dependencies {
+                implementation(kotlin("test"))
+                implementation(project(":core:compose-utils"))
+                implementation(project(":data:users:network-test"))
+                @OptIn(ExperimentalComposeLibrary::class)
+                implementation(compose.uiTestJUnit4)
+                implementation(libs.kotest.assertions)
             }
         }
     }

@@ -1,5 +1,6 @@
 package dev.burnoo.demo.listapp
 
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -18,17 +19,22 @@ fun main() = application {
             onCloseRequest = ::exitApplication,
             title = "DemoListApp",
         ) {
-            AppTheme {
-                var userId by remember { mutableStateOf<UserId?>(null) }
-                UserListScreen(onUserClick = { userId = it })
+            App()
+        }
+    }
+}
 
-                userId?.let {
-                    UserDetailsScreen(
-                        userId = it.value,
-                        onGoBack = { userId = null },
-                    )
-                }
-            }
+@Composable
+internal fun App() {
+    AppTheme {
+        var userId by remember { mutableStateOf<UserId?>(null) }
+        UserListScreen(onUserClick = { userId = it })
+
+        userId?.let {
+            UserDetailsScreen(
+                userId = it.value,
+                onGoBack = { userId = null },
+            )
         }
     }
 }
