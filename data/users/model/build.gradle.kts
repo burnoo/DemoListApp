@@ -1,3 +1,3 @@
 plugins {
-    id("kotlin")
+    id("common-kotlin-multiplatform")
 }

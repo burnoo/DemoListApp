@@ -1,33 +1,43 @@
 [versions]
-kotlin = "1.7.21"
+compileSdk = "33"
+targetSdk = "33"
+minSdk = "24"
+kotlin = "1.7.20"
 gradleAndroid = "7.3.1"
 coroutines = "1.6.4"
 koin = "3.2.2"
+kotlinResult = "1.1.16"
 cokoin = "1.0.0"
 material = "1.7.0"
 kotlinxSerializationJson = "1.4.1"
+composeMultiplatform = "1.3.0-beta04-dev873"
 jetpackCompose = "1.3.1"
-jetpackComposeCompiler = "1.4.0-alpha02"
+jetpackComposeCompiler = "1.4.0-alpha01"
 jetpackComposeMaterial3 = "1.0.1"
 jetpackComposeNavigation = "2.5.3"
 activityCompose = "1.6.1"
 androidxLifecycle = "2.6.0-alpha03"
-coil = "2.2.2"
+kamel = "0.4.0"
 ktor = "2.1.3"
 junit = "4.13.2"
 assertJ = "3.23.1"
 testAndroidCore = "1.5.0"
 kotest = "5.5.4"
+turbine = "0.12.1"
 gradleVersionsPlugin = "0.44.0"
 
 [libraries]
 gradle-kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 gradle-android = { module = "com.android.tools.build:gradle", version.ref = "gradleAndroid" }
+gradle-composeMultiplatform = { module = "org.jetbrains.compose:compose-gradle-plugin", version.ref = "composeMultiplatform" }
 coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
+coroutines-swing = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-swing", version.ref = "coroutines" }
 coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
 koin = { module = "io.insert-koin:koin-core", version.ref = "koin" }
-cokoin-viewmodel = { module = "dev.burnoo:cokoin-android-viewmodel", version.ref = "cokoin"}
+kotlinResult = { module = "com.michael-bull.kotlin-result:kotlin-result", version.ref = "kotlinResult" }
+cokoin-core = { module = "dev.burnoo:cokoin", version.ref = "cokoin" }
+cokoin-viewmodel = { module = "dev.burnoo:cokoin-android-viewmodel", version.ref = "cokoin" }
 material = { module = "com.google.android.material:material", version.ref = "material" }
 jetpackCompose-material3 = { module = "androidx.compose.material3:material3", version.ref = "jetpackComposeMaterial3" }
 jetpackCompose-navigation = { module = "androidx.navigation:navigation-compose", version.ref = "jetpackComposeNavigation" }
@@ -37,9 +47,9 @@ jetpackCompose-uiTest-manifest = { module = "androidx.compose.ui:ui-test-manifes
 jetpackCompose-uiTest-junit = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "jetpackCompose" }
 activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activityCompose" }
 androidx-lifecycle-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "androidxLifecycle" }
-coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
+kamel = { module = "com.alialbaali.kamel:kamel-image", version.ref = "kamel" }
 ktor-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
-ktor-engine = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
+ktor-engine = { module = "io.ktor:ktor-client-cio", version.ref = "ktor" }
 ktor-contentNegotiations-core = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
 ktor-contentNegotiations-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
 ktor-test = { module = "io.ktor:ktor-client-mock", version.ref = "ktor" }
@@ -47,6 +57,7 @@ test-junit = { module = "junit:junit", version.ref = "junit" }
 test-assertJ = { module = "org.assertj:assertj-core", version.ref = "assertJ" }
 test-androidCore = { module = "androidx.test:core", version.ref = "testAndroidCore" }
 kotest-assertions = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest" }
+turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
 
 [plugins]
 gradleVersionsPlugin = { id = "com.github.ben-manes.versions", version.ref = "gradleVersionsPlugin" }

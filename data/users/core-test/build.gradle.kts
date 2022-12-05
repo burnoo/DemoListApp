@@ -1,6 +1,11 @@
 plugins {
-    id("kotlin")
+    id("common-kotlin-multiplatform")
 }
-dependencies {
-    api(project(":data:users:core"))
+
+kotlin.sourceSets {
+    val commonMain by getting {
+        dependencies {
+            api(project(":data:users:core"))
+        }
+    }
 }

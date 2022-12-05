@@ -1,8 +1,12 @@
 plugins {
-    id("kotlin")
+    id("common-kotlin-multiplatform")
 }
 
-dependencies {
-    testImplementation(kotlin("test"))
-    testImplementation(libs.kotest.assertions)
+kotlin.sourceSets {
+    val commonTest by getting {
+        dependencies {
+            implementation(kotlin("test"))
+            implementation(libs.kotest.assertions)
+        }
+    }
 }

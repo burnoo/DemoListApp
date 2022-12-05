@@ -7,6 +7,7 @@ plugins {
 repositories {
     mavenCentral()
     google()
+    maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
 }
 
 tasks.withType<KotlinCompile> {
@@ -19,5 +20,6 @@ dependencies {
 
     implementation(libs.gradle.android)
     implementation(libs.gradle.kotlin)
+    implementation(libs.gradle.composeMultiplatform)
     implementation(files(libs.javaClass.superclass.protectionDomain.codeSource.location))
 }

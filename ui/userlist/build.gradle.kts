@@ -1,32 +1,46 @@
+import org.jetbrains.compose.ExperimentalComposeLibrary
+
 plugins {
-    id("common-jetpack-library")
+    id("common-compose-library")
 }
 
 android {
     namespace = "dev.burnoo.demo.listapp.ui.userlist"
 }
 
-dependencies {
-    implementation(project(":core:designsystem"))
-    implementation(project(":core:compose-utils"))
-    implementation(project(":core:utils"))
-    implementation(project(":data:users:core"))
-    implementation(libs.jetpackCompose.material3)
-    implementation(libs.jetpackCompose.navigation)
-    implementation(libs.jetpackCompose.uiTooling.preview)
-    implementation(libs.androidx.lifecycle.compose)
-    implementation(libs.coil.compose)
-    implementation(libs.cokoin.viewmodel)
-    debugImplementation(libs.jetpackCompose.uiTooling)
+kotlin {
+    sourceSets {
+        val commonMain by getting {
+            dependencies {
+                implementation(project(":core:designsystem"))
+                implementation(project(":core:ui"))
+                implementation(project(":core:utils"))
+                implementation(project(":data:users:core"))
+                api(project(":data:users:model"))
+                implementation(libs.kotlinResult)
+                @OptIn(ExperimentalComposeLibrary::class)
+                implementation(compose.material3)
+                implementation(libs.kamel)
+                implementation(libs.cokoin.core)
+            }
+        }
 
-    testImplementation(project(":data:users:core-test"))
-    testImplementation(kotlin("test"))
-    testImplementation(libs.kotest.assertions)
-    testImplementation(libs.coroutines.test)
+        val jvmTest by getting {
+            dependencies {
+                implementation(project(":data:users:core-test"))
+                implementation(project(":core:compose-utils"))
+                implementation(kotlin("test"))
+                implementation(libs.kotest.assertions)
+                implementation(libs.coroutines.test)
 
-    debugImplementation(libs.jetpackCompose.uiTest.manifest)
-    androidTestImplementation(project(":data:users:core-test"))
-    androidTestImplementation(project(":core:compose-utils"))
-    androidTestImplementation(libs.jetpackCompose.uiTest.junit)
-    androidTestImplementation(libs.test.androidCore)
+                @OptIn(ExperimentalComposeLibrary::class)
+                implementation(compose.uiTestJUnit4)
+                implementation(compose.desktop.currentOs)
+            }
+        }
+
+        all {
+            languageSettings.optIn("androidx.compose.material3.ExperimentalMaterial3Api")
+        }
+    }
 }

@@ -1,12 +1,21 @@
+import org.jetbrains.compose.ExperimentalComposeLibrary
+
 plugins {
-    id("common-jetpack-library")
+    id("common-compose-library")
 }
 
 android {
     namespace = "dev.burnoo.demo.listapp.ui.theme"
 }
 
-dependencies {
-    implementation(libs.material)
-    implementation(libs.jetpackCompose.material3)
+kotlin {
+    sourceSets {
+        val commonMain by getting {
+            dependencies {
+                @OptIn(ExperimentalComposeLibrary::class)
+                implementation(compose.material3)
+                implementation(libs.kamel)
+            }
+        }
+    }
 }

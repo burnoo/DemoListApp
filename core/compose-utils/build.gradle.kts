@@ -1,12 +1,19 @@
 plugins {
-    id("common-jetpack-library")
+    id("common-compose-library")
 }
 
 android {
     namespace = "dev.burnoo.demo.listapp.core.compose.utils"
 }
 
-dependencies {
-    implementation(libs.coil.compose)
-    implementation(libs.koin)
+kotlin {
+    sourceSets {
+        val commonMain by getting {
+            dependencies {
+                api(project(":core:designsystem"))
+                implementation(libs.kamel)
+                implementation(libs.koin)
+            }
+        }
+    }
 }
