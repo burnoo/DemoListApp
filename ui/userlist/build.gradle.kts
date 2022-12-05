@@ -38,5 +38,9 @@ kotlin {
                 implementation(compose.desktop.currentOs)
             }
         }
+
+        all {
+            languageSettings.optIn("androidx.compose.material3.ExperimentalMaterial3Api")
+        }
     }
 }

@@ -54,7 +54,6 @@ android {
 
 kotlin.sourceSets.all {
     languageSettings.optIn("kotlin.RequiresOptIn")
-    languageSettings.optIn("androidx.compose.material3.ExperimentalMaterial3Api")
 }
 
 configurations.all {
