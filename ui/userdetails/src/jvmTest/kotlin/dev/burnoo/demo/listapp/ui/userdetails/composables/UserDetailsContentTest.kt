@@ -19,29 +19,35 @@ class UserDetailsContentTest {
     val composeRule = createComposeRule()
 
     @Test
-    fun shouldDisplayLoaderWhenLoading() {
+    fun `should display loader when loading`() {
         composeRule.setContent {
-            UserDetailsContent(uiState = UserDetailsUiState.Loading, onTryAgain = {})
+            UserDetailsContent(uiState = UserDetailsUiState.Loading, onTryAgain = {}, onGoBack = {})
         }
 
         composeRule.onNode(hasTestTag("Loader")).assertExists()
     }
 
     @Test
-    fun shouldDisplayTryAgainButtonOnError() {
+    fun `should display try again and go back buttons on error`() {
         composeRule.setContent {
-            UserDetailsContent(UserDetailsUiState.Error, onTryAgain = {})
+            UserDetailsContent(UserDetailsUiState.Error, onTryAgain = {}, onGoBack = {})
         }
 
-        composeRule.onNode(hasTestTag("Try again button")).assertExists()
-        composeRule.onNode(hasTestTag("Try again button")).assertHasClickAction()
+        composeRule.onNode(hasTestTag("Try again button")).apply {
+            assertExists()
+            assertHasClickAction()
+        }
+        composeRule.onNode(hasTestTag("Go back button")).apply {
+            assertExists()
+            assertHasClickAction()
+        }
     }
 
     @Test
-    fun shouldDisplayUserDetailsWhenLoaded() {
+    fun `should display user details when loaded`() {
         composeRule.setContent {
             WithTestDependencyInjection {
-                UserDetailsContent(uiState = UserDetailsUiState.Loaded(testUser), onTryAgain = {})
+                UserDetailsContent(uiState = UserDetailsUiState.Loaded(testUser), onTryAgain = {}, onGoBack = {})
             }
         }
 
@@ -52,6 +58,10 @@ class UserDetailsContentTest {
         composeRule.onNode(hasText(testUser.gender)).assertExists()
         composeRule.onNode(hasText(testUser.phone)).assertExists()
         composeRule.onNode(hasText(testUser.email)).assertExists()
+        composeRule.onNode(hasTestTag("Go back button")).apply {
+            assertExists()
+            assertHasClickAction()
+        }
         composeRule.onNode(hasTestTag("Loader")).assertDoesNotExist()
     }
 

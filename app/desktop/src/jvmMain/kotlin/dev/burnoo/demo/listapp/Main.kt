@@ -23,7 +23,10 @@ fun main() = application {
 
                 when (val currentUserId = userId) {
                     null -> UserListScreen(onUserClick = { userId = it })
-                    else -> UserDetailsScreen(userId = currentUserId.value)
+                    else -> UserDetailsScreen(
+                        userId = currentUserId.value,
+                        onGoBack = { userId = null },
+                    )
                 }
             }
         }

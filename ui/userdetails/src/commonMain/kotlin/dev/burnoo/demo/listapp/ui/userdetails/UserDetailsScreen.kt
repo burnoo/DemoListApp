@@ -14,7 +14,7 @@ import dev.burnoo.demo.listapp.ui.userdetails.composables.UserDetailsContent
 import org.koin.core.parameter.parametersOf
 
 @Composable
-fun UserDetailsScreen(userId: String) {
+fun UserDetailsScreen(userId: String, onGoBack: () -> Unit) {
     val viewModel = getViewModel<UserDetailsViewModel>(parameters = {
         parametersOf(UserId(value = userId))
     },)
@@ -26,7 +26,7 @@ fun UserDetailsScreen(userId: String) {
                 .fillMaxSize()
                 .padding(padding),
         ) {
-            UserDetailsContent(viewModel)
+            UserDetailsContent(viewModel, onGoBack)
         }
     }
 }

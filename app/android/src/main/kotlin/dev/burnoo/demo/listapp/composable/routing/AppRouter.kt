@@ -14,6 +14,6 @@ fun AppRouter() {
             },
         )
 
-        userDetailsRouter()
+        userDetailsRouter(onGoBack = { navController.navigateUp() })
     }
 }

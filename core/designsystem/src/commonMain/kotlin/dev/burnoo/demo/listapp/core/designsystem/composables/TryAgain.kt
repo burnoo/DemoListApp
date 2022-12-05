@@ -14,7 +14,7 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun TryAgain(onTryAgain: () -> Unit) {
+fun TryAgain(onTryAgain: () -> Unit, onGoBack: (() -> Unit?)? = null) {
     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
         Column {
             Text(text = "Request failed")
@@ -23,6 +23,14 @@ fun TryAgain(onTryAgain: () -> Unit) {
 
             Button(onClick = onTryAgain, modifier = Modifier.testTag("Try again button")) {
                 Text(text = "Try again")
+            }
+
+            if (onGoBack != null) {
+                Spacer(modifier = Modifier.height(16.dp))
+
+                Button(onClick = { onGoBack() }, modifier = Modifier.testTag("Go back button")) {
+                    Text(text = "Go back")
+                }
             }
         }
     }

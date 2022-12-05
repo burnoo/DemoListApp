@@ -16,7 +16,7 @@ object UserDetailsRoutes {
     internal const val main = "main/{${UserDetailsKeys.userId}}"
 }
 
-fun NavGraphBuilder.userDetailsRouter() {
+fun NavGraphBuilder.userDetailsRouter(onGoBack: () -> Unit) {
     navigation(
         startDestination = UserDetailsRoutes.main,
         route = UserDetailsRoutes.root + "/{${UserDetailsKeys.userId}}",
@@ -26,7 +26,7 @@ fun NavGraphBuilder.userDetailsRouter() {
             arguments = listOf(navArgument(UserDetailsKeys.userId) { type = NavType.StringType }),
         ) {
             val userId = it.arguments!!.getString(UserDetailsKeys.userId)!!
-            UserDetailsScreen(userId)
+            UserDetailsScreen(userId, onGoBack)
         }
     }
 }

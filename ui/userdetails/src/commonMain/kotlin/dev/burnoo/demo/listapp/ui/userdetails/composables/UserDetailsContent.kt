@@ -9,17 +9,17 @@ import dev.burnoo.demo.listapp.ui.userdetails.UserDetailsUiState
 import dev.burnoo.demo.listapp.ui.userdetails.UserDetailsViewModel
 
 @Composable
-internal fun UserDetailsContent(viewModel: UserDetailsViewModel) {
+internal fun UserDetailsContent(viewModel: UserDetailsViewModel, onGoBack: () -> Unit) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
-    UserDetailsContent(uiState, onTryAgain = viewModel::tryAgain)
+    UserDetailsContent(uiState, onTryAgain = viewModel::tryAgain, onGoBack = onGoBack)
 }
 
 @Composable
-internal fun UserDetailsContent(uiState: UserDetailsUiState, onTryAgain: () -> Unit) {
+internal fun UserDetailsContent(uiState: UserDetailsUiState, onTryAgain: () -> Unit, onGoBack: () -> Unit) {
     when (uiState) {
         UserDetailsUiState.Loading -> Loader()
-        UserDetailsUiState.Error -> TryAgain(onTryAgain)
-        is UserDetailsUiState.Loaded -> UserDetails(uiState.user)
+        UserDetailsUiState.Error -> TryAgain(onTryAgain, onGoBack)
+        is UserDetailsUiState.Loaded -> UserDetails(uiState.user, onGoBack)
     }
 }
