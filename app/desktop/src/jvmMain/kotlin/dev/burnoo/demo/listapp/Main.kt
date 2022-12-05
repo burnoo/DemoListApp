@@ -20,11 +20,11 @@ fun main() = application {
         ) {
             AppTheme {
                 var userId by remember { mutableStateOf<UserId?>(null) }
+                UserListScreen(onUserClick = { userId = it })
 
-                when (val currentUserId = userId) {
-                    null -> UserListScreen(onUserClick = { userId = it })
-                    else -> UserDetailsScreen(
-                        userId = currentUserId.value,
+                userId?.let {
+                    UserDetailsScreen(
+                        userId = it.value,
                         onGoBack = { userId = null },
                     )
                 }
