@@ -16,13 +16,11 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(project(":core:designsystem"))
-                implementation(project(":core:compose-utils"))
                 implementation(project(":core:ui"))
                 implementation(project(":core:utils"))
                 implementation(project(":data:users:core"))
                 @OptIn(ExperimentalComposeLibrary::class)
                 implementation(compose.material3)
-                implementation(compose.preview)
                 implementation(libs.kamel)
                 implementation(libs.cokoin.core)
             }
@@ -31,10 +29,10 @@ kotlin {
         val jvmTest by getting {
             dependencies {
                 implementation(project(":data:users:core-test"))
+                implementation(project(":core:compose-utils"))
                 implementation(kotlin("test"))
                 implementation(libs.kotest.assertions)
                 implementation(libs.coroutines.test)
-
                 @OptIn(ExperimentalComposeLibrary::class)
                 implementation(compose.uiTestJUnit4)
                 implementation(compose.desktop.currentOs)

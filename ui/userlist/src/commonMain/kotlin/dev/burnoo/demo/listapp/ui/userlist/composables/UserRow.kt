@@ -55,22 +55,3 @@ internal fun UserRow(
         )
     }
 }
-
-// TODO: uncomment this after moving to JVM
-// @Preview
-// @Composable
-// private fun UserRowPreview() {
-//    AppTheme {
-//        UserRow(
-//            user = UserItem(
-//                id = UserId("1"),
-//                title = "mrs",
-//                firstName = "John",
-//                lastName = "Doe",
-//                photoUrl = "https://example.org/image.jpg",
-//            ),
-//            onClick = { },
-//            imageResource = FakeImageResource(),
-//        )
-//    }
-// }

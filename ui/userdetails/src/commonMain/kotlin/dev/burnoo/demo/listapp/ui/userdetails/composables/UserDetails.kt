@@ -61,23 +61,3 @@ internal fun UserDetails(user: User, imageResource: ImageResource = get()) {
         )
     }
 }
-
-// TODO: uncomment this after moving to JVM
-// @Preview
-// @Composable
-// internal fun UserDetailsPreview() {
-//    AppTheme {
-//        UserDetails(
-//            user = User(
-//                title = "mr",
-//                firstName = "John",
-//                lastName = "Doe",
-//                photoUrl = "https://example.org/image0.jpg",
-//                gender = "male",
-//                email = "test@example.org",
-//                phone = "123456789",
-//            ),
-//            imageResource = FakeImageResource(),
-//        )
-//    }
-// }
