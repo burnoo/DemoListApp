@@ -1,18 +1,13 @@
 plugins {
     kotlin("multiplatform")
-    id("common-android-library")
-    id("org.jetbrains.compose")
+    id("common-compose-library")
 }
 
 android {
-    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     namespace = "dev.burnoo.demo.listapp.core.ui"
 }
 
 kotlin {
-    android()
-    jvm()
-
     sourceSets {
         val commonMain by getting {
             dependencies {

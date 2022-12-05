@@ -20,6 +20,7 @@ kotlin {
         languageSettings.optIn("androidx.compose.material3.ExperimentalMaterial3Api")
     }
 
+    jvm()
     android {
         compilations.all {
             kotlinOptions.jvmTarget = "11"
