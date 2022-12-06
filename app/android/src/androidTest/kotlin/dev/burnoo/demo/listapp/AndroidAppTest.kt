@@ -38,7 +38,7 @@ class AndroidAppTest {
         composeRule.setContent {
             WithTestDependencyInjection { App() }
         }
-        composeRule.waitUntil {
+        composeRule.waitUntil(timeoutMillis = 2_000L) {
             composeRule
                 .onAllNodes(hasTestTag("Loader"))
                 .fetchSemanticsNodes().isEmpty()
@@ -55,7 +55,7 @@ class AndroidAppTest {
         composeRule.setContent {
             WithTestDependencyInjection { App() }
         }
-        composeRule.waitUntil {
+        composeRule.waitUntil(timeoutMillis = 2_000L) {
             composeRule
                 .onAllNodes(hasTestTag("Loader"))
                 .fetchSemanticsNodes().isEmpty()
@@ -79,7 +79,7 @@ class AndroidAppTest {
         composeRule.setContent {
             WithTestDependencyInjection(mockEngine) { App() }
         }
-        composeRule.waitUntil {
+        composeRule.waitUntil(timeoutMillis = 2_000L) {
             composeRule
                 .onAllNodes(hasTestTag("Loader"))
                 .fetchSemanticsNodes().isEmpty()
@@ -95,13 +95,13 @@ class AndroidAppTest {
         composeRule.setContent {
             WithTestDependencyInjection(httpClientEngine = mockEngine) { App() }
         }
-        composeRule.waitUntil {
+        composeRule.waitUntil(timeoutMillis = 2_000L) {
             composeRule
                 .onAllNodes(hasTestTag("Loader"))
                 .fetchSemanticsNodes().isEmpty()
         }
         composeRule.onNode(hasText(TestApiUser.firstName, substring = true)).performClick()
-        composeRule.waitUntil {
+        composeRule.waitUntil(timeoutMillis = 2_000L) {
             composeRule
                 .onAllNodes(hasTestTag("Loader"))
                 .fetchSemanticsNodes().isEmpty()
