@@ -11,8 +11,8 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 api(project(":core:designsystem"))
-                implementation(libs.kamel)
-                implementation(libs.koin)
+                api(libs.kamel)
+                api(libs.koin)
             }
         }
     }

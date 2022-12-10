@@ -13,7 +13,7 @@ kotlin {
             dependencies {
                 api(libs.koin)
                 api(compose.runtime)
-                implementation(libs.coroutines.core)
+                api(libs.coroutines.core)
             }
         }
 

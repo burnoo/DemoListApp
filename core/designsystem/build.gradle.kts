@@ -12,9 +12,9 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
+                api(libs.kamel)
                 @OptIn(ExperimentalComposeLibrary::class)
                 implementation(compose.material3)
-                implementation(libs.kamel)
             }
         }
     }
