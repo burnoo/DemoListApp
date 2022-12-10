@@ -85,4 +85,20 @@ class UserListViewModelTest {
             isLastPage = false,
         )
     }
+
+    @Test
+    fun `should not fetch next page if already loading one`() {
+        repository.delayMillis = 1000L
+        val viewModel = UserListViewModel(repository)
+
+        viewModel.fetchNextPage()
+        testDispatcher.scheduler.advanceTimeBy(10L)
+        viewModel.fetchNextPage()
+        testDispatcher.scheduler.advanceUntilIdle()
+
+        viewModel.uiState.value shouldBe UserListUiState.Loaded(
+            users = testUserList + testUserList,
+            isLastPage = false,
+        )
+    }
 }

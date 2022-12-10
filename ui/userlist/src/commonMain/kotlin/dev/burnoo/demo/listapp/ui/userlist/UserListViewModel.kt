@@ -3,6 +3,7 @@ package dev.burnoo.demo.listapp.ui.userlist
 import com.github.michaelbull.result.fold
 import dev.burnoo.demo.listapp.core.ui.ViewModel
 import dev.burnoo.demo.listapp.data.users.core.UsersRepository
+import java.util.concurrent.atomic.AtomicBoolean
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
@@ -13,6 +14,7 @@ internal class UserListViewModel(
 ) : ViewModel() {
 
     private val pager = repository.getUserListPager()
+    private var isNextPageLoading = AtomicBoolean()
 
     val uiState = pager.status.map { status ->
         status.lastResult.fold(
@@ -34,6 +36,11 @@ internal class UserListViewModel(
     }
 
     fun fetchNextPage() {
-        viewModelScope.launch { pager.loadPage() }
+        if (isNextPageLoading.get()) return
+        viewModelScope.launch {
+            isNextPageLoading.set(true)
+            pager.loadPage()
+            isNextPageLoading.set(false)
+        }
     }
 }
