@@ -62,6 +62,11 @@ class AndroidAppTest {
         }
         composeRule.onNode(hasText(TestApiUser.firstName, substring = true)).performClick()
 
+        composeRule.waitUntil(timeoutMillis = 2_000L) {
+            composeRule
+                .onAllNodes(hasTestTag("Loader"))
+                .fetchSemanticsNodes().isEmpty()
+        }
         composeRule.onNode(hasText(TestApiUser.firstName, substring = true)).assertExists()
         composeRule.onNode(hasText(TestApiUser.lastName, substring = true)).assertExists()
         composeRule.onNode(hasText(TestApiUser.title, substring = true, ignoreCase = true))
