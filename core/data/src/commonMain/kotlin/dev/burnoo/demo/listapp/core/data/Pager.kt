@@ -28,7 +28,7 @@ class Pager<V, E>(
         }
         _status.emit(
             Status(
-                lastResult = nextPageListResult.map { },
+                lastResult = nextPageListResult.map { it.list },
                 fullList = fullList,
                 isLastPage = nextPageListResult.fold(
                     success = { it.isLastPage },
@@ -39,7 +39,7 @@ class Pager<V, E>(
     }
 
     data class Status<V, E>(
-        val lastResult: Result<Unit, E>,
+        val lastResult: Result<List<V>, E>,
         val fullList: List<V>,
         val isLastPage: Boolean,
     )

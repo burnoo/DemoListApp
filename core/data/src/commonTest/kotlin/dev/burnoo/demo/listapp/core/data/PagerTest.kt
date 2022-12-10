@@ -40,7 +40,7 @@ class PagerTest {
 
             status.fullList shouldBe listOf(0, 0)
             status.isLastPage shouldBe false
-            status.lastResult shouldBe Ok(Unit)
+            status.lastResult shouldBe Ok(listOf(0, 0))
         }
     }
 
@@ -54,7 +54,7 @@ class PagerTest {
 
             status.fullList shouldBe listOf(0, 0, -1, 1)
             status.isLastPage shouldBe false
-            status.lastResult shouldBe Ok(Unit)
+            status.lastResult shouldBe Ok(listOf(-1, 1))
         }
     }
 
@@ -82,7 +82,7 @@ class PagerTest {
 
             status.fullList shouldBe listOf(0, 0)
             status.isLastPage shouldBe true
-            status.lastResult shouldBe Ok(Unit)
+            status.lastResult shouldBe Ok(listOf(0, 0))
         }
     }
 
@@ -105,14 +105,14 @@ class PagerTest {
             val firstStatus = awaitItem()
             firstStatus.fullList shouldBe listOf(0, 0)
             firstStatus.isLastPage shouldBe false
-            firstStatus.lastResult shouldBe Ok(Unit)
+            firstStatus.lastResult shouldBe Ok(listOf(0, 0))
 
             testDispatcher.scheduler.advanceTimeBy(1000L)
 
             val secondStatus = awaitItem()
             secondStatus.fullList shouldBe listOf(0, 0, -1, 1)
             secondStatus.isLastPage shouldBe false
-            secondStatus.lastResult shouldBe Ok(Unit)
+            secondStatus.lastResult shouldBe Ok(listOf(-1, 1))
         }
     }
 }
