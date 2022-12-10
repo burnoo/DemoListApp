@@ -31,12 +31,12 @@ class UsersRemoteRepositoryTest {
             pager.loadPage()
             val users = awaitItem().currentList
 
-            users.forEachIndexed { index, userItem ->
-                userItem.id.value shouldBe testNetworkUsers[index].id
-                userItem.firstName shouldBe testNetworkUsers[index].firstName
-                userItem.lastName shouldBe testNetworkUsers[index].lastName
-                userItem.title shouldBe testNetworkUsers[index].title
-                userItem.photoUrl shouldBe testNetworkUsers[index].picture
+            users.zip(testNetworkUsers) { userItem, networkUser ->
+                userItem.id.value shouldBe networkUser.id
+                userItem.firstName shouldBe networkUser.firstName
+                userItem.lastName shouldBe networkUser.lastName
+                userItem.title shouldBe networkUser.title
+                userItem.photoUrl shouldBe networkUser.picture
             }
         }
     }
