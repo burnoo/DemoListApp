@@ -12,7 +12,7 @@ import dev.burnoo.cokoin.Koin
 import dev.burnoo.cokoin.getKoin
 import dev.burnoo.demo.listapp.core.compose.utils.di.coreComposeUtilsModule
 import dev.burnoo.demo.listapp.data.users.network.test.TestApiUser
-import dev.burnoo.demo.listapp.data.users.network.test.createMockEngine
+import dev.burnoo.demo.listapp.data.users.network.test.createMockHttpEngine
 import dev.burnoo.demo.listapp.ui.userdetails.di.uiUserDetailsModule
 import dev.burnoo.demo.listapp.ui.userlist.di.uiUserListModule
 import io.ktor.client.engine.HttpClientEngine
@@ -75,7 +75,7 @@ class DesktopAppTest {
 
     @Test
     fun shouldDisplayTryAgainButtonOnNetworkErrorWhenGettingUserList() {
-        val mockEngine = createMockEngine(
+        val mockEngine = createMockHttpEngine(
             getUsers = { throw RuntimeException() },
         )
         composeRule.setContent {
@@ -91,7 +91,7 @@ class DesktopAppTest {
 
     @Test
     fun shouldDisplayTryAgainButtonOnNetworkErrorWhenGettingUserDetails() {
-        val mockEngine = createMockEngine(
+        val mockEngine = createMockHttpEngine(
             getUser = { throw RuntimeException() },
         )
         composeRule.setContent {
@@ -113,7 +113,7 @@ class DesktopAppTest {
 
     @Composable
     private fun WithTestDependencyInjection(
-        httpClientEngine: HttpClientEngine = createMockEngine(),
+        httpClientEngine: HttpClientEngine = createMockHttpEngine(),
         content: @Composable () -> Unit,
     ) {
         Koin(

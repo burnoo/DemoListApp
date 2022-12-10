@@ -4,7 +4,7 @@ import com.github.michaelbull.result.Err
 import com.github.michaelbull.result.get
 import dev.burnoo.demo.listapp.data.users.network.model.NetworkError
 import dev.burnoo.demo.listapp.data.users.network.test.TestApiUser
-import dev.burnoo.demo.listapp.data.users.network.test.createMockEngine
+import dev.burnoo.demo.listapp.data.users.network.test.createMockHttpEngine
 import io.kotest.matchers.shouldBe
 import io.ktor.client.engine.mock.MockEngine
 import io.ktor.client.engine.mock.respondError
@@ -16,7 +16,7 @@ class UsersApiTest {
 
     @Test
     fun `should parse users successfully`() = runBlocking {
-        val api = UsersApi(createMockEngine())
+        val api = UsersApi(createMockHttpEngine())
         val usersResult = api.getUsers(page = 0)
 
         val usersResponse = usersResult.get()!!
@@ -70,7 +70,7 @@ class UsersApiTest {
 
     @Test
     fun `should parse user successfully`() = runBlocking {
-        val api = UsersApi(createMockEngine())
+        val api = UsersApi(createMockHttpEngine())
         val user = api.getUser(TestApiUser.id).get()!!
 
         user.title shouldBe TestApiUser.title

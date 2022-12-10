@@ -10,7 +10,7 @@ import io.ktor.http.HttpHeaders
 import io.ktor.http.headersOf
 import io.ktor.utils.io.ByteReadChannel
 
-fun createMockEngine(
+fun createMockHttpEngine(
     getUsers: MockRequestHandleScope.() -> HttpResponseData = {
         respondJson(getUsersResponse())
     },
