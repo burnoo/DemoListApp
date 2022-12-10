@@ -2,7 +2,7 @@ package dev.burnoo.demo.listapp.core.utils
 
 import java.util.*
 
-class TitleParser(private val locale: Locale = Locale.getDefault()) {
+class TitleParser(private val locale: Locale = Locale.ROOT) {
 
     fun parse(title: String): String {
         val lowercaseTitle = title.lowercase(locale)
