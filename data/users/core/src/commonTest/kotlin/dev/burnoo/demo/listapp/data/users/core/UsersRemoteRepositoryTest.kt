@@ -29,7 +29,7 @@ class UsersRemoteRepositoryTest {
         val pager = repository.getUserListPager()
         pager.status.test {
             pager.loadPage()
-            val users = awaitItem().currentList
+            val users = awaitItem().fullList
 
             users.zip(testNetworkUsers) { userItem, networkUser ->
                 userItem.id.value shouldBe networkUser.id

@@ -13,7 +13,7 @@ class Pager<V, E>(
     private val fetchPagedList: suspend (Int) -> Result<PagedList<V>, E>,
 ) {
 
-    private var currentList: List<V> = emptyList()
+    private var fullList: List<V> = emptyList()
     private var nextPage = 0
     private val mutex = Mutex()
 
@@ -24,12 +24,12 @@ class Pager<V, E>(
         val nextPageListResult = fetchPagedList(nextPage)
         nextPageListResult.onSuccess {
             nextPage++
-            currentList = currentList + it.list
+            fullList = fullList + it.list
         }
         _status.emit(
             Status(
                 lastResult = nextPageListResult.map { },
-                currentList = currentList,
+                fullList = fullList,
                 isLastPage = nextPageListResult.fold(
                     success = { it.isLastPage },
                     failure = { false },
@@ -40,7 +40,7 @@ class Pager<V, E>(
 
     data class Status<V, E>(
         val lastResult: Result<Unit, E>,
-        val currentList: List<V>,
+        val fullList: List<V>,
         val isLastPage: Boolean,
     )
 

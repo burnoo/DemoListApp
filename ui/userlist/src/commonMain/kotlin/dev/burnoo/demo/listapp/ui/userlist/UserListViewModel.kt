@@ -16,7 +16,7 @@ internal class UserListViewModel(
 
     val uiState = pager.status.map { status ->
         status.lastResult.fold(
-            success = { UserListUiState.Loaded(status.currentList, status.isLastPage) },
+            success = { UserListUiState.Loaded(status.fullList, status.isLastPage) },
             failure = { UserListUiState.Error },
         )
     }.stateIn(

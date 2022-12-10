@@ -38,7 +38,7 @@ class PagerTest {
             pager.loadPage()
             val status = awaitItem()
 
-            status.currentList shouldBe listOf(0, 0)
+            status.fullList shouldBe listOf(0, 0)
             status.isLastPage shouldBe false
             status.lastResult shouldBe Ok(Unit)
         }
@@ -52,7 +52,7 @@ class PagerTest {
             pager.loadPage()
             val status = awaitItem()
 
-            status.currentList shouldBe listOf(0, 0, -1, 1)
+            status.fullList shouldBe listOf(0, 0, -1, 1)
             status.isLastPage shouldBe false
             status.lastResult shouldBe Ok(Unit)
         }
@@ -67,7 +67,7 @@ class PagerTest {
             pager.loadPage()
             val status = awaitItem()
 
-            status.currentList shouldBe listOf(0, 0)
+            status.fullList shouldBe listOf(0, 0)
             status.isLastPage shouldBe false
             status.lastResult shouldBe Err(TestError)
         }
@@ -80,7 +80,7 @@ class PagerTest {
             pager.loadPage()
             val status = awaitItem()
 
-            status.currentList shouldBe listOf(0, 0)
+            status.fullList shouldBe listOf(0, 0)
             status.isLastPage shouldBe true
             status.lastResult shouldBe Ok(Unit)
         }
@@ -103,14 +103,14 @@ class PagerTest {
             testDispatcher.scheduler.advanceTimeBy(1000L)
 
             val firstStatus = awaitItem()
-            firstStatus.currentList shouldBe listOf(0, 0)
+            firstStatus.fullList shouldBe listOf(0, 0)
             firstStatus.isLastPage shouldBe false
             firstStatus.lastResult shouldBe Ok(Unit)
 
             testDispatcher.scheduler.advanceTimeBy(1000L)
 
             val secondStatus = awaitItem()
-            secondStatus.currentList shouldBe listOf(0, 0, -1, 1)
+            secondStatus.fullList shouldBe listOf(0, 0, -1, 1)
             secondStatus.isLastPage shouldBe false
             secondStatus.lastResult shouldBe Ok(Unit)
         }
