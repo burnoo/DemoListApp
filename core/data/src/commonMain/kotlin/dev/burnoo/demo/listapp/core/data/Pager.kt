@@ -6,6 +6,8 @@ import com.github.michaelbull.result.map
 import com.github.michaelbull.result.onSuccess
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 
 class Pager<V, E>(
     private val fetchPagedList: suspend (Int) -> Result<PagedList<V>, E>,
@@ -13,11 +15,12 @@ class Pager<V, E>(
 
     private var currentList: List<V> = emptyList()
     private var nextPage = 0
+    private val mutex = Mutex()
 
     private val _status = MutableSharedFlow<Status<V, E>>(replay = 1)
     val status = _status.asSharedFlow()
 
-    suspend fun loadPage() {
+    suspend fun loadPage() = mutex.withLock {
         val nextPageListResult = fetchPagedList(nextPage)
         nextPageListResult.onSuccess {
             nextPage++

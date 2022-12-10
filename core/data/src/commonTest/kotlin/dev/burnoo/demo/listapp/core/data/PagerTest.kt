@@ -5,7 +5,12 @@ import com.github.michaelbull.result.Err
 import com.github.michaelbull.result.Ok
 import com.github.michaelbull.result.Result
 import io.kotest.matchers.shouldBe
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.StandardTestDispatcher
 import org.junit.Test
 
 private object TestError
@@ -78,6 +83,36 @@ class PagerTest {
             status.currentList shouldBe listOf(0, 0)
             status.isLastPage shouldBe true
             status.lastResult shouldBe Ok(Unit)
+        }
+    }
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    @Test
+    fun `should queue load page requests`() = runBlocking {
+        val testDispatcher = StandardTestDispatcher()
+        val pager = Pager(
+            fetchPagedList = { page ->
+                delay(1000L)
+                Ok(Pager.PagedList(listOf(page * -1, page), isLastPage = false))
+            },
+        )
+        CoroutineScope(testDispatcher).launch { pager.loadPage() }
+        CoroutineScope(testDispatcher).launch { pager.loadPage() }
+        testDispatcher.scheduler.advanceTimeBy(10L)
+        pager.status.test {
+            testDispatcher.scheduler.advanceTimeBy(1000L)
+
+            val firstStatus = awaitItem()
+            firstStatus.currentList shouldBe listOf(0, 0)
+            firstStatus.isLastPage shouldBe false
+            firstStatus.lastResult shouldBe Ok(Unit)
+
+            testDispatcher.scheduler.advanceTimeBy(1000L)
+
+            val secondStatus = awaitItem()
+            secondStatus.currentList shouldBe listOf(0, 0, -1, 1)
+            secondStatus.isLastPage shouldBe false
+            secondStatus.lastResult shouldBe Ok(Unit)
         }
     }
 }
