@@ -1,6 +1,6 @@
 package dev.burnoo.demo.listapp.data.users.network.test
 
-import dev.burnoo.demo.listapp.data.users.network.api.BASE_PATH
+import dev.burnoo.demo.listapp.data.users.network.UsersNetworkDataSource.Companion.BASE_PATH
 import io.ktor.client.engine.HttpClientEngine
 import io.ktor.client.engine.mock.MockEngine
 import io.ktor.client.engine.mock.MockRequestHandleScope

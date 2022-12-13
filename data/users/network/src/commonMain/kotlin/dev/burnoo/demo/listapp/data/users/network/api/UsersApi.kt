@@ -4,6 +4,7 @@ import com.github.michaelbull.result.Result
 import com.github.michaelbull.result.mapError
 import com.github.michaelbull.result.runCatching
 import dev.burnoo.demo.listapp.data.users.network.UsersNetworkDataSource
+import dev.burnoo.demo.listapp.data.users.network.UsersNetworkDataSource.Companion.BASE_PATH
 import dev.burnoo.demo.listapp.data.users.network.model.NetworkError
 import dev.burnoo.demo.listapp.data.users.network.model.NetworkUser
 import dev.burnoo.demo.listapp.data.users.network.model.NetworkUsersResponse
@@ -19,7 +20,6 @@ import io.ktor.client.request.header
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 
-const val BASE_PATH = "/data/v1"
 private const val BASE_URL = "https://dummyapi.io$BASE_PATH"
 private const val APP_ID = "637797e82364777fa9814112"
 

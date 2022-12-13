@@ -10,4 +10,8 @@ interface UsersNetworkDataSource {
     suspend fun getUsers(page: Int): Result<NetworkUsersResponse, NetworkError>
 
     suspend fun getUser(userId: String): Result<NetworkUser, NetworkError>
+
+    companion object {
+        const val BASE_PATH = "/data/v1"
+    }
 }
