@@ -20,7 +20,6 @@ kotlin {
                 implementation(libs.kotlinResult)
                 @OptIn(ExperimentalComposeLibrary::class)
                 implementation(compose.material3)
-                implementation(libs.kamel)
                 implementation(libs.cokoin.core)
             }
         }

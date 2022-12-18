@@ -18,7 +18,6 @@ kotlin {
                 implementation(project(":data:users:core"))
                 @OptIn(ExperimentalComposeLibrary::class)
                 implementation(compose.material3)
-                implementation(libs.kamel)
                 implementation(libs.cokoin.core)
             }
         }

@@ -12,10 +12,24 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                api(libs.kamel)
                 @OptIn(ExperimentalComposeLibrary::class)
                 implementation(compose.material3)
             }
+        }
+
+        val jvmCommon by creating {
+            dependsOn(commonMain)
+            dependencies {
+                implementation(libs.kamel)
+            }
+        }
+
+        val jvmMain by getting {
+            dependsOn(jvmCommon)
+        }
+
+        val androidMain by getting {
+            dependsOn(jvmCommon)
         }
     }
 }
