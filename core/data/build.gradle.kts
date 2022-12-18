@@ -10,7 +10,7 @@ kotlin.sourceSets {
         }
     }
 
-    val commonTest by getting {
+    val jvmTest by getting {
         dependencies {
             implementation(kotlin("test"))
             implementation(libs.kotest.assertions)
