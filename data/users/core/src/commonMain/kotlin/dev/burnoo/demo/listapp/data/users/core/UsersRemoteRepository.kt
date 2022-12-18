@@ -15,7 +15,7 @@ import kotlinx.coroutines.withContext
 
 internal class UsersRemoteRepository(
     private val dataSource: UsersNetworkDataSource,
-    private val coroutineDispatcher: CoroutineDispatcher = Dispatchers.IO,
+    private val coroutineDispatcher: CoroutineDispatcher = Dispatchers.Default,
 ) : UsersRepository {
 
     override fun getUserListPager(): Pager<UserItem, DataError> {

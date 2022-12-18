@@ -17,6 +17,13 @@ kotlin {
             }
         }
 
+        val nonAndroidMain by creating {
+            dependsOn(commonMain)
+            dependencies {
+                implementation(libs.cokoin.core)
+            }
+        }
+
         val androidMain by getting {
             dependencies {
                 api(libs.cokoin.viewmodel)
@@ -25,9 +32,11 @@ kotlin {
         }
 
         val jvmMain by getting {
-            dependencies {
-                implementation(libs.cokoin.core)
-            }
+            dependsOn(nonAndroidMain)
+        }
+
+        val jsMain by getting {
+            dependsOn(nonAndroidMain)
         }
     }
 }

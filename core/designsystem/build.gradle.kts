@@ -31,5 +31,11 @@ kotlin {
         val androidMain by getting {
             dependsOn(jvmCommon)
         }
+
+        val jsMain by getting {
+            dependencies {
+                implementation(compose.web.core)
+            }
+        }
     }
 }

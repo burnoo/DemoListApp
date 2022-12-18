@@ -12,6 +12,7 @@ kotlin {
             dependencies {
                 api(project(":core:designsystem"))
                 api(libs.koin)
+                implementation(compose.runtime)
             }
         }
     }

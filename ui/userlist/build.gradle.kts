@@ -2,6 +2,8 @@ import org.jetbrains.compose.ExperimentalComposeLibrary
 
 plugins {
     id("common-compose-library")
+    @Suppress("DSL_SCOPE_VIOLATION")
+    alias(libs.plugins.kotlinx.atomicFu)
 }
 
 android {
@@ -21,6 +23,7 @@ kotlin {
                 @OptIn(ExperimentalComposeLibrary::class)
                 implementation(compose.material3)
                 implementation(libs.cokoin.core)
+                implementation(libs.kotlinx.atomicFu)
             }
         }
 

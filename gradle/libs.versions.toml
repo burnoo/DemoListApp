@@ -10,6 +10,7 @@ kotlinResult = "1.1.16"
 cokoin = "1.0.0"
 material = "1.7.0"
 kotlinxSerializationJson = "1.4.1"
+kotlinxAtomicFu = "0.18.5"
 composeMultiplatform = "1.3.0-rc01"
 jetpackCompose = "1.3.2"
 jetpackComposeCompiler = "1.4.0-alpha01"
@@ -34,6 +35,7 @@ coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", ve
 coroutines-swing = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-swing", version.ref = "coroutines" }
 coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
+kotlinx-atomicFu = { module = "org.jetbrains.kotlinx:atomicfu", version.ref = "kotlinxAtomicFu" }
 koin = { module = "io.insert-koin:koin-core", version.ref = "koin" }
 kotlinResult = { module = "com.michael-bull.kotlin-result:kotlin-result", version.ref = "kotlinResult" }
 cokoin-core = { module = "dev.burnoo:cokoin", version.ref = "cokoin" }
@@ -63,3 +65,4 @@ turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
 [plugins]
 gradleVersionsPlugin = { id = "com.github.ben-manes.versions", version.ref = "gradleVersionsPlugin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+kotlinx-atomicFu = { id = "org.jetbrains.kotlin.plugin.atomicfu", version.ref = "kotlin" }
