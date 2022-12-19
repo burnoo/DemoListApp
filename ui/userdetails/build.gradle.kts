@@ -22,13 +22,18 @@ kotlin {
             }
         }
 
-        val jvmTest by getting {
+        val commonTest by getting {
             dependencies {
                 implementation(project(":data:users:core-test"))
                 implementation(project(":core:compose-utils"))
                 implementation(kotlin("test"))
                 implementation(libs.kotest.assertions)
                 implementation(libs.coroutines.test)
+            }
+        }
+
+        val jvmTest by getting {
+            dependencies {
                 @OptIn(ExperimentalComposeLibrary::class)
                 implementation(compose.uiTestJUnit4)
                 implementation(compose.desktop.currentOs)
