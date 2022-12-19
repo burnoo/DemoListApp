@@ -72,7 +72,6 @@ dependencies {
     implementation(libs.jetpackCompose.navigation)
     implementation(libs.activity.compose)
     implementation(libs.cokoin.viewmodel)
-    implementation(libs.kamel)
     implementation(libs.material)
     debugImplementation(libs.jetpackCompose.uiTooling)
 
@@ -80,7 +79,7 @@ dependencies {
 
     debugImplementation(libs.jetpackCompose.uiTest.manifest)
     androidTestImplementation(project(":core:compose-utils"))
-    androidTestImplementation(project(":data:users:network-test"))
+    androidTestImplementation(project(":data:users:networktest"))
     androidTestImplementation(libs.jetpackCompose.uiTest.junit)
     androidTestImplementation(libs.test.androidCore)
     androidTestImplementation(libs.kotest.assertions)

@@ -1,6 +1,5 @@
 package dev.burnoo.demo.listapp.ui.userlist.composables
 
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
@@ -9,6 +8,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.snapshotFlow
+import dev.burnoo.demo.listapp.core.ui.AppLazyColumn
 import dev.burnoo.demo.listapp.data.users.model.UserId
 import dev.burnoo.demo.listapp.ui.userlist.UserListUiState
 
@@ -19,7 +19,7 @@ internal fun UserList(
     onLoadMore: () -> Unit,
 ) {
     val listState = rememberLazyListState()
-    LazyColumn(state = listState) {
+    AppLazyColumn(listState = listState) {
         items(uiState.users, key = { it.id.value }) { user ->
             UserRow(user, onUserClick)
         }

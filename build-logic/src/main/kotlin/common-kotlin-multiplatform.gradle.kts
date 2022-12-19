@@ -4,4 +4,7 @@ plugins {
 
 kotlin {
     jvm { withJava() }
+    js(IR) {
+        browser()
+    }
 }

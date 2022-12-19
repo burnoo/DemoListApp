@@ -9,13 +9,15 @@ import io.kotest.matchers.shouldBe
 import io.ktor.client.engine.mock.MockEngine
 import io.ktor.client.engine.mock.respondError
 import io.ktor.http.HttpStatusCode
-import kotlinx.coroutines.runBlocking
-import org.junit.Test
+import kotlin.test.Test
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.runTest
 
+@OptIn(ExperimentalCoroutinesApi::class)
 class UsersApiTest {
 
     @Test
-    fun `should parse users successfully`() = runBlocking {
+    fun shouldParseUsersSuccessfully() = runTest {
         val api = UsersApi(createMockHttpEngine())
         val usersResult = api.getUsers(page = 0)
 
@@ -33,7 +35,7 @@ class UsersApiTest {
     }
 
     @Test
-    fun `should handle get users client error`() = runBlocking {
+    fun shouldHandleGetUsersClientError() = runTest {
         val api = UsersApi(
             engine = MockEngine {
                 respondError(HttpStatusCode.NotFound)
@@ -45,7 +47,7 @@ class UsersApiTest {
     }
 
     @Test
-    fun `should handle get users server error`() = runBlocking {
+    fun shouldHandleGetUsersServerError() = runTest {
         val api = UsersApi(
             engine = MockEngine {
                 respondError(HttpStatusCode.InternalServerError)
@@ -57,7 +59,7 @@ class UsersApiTest {
     }
 
     @Test
-    fun `should handle get users device error`() = runBlocking {
+    fun shouldHandleGetUsersDeviceError() = runTest {
         val api = UsersApi(
             engine = MockEngine {
                 throw RuntimeException()
@@ -69,7 +71,7 @@ class UsersApiTest {
     }
 
     @Test
-    fun `should parse user successfully`() = runBlocking {
+    fun shouldParseUserSuccessfully() = runTest {
         val api = UsersApi(createMockHttpEngine())
         val user = api.getUser(TestApiUser.id).get()!!
 
@@ -82,7 +84,7 @@ class UsersApiTest {
     }
 
     @Test
-    fun `should handle get user client error`() = runBlocking {
+    fun shouldHandleGetUserClientError() = runTest {
         val api = UsersApi(
             engine = MockEngine {
                 respondError(HttpStatusCode.NotFound)
@@ -94,7 +96,7 @@ class UsersApiTest {
     }
 
     @Test
-    fun `should handle get user server error`() = runBlocking {
+    fun shouldHandleGetUserServerError() = runTest {
         val api = UsersApi(
             engine = MockEngine {
                 respondError(HttpStatusCode.InternalServerError)
@@ -106,7 +108,7 @@ class UsersApiTest {
     }
 
     @Test
-    fun `should handle get user device error`() = runBlocking {
+    fun shouldHandleGetUserDeviceError() = runTest {
         val api = UsersApi(
             engine = MockEngine {
                 throw RuntimeException()

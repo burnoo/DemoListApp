@@ -18,17 +18,17 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import dev.burnoo.cokoin.get
-import dev.burnoo.demo.listapp.core.designsystem.images.ImageResource
+import dev.burnoo.demo.listapp.core.designsystem.images.NetworkImage
+import dev.burnoo.demo.listapp.core.designsystem.images.ShouldLoadImagesFromNetwork
 import dev.burnoo.demo.listapp.core.utils.TitleParser
 import dev.burnoo.demo.listapp.data.users.model.UserId
 import dev.burnoo.demo.listapp.data.users.model.UserItem
-import io.kamel.image.KamelImage
 
 @Composable
 internal fun UserRow(
     user: UserItem,
     onClick: (UserId) -> Unit,
-    imageResource: ImageResource = get(),
+    shouldLoadImagesFromNetwork: ShouldLoadImagesFromNetwork = get(),
 ) {
     val titleParser = remember { TitleParser() }
 
@@ -41,12 +41,13 @@ internal fun UserRow(
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Box(modifier = Modifier.size(60.dp)) {
-            KamelImage(
-                resource = imageResource(url = user.photoUrl),
+            NetworkImage(
+                url = user.photoUrl,
                 contentDescription = "Photo of ${user.firstName} ${user.lastName}",
                 modifier = Modifier
                     .clip(CircleShape)
                     .size(60.dp),
+                shouldLoadImagesFromNetwork = shouldLoadImagesFromNetwork,
             )
         }
         Spacer(modifier = Modifier.width(16.dp))

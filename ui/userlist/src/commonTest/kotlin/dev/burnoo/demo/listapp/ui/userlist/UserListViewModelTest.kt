@@ -7,14 +7,14 @@ import dev.burnoo.demo.listapp.data.users.core.testPagedUserList
 import dev.burnoo.demo.listapp.data.users.core.testUserList
 import dev.burnoo.demo.listapp.data.users.model.DataError
 import io.kotest.matchers.shouldBe
+import kotlin.test.AfterTest
+import kotlin.test.BeforeTest
+import kotlin.test.Test
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.setMain
-import org.junit.After
-import org.junit.Before
-import org.junit.Test
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class UserListViewModelTest {
@@ -22,25 +22,25 @@ class UserListViewModelTest {
     private val testDispatcher = StandardTestDispatcher()
     private val repository = FakeUsersRepository()
 
-    @Before
+    @BeforeTest
     fun setUp() {
         Dispatchers.setMain(testDispatcher)
     }
 
-    @After
+    @AfterTest
     fun tearDown() {
         Dispatchers.resetMain()
     }
 
     @Test
-    fun `should ui state be loading initially`() {
+    fun shouldUiStateBeLoadingInitially() {
         val viewModel = UserListViewModel(repository)
 
         viewModel.uiState.value shouldBe UserListUiState.Loading
     }
 
     @Test
-    fun `should ui state contain loaded users on successful first page load`() {
+    fun shouldUiStateContainLoadedUsersOnSuccessfulFirstPageLoad() {
         val viewModel = UserListViewModel(repository)
 
         testDispatcher.scheduler.advanceUntilIdle()
@@ -49,7 +49,7 @@ class UserListViewModelTest {
     }
 
     @Test
-    fun `should ui state be error on data error on first page`() {
+    fun shouldUiStateBeErrorOnDataErrorOnFirstPage() {
         repository.setUsersResults(Err(DataError))
         val viewModel = UserListViewModel(repository)
 
@@ -59,7 +59,7 @@ class UserListViewModelTest {
     }
 
     @Test
-    fun `should ui state contain loaded users after trying again`() {
+    fun shouldUiStateContainLoadedUsersAfterTryingAgain() {
         repository.setUsersResults(Err(DataError), Ok(testPagedUserList()))
         val viewModel = UserListViewModel(repository)
 
@@ -70,7 +70,7 @@ class UserListViewModelTest {
     }
 
     @Test
-    fun `should ui state contain users from two first pages`() {
+    fun shouldUiStateContainUsersFromTwoFirstPages() {
         repository.setUsersResults(
             Ok(testPagedUserList()),
             Ok(testPagedUserList(list = testUserList.reversed())),
@@ -87,7 +87,7 @@ class UserListViewModelTest {
     }
 
     @Test
-    fun `should not fetch next page if already loading one`() {
+    fun shouldNotFetchNextPageIfAlreadyLoadingOne() {
         repository.delayMillis = 1000L
         val viewModel = UserListViewModel(repository)
 

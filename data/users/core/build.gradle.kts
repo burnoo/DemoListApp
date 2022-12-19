@@ -18,6 +18,7 @@ kotlin.sourceSets {
         dependencies {
             implementation(kotlin("test"))
             implementation(libs.kotest.assertions)
+            implementation(libs.coroutines.test)
             implementation(libs.turbine)
         }
     }

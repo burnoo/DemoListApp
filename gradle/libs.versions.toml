@@ -10,14 +10,16 @@ kotlinResult = "1.1.16"
 cokoin = "1.0.0"
 material = "1.7.0"
 kotlinxSerializationJson = "1.4.1"
-composeMultiplatform = "1.3.0-rc01"
+kotlinxAtomicFu = "0.18.5"
+composeMultiplatform = "1.2.2"
 jetpackCompose = "1.3.2"
 jetpackComposeCompiler = "1.4.0-alpha01"
-jetpackComposeMaterial3 = "1.0.1"
+jetpackComposeMaterial3 = "1.0.0-alpha14"
 jetpackComposeNavigation = "2.5.3"
 activityCompose = "1.6.1"
 androidxLifecycle = "2.6.0-alpha03"
 kamel = "0.4.1"
+imageLoader = "1.2.3.1"
 ktor = "2.2.1"
 junit = "4.13.2"
 assertJ = "3.23.1"
@@ -34,6 +36,7 @@ coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", ve
 coroutines-swing = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-swing", version.ref = "coroutines" }
 coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
+kotlinx-atomicFu = { module = "org.jetbrains.kotlinx:atomicfu", version.ref = "kotlinxAtomicFu" }
 koin = { module = "io.insert-koin:koin-core", version.ref = "koin" }
 kotlinResult = { module = "com.michael-bull.kotlin-result:kotlin-result", version.ref = "kotlinResult" }
 cokoin-core = { module = "dev.burnoo:cokoin", version.ref = "cokoin" }
@@ -48,8 +51,10 @@ jetpackCompose-uiTest-junit = { module = "androidx.compose.ui:ui-test-junit4", v
 activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activityCompose" }
 androidx-lifecycle-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "androidxLifecycle" }
 kamel = { module = "com.alialbaali.kamel:kamel-image", version.ref = "kamel" }
+imageLoader = { module = "io.github.qdsfdhvh:image-loader", version.ref = "imageLoader" }
 ktor-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
-ktor-engine = { module = "io.ktor:ktor-client-cio", version.ref = "ktor" }
+ktor-engine-cio = { module = "io.ktor:ktor-client-cio", version.ref = "ktor" }
+ktor-engine-js = { module = "io.ktor:ktor-client-js", version.ref = "ktor" }
 ktor-contentNegotiations-core = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
 ktor-contentNegotiations-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
 ktor-test = { module = "io.ktor:ktor-client-mock", version.ref = "ktor" }
@@ -62,3 +67,4 @@ turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
 [plugins]
 gradleVersionsPlugin = { id = "com.github.ben-manes.versions", version.ref = "gradleVersionsPlugin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+kotlinx-atomicFu = { id = "org.jetbrains.kotlin.plugin.atomicfu", version.ref = "kotlin" }

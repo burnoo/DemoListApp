@@ -35,10 +35,6 @@ allprojects {
     }
 }
 
-task<Delete>("clean") {
-    delete(rootProject.buildDir)
-}
-
 tasks.withType<DependencyUpdatesTask> {
     rejectVersionIf {
         getStabilityLevel(candidate.version) < getStabilityLevel(currentVersion)

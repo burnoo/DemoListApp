@@ -10,19 +10,31 @@ kotlin.sourceSets {
             api(libs.kotlinResult)
             implementation(libs.kotlinx.serialization.json)
             implementation(libs.ktor.core)
-            implementation(libs.ktor.engine)
             implementation(libs.ktor.contentNegotiations.core)
             implementation(libs.ktor.contentNegotiations.json)
             implementation(libs.koin)
         }
     }
 
+    val jvmMain by getting {
+        dependencies {
+            implementation(libs.ktor.engine.cio)
+        }
+    }
+
+    val jsMain by getting {
+        dependencies {
+            implementation(libs.ktor.engine.js)
+        }
+    }
+
     val commonTest by getting {
         dependencies {
-            implementation(project(":data:users:network-test"))
+            implementation(project(":data:users:networktest"))
             implementation(kotlin("test"))
             implementation(libs.kotest.assertions)
             implementation(libs.ktor.test)
+            implementation(libs.coroutines.test)
         }
     }
 }

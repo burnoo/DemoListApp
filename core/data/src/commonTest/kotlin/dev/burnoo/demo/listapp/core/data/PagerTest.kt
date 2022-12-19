@@ -5,19 +5,19 @@ import com.github.michaelbull.result.Err
 import com.github.michaelbull.result.Ok
 import com.github.michaelbull.result.Result
 import io.kotest.matchers.shouldBe
+import kotlin.test.Test
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.StandardTestDispatcher
-import org.junit.Test
+import kotlinx.coroutines.test.runTest
 
 private object TestError
 
 private class TestFetcher {
     var isResponsesSuccess = listOf(true)
-    var lastPage = Integer.MAX_VALUE
+    var lastPage = Int.MAX_VALUE
 
     fun fetch(page: Int): Result<Pager.PagedList<Int>, TestError> {
         return if (isResponsesSuccess[page % isResponsesSuccess.size]) {
@@ -28,12 +28,13 @@ private class TestFetcher {
     }
 }
 
+@OptIn(ExperimentalCoroutinesApi::class)
 class PagerTest {
     private val testFetcher = TestFetcher()
     private val pager = Pager(fetchPagedList = testFetcher::fetch)
 
     @Test
-    fun `should load first page`() = runBlocking {
+    fun shouldLoadFirstPage() = runTest {
         pager.status.test {
             pager.loadPage()
             val status = awaitItem()
@@ -45,7 +46,7 @@ class PagerTest {
     }
 
     @Test
-    fun `should load two pages`() = runBlocking {
+    fun shouldLoadTwoPages() = runTest {
         pager.status.test {
             pager.loadPage()
             skipItems(1)
@@ -59,7 +60,7 @@ class PagerTest {
     }
 
     @Test
-    fun `should load first page and fail on second`() = runBlocking {
+    fun shouldLoadFirstPageAndFailOnSecond() = runTest {
         testFetcher.isResponsesSuccess = listOf(true, false)
         pager.status.test {
             pager.loadPage()
@@ -74,7 +75,7 @@ class PagerTest {
     }
 
     @Test
-    fun `should contain info about last page`() = runBlocking {
+    fun shouldContainInfoAboutLastPage() = runTest {
         testFetcher.lastPage = 0
         pager.status.test {
             pager.loadPage()
@@ -86,9 +87,8 @@ class PagerTest {
         }
     }
 
-    @OptIn(ExperimentalCoroutinesApi::class)
     @Test
-    fun `should queue load page requests`() = runBlocking {
+    fun shouldQueueLoadPageRequests() = runTest {
         val testDispatcher = StandardTestDispatcher()
         val pager = Pager(
             fetchPagedList = { page ->
