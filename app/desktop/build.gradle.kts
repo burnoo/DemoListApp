@@ -27,7 +27,7 @@ kotlin {
             dependencies {
                 implementation(kotlin("test"))
                 implementation(project(":core:compose-utils"))
-                implementation(project(":data:users:network-test"))
+                implementation(project(":data:users:networktest"))
                 @OptIn(ExperimentalComposeLibrary::class)
                 implementation(compose.uiTestJUnit4)
                 implementation(libs.kotest.assertions)

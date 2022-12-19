@@ -30,7 +30,7 @@ kotlin.sourceSets {
 
     val commonTest by getting {
         dependencies {
-            implementation(project(":data:users:network-test"))
+            implementation(project(":data:users:networktest"))
             implementation(kotlin("test"))
             implementation(libs.kotest.assertions)
             implementation(libs.ktor.test)

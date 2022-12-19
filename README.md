@@ -43,7 +43,7 @@ Diagram of modules used in the app (core and test modules are omitted):
   - `:data:users:core` - contains repository, includes `:model` via `api()`
   - `:data:users:model` - contains models used in the application
   - `:data:users:network` - contains network data sources with JSON parsing
-  - `:data:users:core-test`, `:data:users:network-test` - contains test utils and fake implementations
+  - `:data:users:core-test`, `:data:users:networktest` - contains test utils and fake implementations
 - `:ui` - module for all features in app
   - `:ui:userlist` - user list feature
   - `:ui:userdetails` - user details feature
