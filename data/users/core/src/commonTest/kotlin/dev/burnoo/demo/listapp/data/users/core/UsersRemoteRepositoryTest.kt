@@ -14,8 +14,10 @@ import dev.burnoo.demo.listapp.data.users.network.model.NetworkError
 import io.kotest.matchers.shouldBe
 import kotlin.test.Test
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.runTest
 
+@OptIn(ExperimentalCoroutinesApi::class)
 class UsersRemoteRepositoryTest {
 
     private val fakeDataSource = FakeUsersNetworkDataSource()
@@ -25,7 +27,7 @@ class UsersRemoteRepositoryTest {
     )
 
     @Test
-    fun `should get user list successfully`() = runBlocking {
+    fun shouldGetUserListSuccessfully() = runTest {
         val pager = repository.getUserListPager()
         pager.status.test {
             pager.loadPage()
@@ -42,7 +44,7 @@ class UsersRemoteRepositoryTest {
     }
 
     @Test
-    fun `should handle get user list errors`() = runBlocking {
+    fun shouldHandleGetUserListErrors() = runTest {
         val networkErrors = listOf(NetworkError.Client, NetworkError.Server, NetworkError.Device)
         networkErrors.forEach { networkError ->
             fakeDataSource.usersResult = Err(networkError)
@@ -57,7 +59,7 @@ class UsersRemoteRepositoryTest {
     }
 
     @Test
-    fun `should get user successfully`() = runBlocking {
+    fun shouldGetUserSuccessfully() = runTest {
         val userId = UserId(value = "TEST_USER_ID")
         val user = repository.getUser(userId).get()!!
 
@@ -71,7 +73,7 @@ class UsersRemoteRepositoryTest {
     }
 
     @Test
-    fun `should handle get user errors`() = runBlocking {
+    fun shouldHandleGetUserErrors() = runTest {
         val userId = UserId(value = "TEST_USER_ID")
         val networkErrors = listOf(NetworkError.Client, NetworkError.Server, NetworkError.Device)
         networkErrors.forEach { networkError ->
@@ -83,7 +85,7 @@ class UsersRemoteRepositoryTest {
     }
 
     @Test
-    fun `should calculate if is on the last page`() = runBlocking {
+    fun shouldCalculateIfIsOnTheLastPage() = runTest {
         fakeDataSource.usersResult = Ok(
             testNetworkResponse(
                 total = 122,
@@ -102,7 +104,7 @@ class UsersRemoteRepositoryTest {
     }
 
     @Test
-    fun `should calculate if is not on the last page`() = runBlocking {
+    fun shouldCalculateIfIsNotOnTheLastPage() = runTest {
         fakeDataSource.usersResult = Ok(
             testNetworkResponse(
                 total = 122,
