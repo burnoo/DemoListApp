@@ -3,9 +3,11 @@
 
 
 Hello World! 👋🏽  
-This project is a simple Compose Multiplatform app (Android + Desktop for now) that demonstrates my Android and Kotlin Multiplatform skills. It contains two screens: user list and user details.
+This project is a simple Compose Multiplatform app (Android + Desktop + Web) that demonstrates my Android and Kotlin Multiplatform skills. It contains two screens: user list and user details.
 
 In this app I focused on architecture, modularization, tests, and compromised on the UI - it is very basic. Although such a small application does not need so many modules, I tried to apply patterns I would use in much bigger applications.
+
+Web live demo: https://burnoo.github.io/DemoListApp/
 
 ## Used technologies
 - UI Framework: [Compose Multiplatform](https://www.jetbrains.com/lp/compose-mpp/)
