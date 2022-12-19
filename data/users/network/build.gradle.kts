@@ -34,6 +34,7 @@ kotlin.sourceSets {
             implementation(kotlin("test"))
             implementation(libs.kotest.assertions)
             implementation(libs.ktor.test)
+            implementation(libs.coroutines.test)
         }
     }
 }
