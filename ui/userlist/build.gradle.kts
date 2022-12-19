@@ -29,7 +29,7 @@ kotlin {
 
         val commonTest by getting {
             dependencies {
-                implementation(project(":data:users:core-test"))
+                implementation(project(":data:users:coretest"))
                 implementation(project(":core:compose-utils"))
                 implementation(kotlin("test"))
                 implementation(libs.kotest.assertions)
