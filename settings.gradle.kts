@@ -11,7 +11,6 @@ pluginManagement {
 }
 
 dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         google()
         mavenCentral()
@@ -21,6 +20,7 @@ dependencyResolutionManagement {
 
 include(":app:android")
 include(":app:desktop")
+include(":app:web")
 
 include(":core:compose-utils")
 include(":core:data")

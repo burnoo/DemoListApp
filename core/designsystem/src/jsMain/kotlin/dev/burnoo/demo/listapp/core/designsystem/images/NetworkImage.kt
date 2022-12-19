@@ -1,10 +1,12 @@
 package dev.burnoo.demo.listapp.core.designsystem.images
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import org.jetbrains.compose.web.dom.Img
+import com.seiko.imageloader.rememberAsyncImagePainter
 
 @Composable
 actual fun NetworkImage(
@@ -18,14 +20,8 @@ actual fun NetworkImage(
     }
     Box(modifier) {
         if (shouldLoadImages) {
-            Img(
-                src = url,
-                alt = contentDescription,
-                attrs = {
-                    attr(attr = "width", value = "100%")
-                    attr(attr = "height", value = "100%")
-                },
-            )
+            val painter = rememberAsyncImagePainter("https://api.codetabs.com/v1/proxy?quest=$url")
+            Image(painter, contentDescription, modifier = Modifier.fillMaxSize())
         }
     }
 }

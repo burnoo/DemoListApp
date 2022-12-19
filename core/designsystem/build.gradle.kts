@@ -35,6 +35,9 @@ kotlin {
         val jsMain by getting {
             dependencies {
                 implementation(compose.web.core)
+                @OptIn(ExperimentalComposeLibrary::class)
+                implementation(compose.material3)
+                implementation(libs.imageLoader)
             }
         }
     }
