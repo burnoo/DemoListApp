@@ -28,12 +28,12 @@ kotlin {
             }
         }
 
-        val jvmCommon by creating {
+        val jvmCommonMain by creating {
             dependsOn(commonMain)
         }
 
         val androidMain by getting {
-            dependsOn(jvmCommon)
+            dependsOn(jvmCommonMain)
             dependencies {
                 api(libs.cokoin.viewmodel)
                 implementation(libs.androidx.lifecycle.compose)
@@ -42,7 +42,7 @@ kotlin {
 
         val jvmMain by getting {
             dependsOn(nonAndroidMain)
-            dependsOn(jvmCommon)
+            dependsOn(jvmCommonMain)
         }
 
         val jsMain by getting {

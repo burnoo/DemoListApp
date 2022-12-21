@@ -17,7 +17,7 @@ kotlin {
             }
         }
 
-        val jvmCommon by creating {
+        val jvmCommonMain by creating {
             dependsOn(commonMain)
             dependencies {
                 implementation(libs.kamel)
@@ -25,11 +25,11 @@ kotlin {
         }
 
         val jvmMain by getting {
-            dependsOn(jvmCommon)
+            dependsOn(jvmCommonMain)
         }
 
         val androidMain by getting {
-            dependsOn(jvmCommon)
+            dependsOn(jvmCommonMain)
         }
 
         val jsMain by getting {
