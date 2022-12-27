@@ -55,7 +55,7 @@ Diagram of modules used in the app (core and test modules are omitted):
 
 ## Tests
 - Unit Tests
-  - for ViewModels ([UserDetailsViewModelTest](https://github.com/burnoo/DemoListApp/blob/main/ui/userdetails/src/jvmTest/kotlin/dev/burnoo/demo/listapp/ui/userdetails/UserDetailsViewModelTest.kt) and [UserListViewModelTest](https://github.com/burnoo/DemoListApp/blob/main/ui/userlist/src/jvmTest/kotlin/dev/burnoo/demo/listapp/ui/userlist/UserListViewModelTest.kt))
+  - for ViewModels ([UserDetailsViewModelTest](https://github.com/burnoo/DemoListApp/blob/main/ui/userdetails/src/commonTest/kotlin/dev/burnoo/demo/listapp/ui/userdetails/UserDetailsViewModelTest.kt) and [UserListViewModelTest](https://github.com/burnoo/DemoListApp/blob/main/ui/userlist/src/commonTest/kotlin/dev/burnoo/demo/listapp/ui/userlist/UserListViewModelTest.kt))
   - for utils functions ([TitleParserTest](https://github.com/burnoo/DemoListApp/blob/main/core/utils/src/commonTest/kotlin/dev/burnoo/demo/listapp/core/utils/TitleParserTest.kt))
   - for Api and JSON parsing ([UsersApiTest](https://github.com/burnoo/DemoListApp/blob/main/data/users/network/src/commonTest/kotlin/dev/burnoo/demo/listapp/data/users/network/api/UsersApiTest.kt))
   - for Repository ([UsersRemoteRepositoryTest](https://github.com/burnoo/DemoListApp/blob/main/data/users/core/src/commonTest/kotlin/dev/burnoo/demo/listapp/data/users/core/UsersRemoteRepositoryTest.kt))
