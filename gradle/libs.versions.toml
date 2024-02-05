@@ -26,7 +26,7 @@ assertJ = "3.24.2"
 testAndroidCore = "1.5.0"
 kotest = "5.5.4"
 turbine = "0.12.1"
-gradleVersionsPlugin = "0.44.0"
+gradleVersionsPlugin = "0.51.0"
 
 [libraries]
 gradle-kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
